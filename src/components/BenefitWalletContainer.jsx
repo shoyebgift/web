@@ -237,7 +237,7 @@ const BenefitWalletContainer = () => {
         <Box
           sx={{
             position: "relative",
-            width: "100%",
+            width: "80%",
             mt: "2rem",
             py: 2.5,
             background:
@@ -288,7 +288,7 @@ const BenefitWalletContainer = () => {
               alignItems: "center",
               borderRadius: "10px",
               width: "160px",
-              maxWidth: "40%",
+              maxWidth: "50%",
               height: "auto",
             }}
           >
