@@ -236,8 +236,8 @@ const BenefitWalletContainer = () => {
       <Box width={"100%"}>
         <Box
           sx={{
-            width: "80%",
-            height: "fit-content",
+            position: "relative",
+            width: "100%",
             mt: "2rem",
             py: 2.5,
             background:
@@ -249,6 +249,7 @@ const BenefitWalletContainer = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            maxWidth: "390px",
           }}
         >
           <Typography
@@ -286,13 +287,20 @@ const BenefitWalletContainer = () => {
               justifyContent: "center",
               alignItems: "center",
               borderRadius: "10px",
-              height: "190px",
+              width: "160px",
+              maxWidth: "40%",
+              height: "auto",
             }}
           >
             <img
               src={cardFront}
               alt="cardFront.png"
-              style={{ width: "100%", height: "100%", zIndex: 5 }}
+              style={{
+                objectFit: "cover",
+                width: "100%",
+                height: "auto",
+                zIndex: 5,
+              }}
             />
 
             <Typography
