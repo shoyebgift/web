@@ -1,5 +1,5 @@
 import "./styles/footer.css";
-import NavigationOutlinedIcon from "@mui/icons-material/NavigationOutlined";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {
   Divider,
   Typography,
@@ -127,10 +127,9 @@ const Footer = () => {
                               color: "inherit",
                             }}
                           >
-                            <NavigationOutlinedIcon
-                              fontSize="small"
+                            <FiberManualRecordIcon
+                              fontSize="12px"
                               sx={{
-                                transform: "rotate(90deg)",
                                 marginRight: "8px",
                               }}
                             />

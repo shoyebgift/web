@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import FeatureExcerpt from "./FeatureExcerpt";
 
 const FeatureContainer = ({
@@ -17,6 +17,7 @@ const FeatureContainer = ({
         display: "grid",
         gridTemplateColumns: gridCol,
         gap: "1rem",
+        alignItems: "center", // Ensure proper vertical alignment
       }}
     >
       {/* feature part */}
@@ -28,14 +29,14 @@ const FeatureContainer = ({
           mx: { sm: "auto", md: "0" },
           ml: { md: "5%" },
           order: reverseOrder ? { xs: 1, md: 2 } : 1,
-          mb:{xs:"1rem", md:"0"},
+          mb: { xs: "1rem", md: "0" },
         }}
       >
         <FeatureExcerpt feature={feature} />
       </Box>
 
-      {/* image part  */}
-      <Typography
+      {/* image part */}
+      <Box
         sx={{
           display: imgdisplay,
           alignItems: "end",
@@ -47,16 +48,17 @@ const FeatureContainer = ({
         }}
       >
         <Box
-          component={"img"}
+          component="img"
           sx={{
             width: { md: imgWidth, xs: "70%" },
-            height: "fit-content",
-            mx:{xs:"auto", md:"0"},
+            height: "auto",
+            maxWidth: "100%",
+            mx: { xs: "auto", md: "0" },
           }}
           src={image}
           alt={`${image}.png`}
         />
-      </Typography>
+      </Box>
     </Box>
   );
 };

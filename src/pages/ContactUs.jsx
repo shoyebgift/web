@@ -311,13 +311,13 @@ const ContactUsPage = () => {
           textAlign: "center",
           maxWidth: "500px",
           whiteSpace: "pre-line",
-          fontSize: "18px",
+          fontSize: {xs:"12px", md:"18px"},
           fontWeight: "300",
           color: "#667085",
         }}
       >
         {
-          "GiftrytDigital Ventures Private\n Limited Mumbai, India\nsupport@optifii.com"
+          "GiftrytDigital Ventures Private Limited \nMumbai, India\nsupport@optifii.com"
         }
       </Typography>
     </Box>

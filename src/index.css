@@ -14,6 +14,11 @@
   height: 5px;
 }
 
+img {
+  -webkit-object-fit: cover;
+  object-fit: cover;
+}
+
 *::-webkit-scrollbar-track {
   background: transparent;
 }
