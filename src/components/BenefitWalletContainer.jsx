@@ -282,6 +282,7 @@ const BenefitWalletContainer = () => {
           <Box
             sx={{
               position: "absolute",
+              top: "2px",
               right: "-85px",
               display: "flex",
               justifyContent: "center",
@@ -289,7 +290,17 @@ const BenefitWalletContainer = () => {
               borderRadius: "10px",
               width: "160px",
               maxWidth: "50%",
-              height: "auto",
+              height: "165px",
+              "@media (max-width: 1000px) and (min-width: 900px)": {
+                width: "120px",
+                height: "135px",
+                right: "-70px",
+              },
+              "@media (max-width: 900px)": {
+                width: "120px",
+                height: "125px",
+                right: "-65px",
+              },
             }}
           >
             <img
@@ -302,36 +313,62 @@ const BenefitWalletContainer = () => {
                 zIndex: 5,
               }}
             />
-
-            <Typography
-              component={"div"}
-              sx={{
-                zIndex: 3,
-                top: "22px",
-                left: "22px",
-                bgcolor: "#C7AEDD",
-                borderRadius: "8px",
-                width: "105px",
-                height: "165px",
-                rotate: "-22deg",
-                position: "absolute",
-              }}
-            ></Typography>
-            <Typography
-              component={"div"}
-              sx={{
-                zIndex: 2,
-                top: "32px",
-                left: "17px",
-                bgcolor: "#DECEED",
-                borderRadius: "8px",
-                width: "105px",
-                height: "165px",
-                rotate: "-22deg",
-                position: "absolute",
-              }}
-            ></Typography>
           </Box>
+
+          <Typography
+            component={"div"}
+            sx={{
+              zIndex: 3,
+              top: "12px",
+              right: "-58px",
+              bgcolor: "#C7AEDD",
+              borderRadius: "8px",
+              width: "105px",
+              height: "165px",
+              rotate: "-22deg",
+              position: "absolute",
+              "@media (max-width: 1000px) and (min-width: 900px)": {
+                width: "80px",
+                height: "125px",
+                right: "-50px",
+                top: "15px",
+                right: "-48px",
+              },
+              "@media (max-width: 900px)": {
+                width: "80px",
+                height: "120px",
+                right: "-45px",
+              },
+            }}
+          />
+          <Typography
+            component={"div"}
+            sx={{
+              zIndex: 2,
+              top: "25px",
+              right: "-55px",
+              bgcolor: "#DECEED",
+              borderRadius: "8px",
+              width: "105px",
+              height: "165px",
+              rotate: "-22deg",
+              position: "absolute",
+              "@media (max-width: 1000px) and (min-width: 900px)": {
+                width: "82px",
+                height: "128px",
+                right: "-50px",
+                top: "22px",
+                right: "-46px",
+              },
+              "@media (max-width: 900px)": {
+                width: "80px",
+                height: "120px",
+                right: "-45px",
+                top: "18px",
+                right: "-43px",
+              },
+            }}
+          />
         </Box>
       </Box>
     </Box>
