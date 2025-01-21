@@ -1,0 +1,9 @@
+.unprotected-layout {
+  padding: 1px;
+}
+
+.lines-img {
+  height: auto;
+  width: 100%;
+  max-width: min-content;
+}

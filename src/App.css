@@ -1,0 +1,8 @@
+.App {
+  overflow-y: auto;
+  min-height: 100vh;
+  min-width: min-content;
+  width: 100%;
+  height: min-content;
+  background: #f5f5f5;
+}

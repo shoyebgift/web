@@ -1,0 +1,25 @@
+.unprotected-homePage {
+  background-color: #fafafa;
+  padding-left: 1rem;
+  overflow-x: hidden;
+  z-index: 20;
+  position: relative;
+}
+
+.dashboard-img {
+  width: 80%;
+  height: auto;
+}
+
+.app-prototype-img {
+  width: 80%;
+  height: auto;
+  filter: blur(2px);
+}
+
+.iphonemockup-img {
+  height: 92%;
+  position: absolute;
+  left: 0;
+  z-index: 40;
+}
