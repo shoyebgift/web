@@ -36,9 +36,9 @@ const ContactUsPage = () => {
     }
     if (!formData.email) {
       newErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(formData.email.toLowerCase())) {
       newErrors.email = "Enter a valid email.";
-    } else if (commonEmailDomains.test(formData.email)) {
+    } else if (commonEmailDomains.test(formData.email.toLowerCase())) {
       newErrors.email = "Please enter your work email address.";
     }
 

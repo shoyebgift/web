@@ -42,13 +42,13 @@ const HomePage = () => {
 
     setLoading(true);
     setTimeout(() => {
-      if (commonEmailDomains.test(email)) {
+      if (commonEmailDomains.test(email.toLowerCase())) {
         setError("Please enter a company email address.");
         setLoading(false);
       } else {
         const companyEmailPattern = /@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
 
-        if (!companyEmailPattern.test(email)) {
+        if (!companyEmailPattern.test(email.toLowerCase())) {
           setError("Please enter a valid email address.");
         } else {
           setError("");
