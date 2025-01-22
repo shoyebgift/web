@@ -22,6 +22,9 @@ const ContactUsPage = () => {
 
   const [errors, setErrors] = useState({});
 
+  const commonEmailDomains =
+    /@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|aol\.com|live\.com|msn\.com)$/i;
+
   const validate = () => {
     const newErrors = {};
 
@@ -35,6 +38,8 @@ const ContactUsPage = () => {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Enter a valid email.";
+    } else if (commonEmailDomains.test(formData.email)) {
+      newErrors.email = "Please enter your work email address.";
     }
 
     if (!formData.phone) {
@@ -311,7 +316,7 @@ const ContactUsPage = () => {
           textAlign: "center",
           maxWidth: "500px",
           whiteSpace: "pre-line",
-          fontSize: {xs:"12px", md:"18px"},
+          fontSize: { xs: "12px", md: "18px" },
           fontWeight: "300",
           color: "#667085",
         }}

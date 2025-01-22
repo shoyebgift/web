@@ -15,12 +15,13 @@ import boltOutlined from "../assets/svg/boltOutlined.svg";
 import mail from "../assets/svg/mail.svg";
 
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
-import dashboard from "../assets/img/dashboard.png";
 import appprototype from "../assets/img/appPrototype.png";
 import iphonemockup from "../assets/img/iPhonemockup.png";
 
 import { homePage } from "../utils/index";
 import FeatureTitleExcerpt from "./../components/FeatureTitleExcerpt";
+import { useState } from "react";
+import DummyDashboard from "./../components/DummyDashboard";
 
 const HomePage = () => {
   const { header, description, features } = homePage;
@@ -28,6 +29,34 @@ const HomePage = () => {
     MailOutlineIcon: mail,
     boltOutlined,
     barChart,
+  };
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const commonEmailDomains =
+    /@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|aol\.com|live\.com|msn\.com)$/i;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setTimeout(() => {
+      if (commonEmailDomains.test(email)) {
+        setError("Please enter a company email address.");
+        setLoading(false);
+      } else {
+        const companyEmailPattern = /@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+
+        if (!companyEmailPattern.test(email)) {
+          setError("Please enter a valid email address.");
+        } else {
+          setError("");
+          setEmail("");
+        }
+        setLoading(false);
+      }
+    }, 3000);
   };
 
   return (
@@ -47,8 +76,8 @@ const HomePage = () => {
             component={"h1"}
             variant={"h2"}
             sx={{
-              fontSize: { lg: "58px", md: "40px", xs: "30px" },
-              lineHeight: { lg: "60px", md: "42px", xs: "32px" },
+              fontSize: { lg: "55px", md: "40px", xs: "32px" },
+              lineHeight: { lg: "55px", md: "42px", xs: "32px" },
               fontWeight: "800",
               mt: "1rem",
             }}
@@ -71,9 +100,18 @@ const HomePage = () => {
 
           <TextField
             fullWidth
-            id="outlined-basic"
             variant="outlined"
             label="Enter email address"
+            type="email"
+            name="getstarted"
+            id="getstarted"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setError("");
+            }}
+            error={!!error}
+            helperText={error}
             sx={{
               mt: "1rem",
               "& .MuiOutlinedInput-root": {
@@ -97,10 +135,14 @@ const HomePage = () => {
                         "&:hover": {
                           backgroundColor: "#333",
                         },
+                        "&:disabled": {
+                          backgroundColor: "rgba(0, 0, 0, 0.3)",
+                          color: "rgba(255, 255, 255, 0.5)",
+                        },
                       }}
-                      onClick={() => {
-                        console.log("Button clicked!");
-                      }}
+                      onClick={(e) => handleSubmit(e)}
+                      loading={loading}
+                      loadingPosition="center"
                     >
                       Get Started
                     </Button>
@@ -116,11 +158,13 @@ const HomePage = () => {
           component={"div"}
           sx={{
             mt: { xs: "2rem", md: "0" },
-            textAlign: "end",
+            ml: "auto",
             overflow: "hidden",
+            position: "relative",
+            width: { xs: "100%", md: "50%" },
           }}
         >
-          <img src={dashboard} alt="dashboard.png" className="dashboard-img" />
+          <DummyDashboard />
         </Box>
       </Box>
 
@@ -159,8 +203,10 @@ const HomePage = () => {
           display: "flex",
           flexDirection: { md: "row", xs: "column" },
           my: "4rem",
+          mx: "auto",
           pr: "1rem",
           width: "100%",
+          maxWidth: "1250px",
         }}
       >
         {features.map((feature, index) => (
@@ -173,6 +219,8 @@ const HomePage = () => {
               justifyContent: "space-between",
               flexDirection: "column",
               alignItems: "center",
+              maxWidth: "600px",
+              mx: "auto",
             }}
           >
             <Box

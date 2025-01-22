@@ -248,6 +248,7 @@ const UnprotectedHeader = () => {
                 flexDirection: "row",
                 justifyContent: "center",
                 width: isMediumScreen ? "100%" : "auto",
+                alignItems: "center",
               }}
             >
               {unprotectedHeaderLinks.map((link, index) =>
@@ -285,7 +286,7 @@ const UnprotectedHeader = () => {
                       sx={{
                         position: "absolute",
                         width: "min-content",
-                        top: "38px",
+                        top: { sm: "34px", lg: "42px" }, 
                         right: { sm: "-35px", lg: "-65px" },
                         opacity: windowDropdown === index ? 1 : 0,
                         transform:
@@ -335,7 +336,7 @@ const UnprotectedHeader = () => {
                     key={index}
                     to={link.path}
                     className="no-select anchor"
-                    style={{ marginLeft: "1rem", height: "min-content" }}
+                    style={{ marginLeft: "1rem", height: "fit-content", whiteSpace: "nowrap" }}
                   >
                     {link.name}
                   </NavLink>
@@ -347,11 +348,10 @@ const UnprotectedHeader = () => {
             <Box
               sx={{
                 display: "flex",
-                height: "min-content",
                 flexDirection: "row",
                 justifyContent: "center",
+                alignItems: "center",
                 width: isMediumScreen ? "100%" : "auto",
-                marginTop: "1rem",
               }}
             >
               <Button

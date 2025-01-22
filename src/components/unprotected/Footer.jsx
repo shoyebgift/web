@@ -13,10 +13,40 @@ import {
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/svg/OptiFii.svg";
 import { unprotectedNavlinks } from "../../utils";
+import { useState } from "react";
 
 const Footer = () => {
   const theme = useTheme();
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const commonEmailDomains =
+    /@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|aol\.com|live\.com|msn\.com)$/i;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setTimeout(() => {
+      if (commonEmailDomains.test(email)) {
+        setError("Please enter your work email address.");
+        setLoading(false);
+      } else {
+        const companyEmailPattern = /@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+
+        if (!companyEmailPattern.test(email)) {
+          setError("Please enter a valid email address.");
+        } else {
+          setError("");
+          setEmail("");
+        }
+        setLoading(false);
+      }
+    }, 3000);
+  };
 
   return (
     <Box
@@ -28,7 +58,7 @@ const Footer = () => {
         gap: 2,
       }}
     >
-      <Typography
+      <Box
         variant="subtitle1"
         align="center"
         color="text.secondary"
@@ -128,8 +158,8 @@ const Footer = () => {
                             }}
                           >
                             <FiberManualRecordIcon
-                              fontSize="12px"
                               sx={{
+                                width: "10px",
                                 marginRight: "8px",
                               }}
                             />
@@ -154,10 +184,7 @@ const Footer = () => {
         </Box>
 
         {/* newsletter Subscribe  */}
-        <Typography
-          component={"div"}
-          align={isMediumScreen ? "center" : "left"}
-        >
+        <Box component={"div"} align={isMediumScreen ? "center" : "left"}>
           <Typography
             component={"h2"}
             sx={{
@@ -172,25 +199,28 @@ const Footer = () => {
           </Typography>
 
           <Box
-            component={"form"}
             sx={{
               display: "flex",
               gap: 2,
               mt: 2,
-              mx: "auto",
+              mx: { xs: "auto", md: "0" },
+              maxWidth: "350px",
               width: "80%",
               flexDirection: "column",
             }}
           >
             <TextField
-              id="outlined-basic"
+              name="newsletter"
+              id="newsletter"
+              autoComplete="newsletter"
               label="Enter your email address"
               variant="outlined"
               size="small"
+              type="email"
               fullWidth
               sx={{
                 fontWeight: "400",
-                backgroundColor: "white",
+
                 borderRadius: "5px",
                 "& .MuiInputBase-input": {
                   fontSize: "14px",
@@ -199,20 +229,33 @@ const Footer = () => {
                   fontSize: "14px",
                 },
               }}
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError("");
+              }}
+              error={!!error}
+              helperText={error}
             />
 
             <Button
               variant="contained"
-              loading={false}
+              loading={loading}
+              loadingPosition="center"
               sx={{
                 textTransform: "none",
+                "&:disabled": {
+                  backgroundColor: "rgba(0, 0, 0, 0.3)",
+                  color: "rgba(255, 255, 255, 0.5)",
+                },
               }}
+              onClick={(e) => handleSubmit(e)}
             >
               Subscribe Now
             </Button>
           </Box>
-        </Typography>
-      </Typography>
+        </Box>
+      </Box>
       <Divider />
       <Typography
         variant="subtitle1"

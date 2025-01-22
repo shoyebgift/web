@@ -8,6 +8,7 @@ const FeatureContainer = ({
   feature,
   imgdisplay = { xs: "flex" },
   imgWidth = "100%",
+  mx = { xs: "auto", md: "0" },
   gridCol = { md: "1fr 1fr", xs: "1fr" },
 }) => {
   return (
@@ -26,8 +27,8 @@ const FeatureContainer = ({
           width: "fit-content",
           display: "flex",
           justifyContent: "end",
-          mx: { sm: "auto", md: "0" },
-          ml: { md: "5%" },
+          mx: mx,
+          ml: { lg: "5%" },
           order: reverseOrder ? { xs: 1, md: 2 } : 1,
           mb: { xs: "1rem", md: "0" },
         }}

@@ -13,7 +13,6 @@ const FeatureExcerpt = ({feature }) => {
   return (
     <Box
       sx={{
-        width: "100vw",
         maxWidth: "560px",
         px: "10px",
       }}

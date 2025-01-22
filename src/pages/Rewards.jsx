@@ -26,6 +26,7 @@ const RewardsPage = () => {
       {/* top part */}
       <FeatureContainer
         feature={rewards.features[0]}
+        mx={{ xs: "auto", xl: "0" }}
         image={reward}
         imgWidth={"80%"}
         imgdisplay={{ xs: "none", lg: "flex" }}
@@ -69,7 +70,7 @@ const RewardsPage = () => {
               maxWidth: "50vw",
             }}
           >
-            <DummyCards type={"Digital"} />
+            <DummyCards type={"digital"} />
           </Box>
         </Box>
 
