@@ -330,14 +330,14 @@ const BenefitWalletContainer = () => {
               "@media (max-width: 1000px) and (min-width: 900px)": {
                 width: "80px",
                 height: "125px",
-                right: "-50px",
                 top: "15px",
                 right: "-48px",
               },
               "@media (max-width: 900px)": {
+                top: "7px",
                 width: "80px",
-                height: "120px",
-                right: "-45px",
+                height: "125px",
+                right: "-43px",
               },
             }}
           />
@@ -356,16 +356,14 @@ const BenefitWalletContainer = () => {
               "@media (max-width: 1000px) and (min-width: 900px)": {
                 width: "82px",
                 height: "128px",
-                right: "-50px",
                 top: "22px",
                 right: "-46px",
               },
               "@media (max-width: 900px)": {
+                top: "12px",
                 width: "80px",
-                height: "120px",
-                right: "-45px",
-                top: "18px",
-                right: "-43px",
+                height: "125px",
+                right: "-40px",
               },
             }}
           />
