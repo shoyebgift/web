@@ -244,7 +244,6 @@ const BenefitWalletContainer = () => {
               "linear-gradient(184.31deg, #FFFFFF 3.5%, #DBD8FF 180.2%)",
             borderRadius: "10px",
             boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-            position: "relative",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
