@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 import barChart from "../assets/svg/barChart2.svg";
-import logo from "../assets/svg/optifii.svg";
+import logo from "../assets/svg/Optifii.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
