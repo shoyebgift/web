@@ -7,7 +7,7 @@ const FeatureContainer = ({
   image,
   feature,
   imgdisplay = { xs: "flex" },
-  imgWidth = "100%",
+  imgWidth = { md: "100%", xs: "70%" },
   mx = { xs: "auto", md: "0" },
   gridCol = { md: "1fr 1fr", xs: "1fr" },
 }) => {
@@ -51,7 +51,7 @@ const FeatureContainer = ({
         <Box
           component="img"
           sx={{
-            width: { md: imgWidth, xs: "70%" },
+            width: imgWidth,
             height: "auto",
             maxWidth: "100%",
             mx: { xs: "auto", md: "0" },

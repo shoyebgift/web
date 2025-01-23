@@ -31,16 +31,18 @@ const SolutionsPage = () => {
         />
       </Typography>
 
-      <FeatureContainer
-        image={screenMockup}
-        feature={solutions.features[0]}
-        reverseOrder={true}
-      />
-      <FeatureContainer
-        isBlur={true}
-        image={screenMockup2}
-        feature={solutions.features[1]}
-      />
+      <Box sx={{ mx: "auto", mt: "2rem", maxWidth: "1300px" }}>
+        <FeatureContainer
+          image={screenMockup}
+          feature={solutions.features[0]}
+          reverseOrder={true}
+        />
+        <FeatureContainer
+          isBlur={true}
+          image={screenMockup2}
+          feature={solutions.features[1]}
+        />
+      </Box>
     </Box>
   );
 };

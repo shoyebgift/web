@@ -56,11 +56,11 @@ const DummyDashboard = () => {
 
   return (
     <Box
-    className='no-select'
+      className="no-select"
       sx={{
         width: "100%",
         minWidth: "min-content",
-        maxWidth: "550px",
+        maxWidth: "600px",
         height: "min-content",
         bgcolor: "#F3F3F9",
         zIndex: 5,
@@ -130,7 +130,7 @@ const DummyDashboard = () => {
               borderRadius={1}
             />
             <Box
-              fontSize={"14px"}
+              fontSize={"12px"}
               display="flex"
               width={"100%"}
               alignItems="center"
@@ -140,7 +140,7 @@ const DummyDashboard = () => {
               ml={1}
               sx={{ cursor: "pointer" }}
             >
-              <HomeOutlinedIcon sx={{ color: "white" }} />
+              <HomeOutlinedIcon sx={{ fontSize: "16px", color: "white" }} />
               <Box ml={1} color="white">
                 Dashboard
               </Box>
@@ -150,9 +150,9 @@ const DummyDashboard = () => {
           {dummyButtons.map((data, index) => (
             <Box key={index}>
               <Typography
-                ml={2}
+                ml={"28px"}
                 my={1}
-                fontSize={"12px"}
+                fontSize={"10px"}
                 textTransform={"uppercase"}
               >
                 {data.title}
@@ -178,6 +178,11 @@ const DummyDashboard = () => {
                         "&:hover .blue-line": {
                           width: "4px",
                         },
+                        "&:hover .background-col": {
+                          bgcolor: "#382450",
+                          ml: 1,
+                          transition: "margin 0.2s ease",
+                        },
                       }}
                     >
                       {/* Blue line */}
@@ -188,19 +193,17 @@ const DummyDashboard = () => {
                         bgcolor="blue"
                         sx={{
                           minHeight: "32px",
-                          transition: "width 0.3s ease",
                         }}
                         borderRadius={1}
                       />
                       <Box
+                        className="background-col"
                         fontSize={"10px"}
                         display="flex"
                         width={"100%"}
                         alignItems="center"
                         borderRadius={"4px 0 0 4px"}
                         p={1}
-                        bgcolor="#382450"
-                        ml={1}
                       >
                         {item.icon}
                         <Box ml={1} color="white">
@@ -216,7 +219,12 @@ const DummyDashboard = () => {
 
         {/* Left Side */}
         <Box p={1} maxWidth={"400px"} height={"100%"} position={"relative"}>
-          <Typography fontSize="12px" fontWeight="400" my={1.2}>
+          <Typography
+            fontSize="12px"
+            whiteSpace={"nowrap"}
+            fontWeight="400"
+            my={1.2}
+          >
             <b>Hey Jenny -</b> here's what’s happening today
           </Typography>
 
@@ -269,7 +277,7 @@ const DummyDashboard = () => {
 
             {/* Expense Card  */}
             <Box display={"flex"} flexDirection={"row"} gap={1} mt={3}>
-              {["Expense Card", "BenefitCard"].map((Card, idx) => (
+              {["Expense Card", "Benefit Card"].map((Card, idx) => (
                 <Box
                   key={idx}
                   width={"300px"}

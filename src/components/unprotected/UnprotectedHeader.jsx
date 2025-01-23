@@ -118,8 +118,11 @@ const UnprotectedHeader = () => {
                 }}
                 role="presentation"
               >
-                {unprotectedHeaderLinks.map((link, index) =>
-                  link.child ? (
+                {unprotectedHeaderLinks.map((link, index) => {
+                  const isParentActive = link.child?.some((child) =>
+                    window.location.pathname.startsWith(child.path)
+                  );
+                  return link.child ? (
                     <Box key={index}>
                       <Box
                         onClick={() =>
@@ -132,7 +135,18 @@ const UnprotectedHeader = () => {
                           alignItems: "center",
                           cursor: "pointer",
                           justifyContent: "space-between",
-                          mx: "1.7rem",
+                          ml: "1rem",
+                          "&:hover": {
+                            background:
+                              "linear-gradient(to right, #6311CB, #8F40FB)",
+                            color: "white",
+                          },
+                          background: isParentActive
+                            ? "linear-gradient(to right, #6311CB, #8F40FB)"
+                            : "transparent",
+                          color: isParentActive ? "white" : "black",
+                          padding: "8px 12px",
+                          borderRadius: "5px",
                         }}
                       >
                         <span>{link.name}</span>
@@ -147,21 +161,23 @@ const UnprotectedHeader = () => {
                       </Box>
                       <Collapse
                         sx={{
-                          pt: 1,
-                          pl: 3,
+                          px: 3,
                         }}
                         in={mobileDropdownOpen === index}
                       >
                         {link.child.map((child, idx) => (
-                          <Button
+                          <NavLink
                             onClick={() => toggleDrawer(false)}
                             onKeyDown={() => toggleDrawer(false)}
-                            component={NavLink}
                             key={idx}
                             to={child.path}
-                            className="no-select anchor"
+                            className={({ isActive }) =>
+                              `no-select anchor ${
+                                isActive ? "active-link" : ""
+                              }`
+                            }
                             style={{
-                              mt: 1,
+                              marginTop: "5px",
                               display: "flex",
                               justifyContent: "start",
                               textDecoration: "none",
@@ -171,23 +187,25 @@ const UnprotectedHeader = () => {
                             }}
                           >
                             {child.name}
-                          </Button>
+                          </NavLink>
                         ))}
                       </Collapse>
                     </Box>
                   ) : (
                     <NavLink
+                      className={({ isActive }) =>
+                        `no-select anchor ${isActive ? "active-link" : ""}`
+                      }
                       key={index}
                       to={link.path}
-                      className="no-select anchor"
                       style={{ marginLeft: "1rem" }}
                       onClick={() => toggleDrawer(false)}
                       onKeyDown={() => toggleDrawer(false)}
                     >
                       {link.name}
                     </NavLink>
-                  )
-                )}
+                  );
+                })}
 
                 <Button
                   component={NavLink}
@@ -251,24 +269,39 @@ const UnprotectedHeader = () => {
                 alignItems: "center",
               }}
             >
-              {unprotectedHeaderLinks.map((link, index) =>
-                link.child ? (
+              {unprotectedHeaderLinks.map((link, index) => {
+                const isParentActive = link.child?.some((child) =>
+                  window.location.pathname.startsWith(child.path)
+                );
+
+                return link.child ? (
                   <Box
                     key={index}
-                    className="no-select"
+                    className={`no-select`}
                     onMouseEnter={() => setWindowDropdown(index)}
                     onMouseLeave={() => setWindowDropdown(false)}
                     sx={{
                       "&:hover": {
-                        backgroundColor: "rgb(51, 51, 51, 0.1)",
+                        background:
+                          "linear-gradient(to right, #6311CB, #8F40FB)",
+                        color: "white",
                       },
                       cursor: "pointer",
                       position: "relative",
-                      padding: { sm: "5px 10px", lg: "10px" },
-                      borderRadius: "10px",
+                      padding: {
+                        sm: "3.5px 10px",
+                        md: "3px, 10px",
+                        lg: "8px 10px",
+                      },
+                      ml: 1,
+                      borderRadius: "5px",
                       display: "flex",
                       alignItems: "center",
                       height: "min-content",
+                      background: isParentActive
+                        ? "linear-gradient(to right, #6311CB, #8F40FB)"
+                        : "transparent",
+                      color: isParentActive ? "white" : "black",
                     }}
                   >
                     <span>{link.name}</span>
@@ -286,8 +319,8 @@ const UnprotectedHeader = () => {
                       sx={{
                         position: "absolute",
                         width: "min-content",
-                        top: { sm: "34px", lg: "42px" }, 
-                        right: { sm: "-35px", lg: "-65px" },
+                        top: { sm: "34px", lg: "42px" },
+                        right: "-4px",
                         opacity: windowDropdown === index ? 1 : 0,
                         transform:
                           windowDropdown === index
@@ -320,7 +353,11 @@ const UnprotectedHeader = () => {
                           <NavLink
                             key={idx}
                             to={child.path}
-                            className="no-select anchor"
+                            className={({ isActive }) =>
+                              `no-select anchor ${
+                                isActive ? "active-link" : ""
+                              }`
+                            }
                             style={{
                               height: "min-content",
                             }}
@@ -335,18 +372,25 @@ const UnprotectedHeader = () => {
                   <NavLink
                     key={index}
                     to={link.path}
-                    className="no-select anchor"
-                    style={{ marginLeft: "1rem", height: "fit-content", whiteSpace: "nowrap" }}
+                    className={({ isActive }) =>
+                      `no-select anchor ${isActive ? "active-link" : ""}`
+                    }
+                    style={{
+                      marginLeft: "1rem",
+                      height: "fit-content",
+                      whiteSpace: "nowrap",
+                    }}
                   >
                     {link.name}
                   </NavLink>
-                )
-              )}
+                );
+              })}
             </Box>
 
             {/* Sign In and Create Account */}
             <Box
               sx={{
+                mt: { xs: "1rem", md: "0" },
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "center",

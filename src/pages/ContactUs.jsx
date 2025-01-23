@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import { useState } from "react";
 
 const ContactUsPage = () => {
@@ -46,8 +47,8 @@ const ContactUsPage = () => {
       newErrors.phone = "Phone number is required.";
     } else if (!/^\d+$/.test(formData.phone)) {
       newErrors.phone = "Phone number must be numeric.";
-    } else if (formData.phone.length < 7 || formData.phone.length > 15) {
-      newErrors.phone = "Phone number must be between 7 and 15 digits.";
+    } else if (formData.phone.length < 8 || formData.phone.length > 10) {
+      newErrors.phone = "Phone number must be between 8 and 10 digits.";
     }
 
     if (!formData.message) {
@@ -154,7 +155,9 @@ const ContactUsPage = () => {
             <Stack spacing={2} direction={{ xs: "column", md: "row" }}>
               {/* First Name */}
               <Box sx={{ flex: 1 }}>
-                <Typography sx={{ fontSize: "14px", mb: 1 }}>
+                <Typography
+                  sx={{ fontSize: { md: "14px", xs: "12px" }, mb: 1 }}
+                >
                   First name
                 </Typography>
                 <TextField
@@ -166,12 +169,19 @@ const ContactUsPage = () => {
                   onChange={handleChange}
                   error={!!errors.firstName}
                   helperText={errors.firstName}
+                  slotProps={{
+                    input: {
+                      sx: { fontSize: { md: "14px", xs: "12px" } },
+                    },
+                  }}
                 />
               </Box>
 
               {/* Last Name */}
               <Box sx={{ flex: 1 }}>
-                <Typography sx={{ fontSize: "14px", mb: 1 }}>
+                <Typography
+                  sx={{ fontSize: { md: "14px", xs: "12px" }, mb: 1 }}
+                >
                   Last name
                 </Typography>
                 <TextField
@@ -183,13 +193,20 @@ const ContactUsPage = () => {
                   onChange={handleChange}
                   error={!!errors.lastName}
                   helperText={errors.lastName}
+                  slotProps={{
+                    input: {
+                      sx: { fontSize: { md: "14px", xs: "12px" } },
+                    },
+                  }}
                 />
               </Box>
             </Stack>
 
             {/* Email address */}
             <Box sx={{ flex: 1 }}>
-              <Typography sx={{ fontSize: "14px", mb: 1 }}>Email</Typography>
+              <Typography sx={{ fontSize: { md: "14px", xs: "12px" }, mb: 1 }}>
+                Email
+              </Typography>
               <TextField
                 fullWidth
                 type="email"
@@ -200,76 +217,44 @@ const ContactUsPage = () => {
                 onChange={handleChange}
                 error={!!errors.email}
                 helperText={errors.email}
+                slotProps={{
+                  input: {
+                    sx: { fontSize: { md: "14px", xs: "12px" } },
+                  },
+                }}
               />
             </Box>
 
             {/* phone number */}
             <Box sx={{ flex: 1 }}>
-              <Typography sx={{ fontSize: "14px" }}>Phone Number</Typography>
+              <Typography sx={{ fontSize: { md: "14px", xs: "12px" } }}>
+                Phone Number
+              </Typography>
               <TextField
                 fullWidth
-                variant="outlined"
                 name="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
                 error={!!errors.phone}
                 helperText={errors.phone}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment
-                      position="start"
-                      sx={{
-                        fontSize: { lg: "16px", md: "14px", xs: "12px" },
-                        color: "#667085",
-                      }}
-                    >
-                      <Select
-                        value={formData.countryCode}
-                        onChange={handleChange}
-                        name="countryCode"
-                        variant="standard"
-                        sx={{ fontSize: "inherit" }}
-                      >
-                        <MenuItem
-                          sx={{
-                            fontSize: { lg: "16px", md: "14px", xs: "12px" },
-                          }}
-                          value="+91"
-                        >
-                          IND +91
-                        </MenuItem>
-                        <MenuItem
-                          sx={{
-                            fontSize: { lg: "16px", md: "14px", xs: "12px" },
-                          }}
-                          value="+1"
-                        >
-                          USA +1
-                        </MenuItem>
-                        <MenuItem
-                          sx={{
-                            fontSize: { lg: "16px", md: "14px", xs: "12px" },
-                          }}
-                          value="+44"
-                        >
-                          UK +44
-                        </MenuItem>
-                        <MenuItem
-                          sx={{
-                            fontSize: { lg: "16px", md: "14px", xs: "12px" },
-                          }}
-                          value="+61"
-                        >
-                          AUS +61
-                        </MenuItem>
-                      </Select>
-                    </InputAdornment>
-                  ),
-                }}
                 slotProps={{
                   htmlInput: {
-                    style: { fontSize: "14px" },
+                    style: { fontSize: { md: "14px", xs: "12px" } },
+                  },
+
+                  input: {
+                    startAdornment: (
+                      <InputAdornment
+                        position="start"
+                        sx={{
+                          fontSize: "inherit",
+                          color: "#667085",
+                        }}
+                      >
+                       IND {formData.countryCode}
+                      </InputAdornment>
+                    ),
                   },
                 }}
               />
@@ -277,17 +262,24 @@ const ContactUsPage = () => {
 
             {/* Message here */}
             <Box sx={{ flex: 1 }}>
-              <Typography sx={{ fontSize: "14px", mb: 1 }}>Message</Typography>
+              <Typography sx={{ fontSize: { md: "14px", xs: "12px" }, mb: 1 }}>
+                Message
+              </Typography>
               <TextField
                 fullWidth
                 variant="outlined"
                 name="message"
                 value={formData.message}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
                 error={!!errors.message}
                 helperText={errors.message}
                 rows={5}
                 multiline
+                slotProps={{
+                  input: {
+                    sx: { fontSize: { md: "14px", xs: "12px" } },
+                  },
+                }}
               />
             </Box>
 
@@ -302,6 +294,7 @@ const ContactUsPage = () => {
                 color: "#FFFFFF",
                 textTransform: "none",
                 "&:hover": { bgcolor: "#6A47BD" },
+                fontSize: { md: "14px", xs: "12px" },
               }}
             >
               Send message
@@ -316,7 +309,7 @@ const ContactUsPage = () => {
           textAlign: "center",
           maxWidth: "500px",
           whiteSpace: "pre-line",
-          fontSize: { xs: "12px", md: "18px" },
+          fontSize: { xs: "12px", md: "14px" },
           fontWeight: "300",
           color: "#667085",
         }}

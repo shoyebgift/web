@@ -10,8 +10,8 @@ const DummyCards = ({ type }) => {
     <Box
       className="no-select"
       sx={{
-        width: { xs: "120px", sm: "200px", md: "230px" }, // Responsive width
-        height: { xs: "200px", sm: "300px", md: "354px" }, // Responsive height
+        width: { xs: "120px", md: "200px", lg: "230px" }, // Responsive width
+        height: { xs: "200px", md: "300px", lg: "354px" }, // Responsive height
         background: "linear-gradient(180deg, #6311CB 0%, #1F1584 100%)",
         borderRadius: "6px",
         position: "relative",
@@ -26,7 +26,7 @@ const DummyCards = ({ type }) => {
         p={"2px 15px"}
         width={"fit-content"}
         sx={{
-          fontSize: { xs: "7px", sm: "10px", md: "14px" },
+          fontSize: { xs: "7px", md: "10px", lg: "14px" },
         }}
       >
         Select
@@ -34,21 +34,21 @@ const DummyCards = ({ type }) => {
       <Typography
         sx={{
           mt: { xs: ".5rem", md: "1rem" },
-          fontSize: { xs: "12px", sm: "14px", md: "16px" },
+          fontSize: { xs: "10px", md: "16px" },
         }}
       >
         Save More
       </Typography>
       <Typography
         sx={{
-          fontSize: { xs: "10px", sm: "16px", md: "20px" },
+          fontSize: { xs: "10px", sm: "12px", md: "20px" },
           textTransform: "capitalize",
         }}
       >
         {type} Gift Card
       </Typography>
 
-      <Typography
+      {/* <Typography
         sx={{
           fontSize: { xs: "7px", sm: "12px" },
           mt: { xs: 1.5, md: 2 },
@@ -56,7 +56,7 @@ const DummyCards = ({ type }) => {
       >
         Choose a plan and get onboard in minutes. Then get $100 credits for your
         next payment.
-      </Typography>
+      </Typography> */}
 
       {type === "physical" ? (
         <Box

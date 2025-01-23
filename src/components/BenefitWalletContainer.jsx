@@ -53,7 +53,7 @@ const BenefitWalletContainer = () => {
     },
   ];
 
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isSmallScreen = useMediaQuery("(max-width:900px)");
   return (
     <Box
       className="no-select"

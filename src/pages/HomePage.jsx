@@ -71,18 +71,28 @@ const HomePage = () => {
         }}
       >
         {/* left of the top part */}
-        <Box component={"div"} sx={{ width: "410px", mx: "auto" }}>
+        <Box
+          component={"div"}
+          sx={{
+            width: "500px",
+            mx: "auto",
+            px: 1,
+            maxWidth: "100vw",
+            my: "auto",
+          }}
+        >
           <Typography
             component={"h1"}
             variant={"h2"}
             sx={{
-              fontSize: { lg: "55px", md: "40px", xs: "32px" },
+              fontSize: { lg: "55px", md: "50px", xs: "32px" },
               lineHeight: { lg: "55px", md: "42px", xs: "32px" },
               fontWeight: "800",
+              whiteSpace: { md: "pre-line", xs: "normal" },
               mt: "1rem",
             }}
           >
-            Business Expenses made easy with OptiFii
+            {"Business Expenses\n made easy with \nOptiFii"}
           </Typography>
 
           <Typography
@@ -173,7 +183,6 @@ const HomePage = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          ml: { md: "1rem", xs: "0" },
           mt: "5rem",
           width: "100%",
           alignItems: "center",

@@ -150,11 +150,10 @@ const Footer = () => {
                         >
                           <NavLink
                             to={child.path}
-                            className={"footer-link"}
+                            className="footer-link"
                             style={{
                               display: "flex",
                               alignItems: "center",
-                              color: "inherit",
                             }}
                           >
                             <FiberManualRecordIcon
@@ -172,7 +171,7 @@ const Footer = () => {
                     <NavLink
                       key={item.name}
                       to={item.path}
-                      className={"footer-link"}
+                      className="footer-link"
                     >
                       {item.name}
                     </NavLink>

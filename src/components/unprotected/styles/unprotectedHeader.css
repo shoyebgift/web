@@ -14,13 +14,21 @@
 .anchor {
   text-decoration: none;
   color: black;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 8px 12px;
+  border-radius: 5px;
 }
 
-.anchor:hover{
-  text-decoration: underline;
-  background-color: rgb(51, 51, 51, 0.1);
+.anchor:hover {
+  background: linear-gradient(to right, #6311CB, #8F40FB);
+  color: white;
+}
 
-  color: #333;
+
+.anchor:active {
+  background-color: rgb(51, 51, 51, 0.1);
+}
+
+.active-link {
+  background: linear-gradient(45deg, #6311cb, #c33fad) !important;
+  color: white !important;
 }

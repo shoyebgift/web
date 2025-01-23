@@ -24,40 +24,80 @@ const RewardsPage = () => {
       />
 
       {/* top part */}
-      <FeatureContainer
-        feature={rewards.features[0]}
-        mx={{ xs: "auto", xl: "0" }}
-        image={reward}
-        imgWidth={"80%"}
-        imgdisplay={{ xs: "none", lg: "flex" }}
-        gridCol={{ lg: "1fr 1fr", xs: "1fr" }}
-      />
+      <Box sx={{ mx: "auto", mt: "2rem", maxWidth: "1200px" }}>
+        <FeatureContainer
+          feature={rewards.features[0]}
+          mx={{ xs: "auto", xl: "0" }}
+          image={reward}
+          imgWidth={{ xs: "40%", md: "70%" }}
+        />
+      </Box>
 
       {/* middle part */}
       <Box
         sx={{
           mt: "2rem",
           display: "grid",
-          gridTemplateColumns: { lg: "1fr 1fr", xs: "1fr" },
+          gridTemplateColumns: { md: "1fr 1fr", xs: "1fr" },
           gap: "1rem",
           alignItems: "center",
-          width: "fit-content",
+          maxWidth: "1200px",
           mx: "auto",
         }}
       >
+        <Box
+          sx={{
+            mt: "2rem",
+            mx: { xs: "auto", md: "5rem" },
+            width: "fit-content",
+            order: { xs: 2, md: 1 },
+          }}
+        >
+          <DummyCards type={"digital"} />
+        </Box>
+
+        <Box
+          sx={{
+            order: { xs: 1, md: 2 },
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {" "}
+          <FeatureExcerpt feature={rewards.features[1]} />
+        </Box>
+      </Box>
+
+      {/* lower part  */}
+      <Box
+        sx={{
+          mt: "2rem",
+          display: "grid",
+          gridTemplateColumns: { md: "1fr 1fr", xs: "1fr" },
+          gap: "1rem",
+          alignItems: "center",
+          maxWidth: "1200px",
+          mx: "auto",
+        }}
+      >
+        <Box sx={{ mx: { xs: "auto", md: "2rem" } }}>
+          <FeatureExcerpt feature={rewards.features[2]} />
+        </Box>
         <Box
           display={"flex"}
           flexDirection={"row"}
           gap={{ xs: 4, md: 8 }}
           alignItems={"end"}
           justifyContent={"start"}
-          mx={{ xs: "auto", lg: 2 }}
+          mx={{ xs: "auto", md: 0 }}
         >
           <Box
             pb={{ xs: 6, md: 10 }}
             sx={{
               ml: { xs: "-20px", lg: 0 },
-              rotate: { xs: "-8deg", md: "-16deg" },
+              rotate: { xs: "-8deg", md: "-9deg", lg: "-16deg" },
               maxWidth: "50vw",
             }}
           >
@@ -66,35 +106,12 @@ const RewardsPage = () => {
           <Box
             pb={{ xs: 2, md: 6 }}
             sx={{
-              rotate: { xs: "8deg", md: "16deg" },
+              rotate: { xs: "8deg", md: "9deg", lg: "16deg" },
               maxWidth: "50vw",
             }}
           >
-            <DummyCards type={"digital"} />
+            <DummyCards type={"insta"} />
           </Box>
-        </Box>
-
-        <FeatureExcerpt feature={rewards.features[0]} />
-      </Box>
-
-      {/* lower part  */}
-      <Box
-        sx={{
-          mt: "2rem",
-          display: "grid",
-          gridTemplateColumns: { lg: "1fr 1fr", xs: "1fr" },
-          gap: "1rem",
-          alignItems: "center",
-          width: "fit-content",
-          mx: "auto",
-        }}
-      >
-        <Box sx={{ display: { xs: "none", lg: "block" } }}>
-          <FeatureExcerpt feature={rewards.features[0]} />
-        </Box>
-
-        <Box sx={{ mt: "2rem", mx: "auto", width: "fit-content" }}>
-          <DummyCards type={"insta"} />
         </Box>
       </Box>
     </Box>
