@@ -1,11 +1,10 @@
 .footer-link {
   text-decoration: none;
-  color: black; /* Default link color */
+  color: black;
   text-align: left;
-  transition: color 0.3s ease; /* Smooth transition for hover effect */
+  transition: color 0.3s ease; 
 }
 
 .footer-link:hover {
-  text-decoration: none; /* No underline on hover */
-  color: #C33FAD; /* Secondary theme color for hover */
+  color: #C33FAD; 
 }

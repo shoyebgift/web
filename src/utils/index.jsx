@@ -1,3 +1,24 @@
+export const getAnnotation = (index, annotationType) => {
+  switch (annotationType) {
+    case "number":
+      return `${index + 1}. `;
+    case "roman":
+      return `${
+        ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x"][index]
+      }. `;
+    case "roman-uppercase":
+      return `${
+        ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"][index]
+      }. `;
+    case "alpha-lowercase":
+      return `${String.fromCharCode(97 + index)}. `; // 'a', 'b', 'c', ...
+    case "alpha-uppercase":
+      return `${String.fromCharCode(65 + index)}. `; // 'A', 'B', 'C', ...
+    default:
+      return "";
+  }
+};
+
 export const unprotectedNavlinks = {
   company: [
     {
@@ -33,12 +54,12 @@ export const unprotectedNavlinks = {
     },
     {
       name: "Terms & Conditions",
-      path: "#",
+      path: "/terms-conditions",
     },
 
     {
       name: "Privacy Policy",
-      path: "#",
+      path: "/privacy-policy",
     },
   ],
 };
@@ -110,7 +131,8 @@ export const solutions = {
 
   features: [
     {
-      title: "Deliver instant benefits and rewards to your employees and channel partners",
+      title:
+        "Deliver instant benefits and rewards to your employees and channel partners",
       subTitle:
         "An all-in-one customer service platform that helps you balance everything your customers need to be happy.",
       icon: "boltOutlined",
@@ -173,12 +195,12 @@ export const benefits = {
       title:
         "Now create and issue multiple tax benefits wallet for your employees",
       subTitle:
-        "An all-in-one customer service platform that helps you balance everything your customers need to be happy.",
+        "OptiFii Benefits solutions help corporations maximise employee tax savings while optimising company costs.",
       icon: "boltOutlined",
       descriptionPoint: [
-        "Keep your customers in the loop with live chat",
-        "Embed help articles right on your website",
-        "Customers never have to leave the page to find an answer",
+        "Issue employee tax savings benefits like Meal, Fuel, Gift, Communication, Books and Periodicals, and many more",
+        "Increase your take-home pay, build long-term wealth, and secure your financial future",
+        "HR managers have complete control over their organisation’s employee tax benefits programme via OptiFii Dashboard",
       ],
     },
   ],

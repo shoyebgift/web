@@ -4,7 +4,6 @@
   transition: all 1s ease-in-out;
   transition-duration: 1s;
   position: relative;
-  /* overflow: hidden; */
 }
 
 .unprotected-header-logo {

@@ -4,9 +4,10 @@ import UnprotectedLayout from "../layouts/Unprotected";
 import HomePage from "../pages/HomePage";
 import SolutionsPage from "../pages/Solutions";
 import ExpensePage from "../pages/Expense";
-import BenefitsPage from "./../pages/Benefits";
+import BenefitsPage from "../pages/Benefits";
 import RewardsPage from "../pages/Rewards";
 import ContactUsPage from "../pages/ContactUs";
+import TermsAndPolicyPages from "../components/unprotected/TermsAndPolicy";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,23 @@ const router = createBrowserRouter([
         element: (
           <UnprotectedLayout>
             <ContactUsPage />
+          </UnprotectedLayout>
+        ),
+      },
+      {
+        path: "/terms-conditions",
+        element: (
+          <UnprotectedLayout>
+            <TermsAndPolicyPages />
+          </UnprotectedLayout>
+        ),
+      },
+
+      {
+        path: "/privacy-policy",
+        element: (
+          <UnprotectedLayout>
+            <TermsAndPolicyPages />
           </UnprotectedLayout>
         ),
       },
