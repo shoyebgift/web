@@ -54,7 +54,7 @@ const RewardsPage = () => {
             },
             width: "100%",
             height: "100%",
-            minHeight:{xs:"200px",md: "350px"},
+            minHeight: { xs: "200px", md: "350px" },
             maxWidth: "550px",
             position: "relative",
           }}
@@ -65,7 +65,7 @@ const RewardsPage = () => {
             alt="lifestyleStore.png"
             sx={{
               objectFit: "cover",
-              width: { xs: "90px", md: "180px" },
+              width: { xs: "90px", md: "150px", lg: "180px" },
               position: "absolute",
               bottom: { xs: "115px", md: "180px" },
               left: "50%",
@@ -79,7 +79,7 @@ const RewardsPage = () => {
             alt="bigBasket.png"
             sx={{
               objectFit: "cover",
-              width: { xs: "90px", md: "180px" },
+              width: { xs: "90px", md: "150px", lg: "180px" },
               position: "absolute",
               bottom: { xs: "115px", md: "180px" },
               right: "50%",
@@ -93,9 +93,9 @@ const RewardsPage = () => {
             alt="amazon.png"
             sx={{
               objectFit: "cover",
-              width: { xs: "90px", md: "180px" },
+              width: { xs: "90px", md: "150px", lg: "180px" },
               position: "absolute",
-              bottom: { sm: "75px", md: "125px" },
+              bottom: { xs: "75px", md: "125px" },
               left: "50%",
               transform: "translateX(-50%)",
               zIndex: 6,
@@ -107,7 +107,7 @@ const RewardsPage = () => {
             alt="nykaa.png"
             sx={{
               objectFit: "cover",
-              width: { xs: "90px", md: "180px" },
+              width: { xs: "90px", md: "150px", lg: "180px" },
               position: "absolute",
               bottom: { xs: "40px", md: "70px" },
               right: "50%",
@@ -121,7 +121,7 @@ const RewardsPage = () => {
             alt="croma.png"
             sx={{
               objectFit: "cover",
-              width: { xs: "90px", md: "180px" },
+              width: { xs: "90px", md: "150px", lg: "180px" },
               position: "absolute",
               bottom: { xs: "40px", md: "70px" },
               left: "50%",
@@ -135,7 +135,7 @@ const RewardsPage = () => {
             alt="shoppersStop.png"
             sx={{
               objectFit: "cover",
-              width: { xs: "90px", md: "180px" },
+              width: { xs: "90px", md: "150px", lg: "180px" },
               position: "absolute",
               bottom: 0,
               left: "50%",
