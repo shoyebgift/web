@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Box,
   List,
@@ -12,17 +11,86 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import {
-  termsAndConditions,
-  privacyPolicy,
-} from "../../utils/TermsAndConditions";
-import { getAnnotation } from "../../utils/index";
+
+import { termsAndConditions, privacyPolicy } from "../utils/TermsAndConditions";
+import { getAnnotation } from "../utils/index";
+
+import { NavLink } from "react-router-dom";
 
 const TermsAndPolicyPages = () => {
   const data =
     location.pathname.split("/")[1] === "privacy-policy"
       ? privacyPolicy
       : termsAndConditions;
+
+  const renderdata = (description) => {
+    return description.map((desc, index) => {
+      let text = desc.text;
+
+      // Replace bold words by wrapping them with <b> tags
+      if (desc.boldtext) {
+        desc.boldtext.forEach((boldWord) => {
+          const boldRegex = new RegExp(`(${boldWord})`, "g");
+          text = text.replace(
+            boldRegex,
+            `<b style="font-weight: bold;">$1</b>`
+          );
+        });
+      }
+
+      // Replace links by wrapping the link name with NavLink
+      if (desc.links) {
+        desc.links.forEach((link) => {
+          const linkRegex =
+            desc.links.length > 1
+              ? new RegExp(`(${link.name})`)
+              : new RegExp(`(${link.name})`, "g");
+          text = text.replace(
+            linkRegex,
+            `<NavLink to="${link.url}" style="color: #6311CB; text-decoration: underline;">$1</NavLink>`
+          );
+        });
+      }
+
+      // Render text with proper formatting
+      return (
+        <Typography
+          key={index}
+          component="div"
+          fontSize={{ xs: ".8rem", md: "1rem" }}
+          mb={2}
+          whiteSpace="pre-line"
+        >
+          {/* Split by a pattern that targets <NavLink> and <b> tags */}
+          {text.split(/(<NavLink.*?<\/NavLink>|<b.*?<\/b>)/g).map((part, i) => {
+            // If it's a <NavLink>, render it as a NavLink component
+            if (part.includes("<NavLink")) {
+              const linkName = part.match(/>(.*?)<\/NavLink>/)[1];
+              const linkUrl = part.match(/to="(.*?)"/)[1];
+              return (
+                <NavLink
+                  key={i}
+                  to={linkUrl}
+                  style={{ color: "#6311CB", textDecoration: "underline" }}
+                >
+                  {linkName}
+                </NavLink>
+              );
+            }
+
+            // If it's a <b> tag, render it as bold text
+            if (part.includes("<b")) {
+              const boldText = part.match(/>(.*?)<\/b>/)[1];
+              return <b key={i}>{boldText}</b>;
+            }
+
+            // Regular text (not a link or bold word)
+            return part;
+          })}
+        </Typography>
+      );
+    });
+  };
 
   const dataExcerpt = (data) => {
     const renderList = (listData, annotation) => {
@@ -51,7 +119,11 @@ const TermsAndPolicyPages = () => {
                 }}
                 primary={`${getAnnotation(index, annotation)}${item.name}`}
               />
-              {item?.description && <Typography>{item.description}</Typography>}
+              {item?.description && (
+                <Typography sx={{ fontSize: { xs: ".8rem", md: "1rem" } }}>
+                  {item.description}
+                </Typography>
+              )}
               {item.data && renderList(item.data, item.listAnnotation)}
             </ListItem>
           ))}
@@ -109,6 +181,16 @@ const TermsAndPolicyPages = () => {
         >
           {item.title}
         </Typography>
+        <Box
+          whiteSpace={"pre-line"}
+          fontSize={{ xs: ".8rem", md: "1rem" }}
+          mb={2}
+          pl={2}
+        >
+          {item.desc && renderdata(item.desc)}
+        </Box>
+
+        {/* needs to be removed */}
         <Typography
           whiteSpace={"pre-line"}
           fontSize={{ xs: ".8rem", md: "1rem" }}
@@ -185,13 +267,8 @@ const TermsAndPolicyPages = () => {
         {data.header}
       </Typography>
 
-      {/* description */}
-      <Typography
-        whiteSpace={"pre-line"}
-        mb={2}
-        fontSize={{ xs: ".8rem", md: "1rem" }}
-        dangerouslySetInnerHTML={{ __html: data.description }}
-      />
+      {data?.description && renderdata(data.description)}
+
       {data?.data && dataExcerpt(data.data)}
     </Box>
   );

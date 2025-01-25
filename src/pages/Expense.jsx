@@ -1,13 +1,13 @@
 import { Box, Typography } from "@mui/material";
-import FeatureTitleExcerpt from "../components/FeatureTitleExcerpt";
-import { expenses } from "../utils/index";
 
 import multiWallet from "../assets/img/multiWallet.png";
 import createWalletPolicy from "../assets/img/createWalletPolicy.png";
 import totalSpending from "../assets/img/totalSpending.png";
 import employeeTransaction from "../assets/img/employeeTransaction.png";
 
-import FeatureContainer from "../components/FeatureContainer";
+import FeatureContainer from "../components/unprotected/FeatureContainer";
+import FeatureTitleExcerpt from "../components/unprotected/FeatureTitleExcerpt";
+import { expenses } from "../utils/index";
 
 const ExpensePage = () => {
   return (

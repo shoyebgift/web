@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./styles/homePage.css";
 
 import {
@@ -10,18 +11,17 @@ import {
 } from "@mui/material";
 
 import { NavLink } from "react-router-dom";
-import barChart from "../assets/svg/barChart.svg";
-import boltOutlined from "../assets/svg/boltOutlined.svg";
-import mail from "../assets/svg/mail.svg";
 
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 import appprototype from "../assets/img/appPrototype.png";
 import iphonemockup from "../assets/img/iPhonemockup.png";
+import barChart from "../assets/svg/barChart.svg";
+import boltOutlined from "../assets/svg/boltOutlined.svg";
+import mail from "../assets/svg/mail.svg";
 
 import { homePage } from "../utils/index";
-import FeatureTitleExcerpt from "./../components/FeatureTitleExcerpt";
-import { useState } from "react";
-import DummyDashboard from "./../components/DummyDashboard";
+import FeatureTitleExcerpt from "../components/unprotected/FeatureTitleExcerpt";
+import DummyDashboard from "../components/unprotected/DummyDashboard";
 
 const HomePage = () => {
   const { header, description, features } = homePage;
@@ -88,7 +88,7 @@ const HomePage = () => {
               fontSize: { lg: "55px", md: "50px", xs: "32px" },
               lineHeight: { lg: "55px", md: "42px", xs: "32px" },
               fontWeight: "800",
-              whiteSpace: { md: "pre-line", xs: "normal" },
+              whiteSpace: "pre-line",
               mt: "1rem",
             }}
           >

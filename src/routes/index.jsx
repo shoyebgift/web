@@ -7,7 +7,7 @@ import ExpensePage from "../pages/Expense";
 import BenefitsPage from "../pages/Benefits";
 import RewardsPage from "../pages/Rewards";
 import ContactUsPage from "../pages/ContactUs";
-import TermsAndPolicyPages from "../components/unprotected/TermsAndPolicy";
+import TermsAndPolicyPages from "../pages/TermsAndPolicy";
 
 const router = createBrowserRouter([
   {

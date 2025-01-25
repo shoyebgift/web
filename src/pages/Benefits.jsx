@@ -1,13 +1,13 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 
 import walletExcerpt from "../assets/img/walletExcerpt.png";
 
 import { benefits } from "./../utils/index";
-import FeatureTitleExcerpt from "../components/FeatureTitleExcerpt";
-import BenefitCard from "../components/BenefitCard";
-import FeatureExcerpt from "../components/FeatureExcerpt";
-import BenefitWalletContainer from "../components/BenefitWalletContainer";
+
+import FeatureTitleExcerpt from "../components/unprotected/FeatureTitleExcerpt";
+import BenefitCard from "../components/unprotected/BenefitCard";
+import FeatureExcerpt from "../components/unprotected/FeatureExcerpt";
+import BenefitWalletContainer from "../components/unprotected/BenefitWalletContainer";
 
 const BenefitsPage = () => {
   const benefitCards = ["food", "gift", "fuel"];

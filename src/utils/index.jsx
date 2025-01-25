@@ -134,7 +134,7 @@ export const solutions = {
       title:
         "Deliver instant benefits and rewards to your employees and channel partners",
       subTitle:
-        "An all-in-one customer service platform that helps you balance everything your customers need to be happy.",
+        "An all-in-one platform that helps you balance everything your employees need to be happy",
       icon: "boltOutlined",
       descriptionPoint: [
         "Companies can empower their workforce with valuable tax-saving opportunities",
@@ -150,7 +150,7 @@ export const solutions = {
       descriptionPoint: [
         "Filter, export, and drilldown on the data quickly",
         "Save, schedule, and automate reports to your inbox",
-        "Connect the tools you already use with 100+ integrations",
+        "Connect the tools you already use with multiple integrations",
       ],
     },
   ],

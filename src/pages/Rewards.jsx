@@ -1,11 +1,17 @@
-import React from "react";
-import FeatureTitleExcerpt from "../components/FeatureTitleExcerpt";
-import reward from "../assets/svg/rewards1.svg";
-import { rewards } from "./../utils/index";
 import { Box } from "@mui/material";
-import FeatureExcerpt from "./../components/FeatureExcerpt";
-import FeatureContainer from "../components/FeatureContainer";
-import DummyCards from "../components/DummyCards";
+
+import { rewards } from "./../utils/index";
+
+import shoppersStop from "../assets/img/shoppersStop.png";
+import nykaa from "../assets/img/nykaa.png";
+import croma from "../assets/img/croma.png";
+import amazon from "../assets/img/amazon.png";
+import bigBasket from "../assets/img/bigBasket.png";
+import lifestyleStore from "../assets/img/lifestyleStore.png";
+
+import DummyCards from "../components/unprotected/DummyCards";
+import FeatureTitleExcerpt from "../components/unprotected/FeatureTitleExcerpt";
+import FeatureExcerpt from "../components/unprotected/FeatureExcerpt";
 
 const RewardsPage = () => {
   return (
@@ -24,13 +30,120 @@ const RewardsPage = () => {
       />
 
       {/* top part */}
-      <Box sx={{ mx: "auto", mt: "2rem", maxWidth: "1200px" }}>
-        <FeatureContainer
-          feature={rewards.features[0]}
-          mx={{ xs: "auto", xl: "0" }}
-          image={reward}
-          imgWidth={{ xs: "40%", md: "70%" }}
-        />
+      <Box
+        sx={{
+          mt: "2rem",
+          display: "grid",
+          gridTemplateColumns: { md: "1fr 1fr", xs: "1fr" },
+          gap: "1rem",
+          alignItems: "center",
+          maxWidth: "1200px",
+          mx: "auto",
+        }}
+      >
+        <Box sx={{ mx: { xs: "auto", md: "2rem" } }}>
+          <FeatureExcerpt feature={rewards.features[2]} />
+        </Box>
+
+        {/* image part  */}
+        <Box
+          sx={{
+            mx: {
+              xs: "auto",
+              md: "2rem",
+            },
+            width: "100%",
+            height: "100%",
+            minHeight:{xs:"200px",md: "350px"},
+            maxWidth: "550px",
+            position: "relative",
+          }}
+        >
+          <Box
+            component={"img"}
+            src={lifestyleStore}
+            alt="lifestyleStore.png"
+            sx={{
+              objectFit: "cover",
+              width: { xs: "90px", md: "180px" },
+              position: "absolute",
+              bottom: { xs: "115px", md: "180px" },
+              left: "50%",
+              transform: "translateX(35%)",
+              zIndex: 5,
+            }}
+          />
+          <Box
+            component={"img"}
+            src={bigBasket}
+            alt="bigBasket.png"
+            sx={{
+              objectFit: "cover",
+              width: { xs: "90px", md: "180px" },
+              position: "absolute",
+              bottom: { xs: "115px", md: "180px" },
+              right: "50%",
+              transform: "translateX(-35%)",
+              zIndex: 7,
+            }}
+          />
+          <Box
+            component={"img"}
+            src={amazon}
+            alt="amazon.png"
+            sx={{
+              objectFit: "cover",
+              width: { xs: "90px", md: "180px" },
+              position: "absolute",
+              bottom: { sm: "75px", md: "125px" },
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 6,
+            }}
+          />
+          <Box
+            component={"img"}
+            src={nykaa}
+            alt="nykaa.png"
+            sx={{
+              objectFit: "cover",
+              width: { xs: "90px", md: "180px" },
+              position: "absolute",
+              bottom: { xs: "40px", md: "70px" },
+              right: "50%",
+              transform: "translateX(-35%)",
+              zIndex: 5,
+            }}
+          />
+          <Box
+            component={"img"}
+            src={croma}
+            alt="croma.png"
+            sx={{
+              objectFit: "cover",
+              width: { xs: "90px", md: "180px" },
+              position: "absolute",
+              bottom: { xs: "40px", md: "70px" },
+              left: "50%",
+              transform: "translateX(35%)",
+              zIndex: 5,
+            }}
+          />{" "}
+          <Box
+            component={"img"}
+            src={shoppersStop}
+            alt="shoppersStop.png"
+            sx={{
+              objectFit: "cover",
+              width: { xs: "90px", md: "180px" },
+              position: "absolute",
+              bottom: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              zIndex: 4,
+            }}
+          />
+        </Box>
       </Box>
 
       {/* middle part */}

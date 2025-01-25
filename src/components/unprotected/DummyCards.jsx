@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import physical from "../assets/img/wallet/cardFront.png";
-import cash from "../assets/img/wallet/cash.png";
-import cash1 from "../assets/svg/cash.svg";
-import instaGiftCard from "../assets/svg/instaGiftCard.svg";
+
+import physical from "../../assets/img/wallet/cardFront.png";
+import cash from "../../assets/img/wallet/cash.png";
+import cash1 from "../../assets/svg/cash.svg";
+import instaGiftCard from "../../assets/svg/instaGiftCard.svg";
 
 const DummyCards = ({ type }) => {
   return (
@@ -48,15 +49,14 @@ const DummyCards = ({ type }) => {
         {type} Gift Card
       </Typography>
 
-      {/* <Typography
+      <Typography
         sx={{
-          fontSize: { xs: "7px", sm: "12px" },
+          fontSize: { xs: "7px", md: "12px" },
           mt: { xs: 1.5, md: 2 },
         }}
       >
-        Choose a plan and get onboard in minutes. Then get $100 credits for your
-        next payment.
-      </Typography> */}
+        Gift more with OptiFii {type} Gift cards inside the boxes.
+      </Typography>
 
       {type === "physical" ? (
         <Box

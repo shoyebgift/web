@@ -4,8 +4,8 @@ import selectCardType from "../assets/img/selectCardType.png";
 import screenMockup from "../assets/img/screenMockup.png";
 import screenMockup2 from "../assets/img/screenMockup2.png";
 
-import FeatureTitleExcerpt from "../components/FeatureTitleExcerpt";
-import FeatureContainer from "../components/FeatureContainer";
+import FeatureTitleExcerpt from "../components/unprotected/FeatureTitleExcerpt";
+import FeatureContainer from "../components/unprotected/FeatureContainer";
 
 const SolutionsPage = () => {
   return (

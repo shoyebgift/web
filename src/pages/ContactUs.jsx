@@ -2,13 +2,10 @@ import {
   Box,
   Button,
   InputAdornment,
-  MenuItem,
-  Select,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import { useState } from "react";
 
 const ContactUsPage = () => {

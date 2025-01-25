@@ -1,12 +1,12 @@
-import books from "../assets/svg/wallet/books.svg";
-import gift from "../assets/svg/wallet/gifts.svg";
-import fuel from "../assets/svg/wallet/fuel.svg";
-import food from "../assets/svg/wallet/food.svg";
-import gadget from "../assets/svg/wallet/gadgets.svg";
-import learning from "../assets/svg/wallet/learning.svg";
-import telecom from "../assets/svg/wallet/telecom.svg";
-import cardFront from "../assets/img/wallet/cardFront.png";
-import arrorw from "../assets/svg/arrow.svg";
+import books from "../../assets/svg/wallet/books.svg";
+import gift from "../../assets/svg/wallet/gifts.svg";
+import fuel from "../../assets/svg/wallet/fuel.svg";
+import food from "../../assets/svg/wallet/food.svg";
+import gadget from "../../assets/svg/wallet/gadgets.svg";
+import learning from "../../assets/svg/wallet/learning.svg";
+import telecom from "../../assets/svg/wallet/telecom.svg";
+import cardFront from "../../assets/img/wallet/cardFront.png";
+import arrorw from "../../assets/svg/arrow.svg";
 
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
@@ -16,40 +16,31 @@ const BenefitWalletContainer = () => {
     {
       name: "food",
       icon: food,
-      button: ["View Transaction"],
-      pauseWallet: true,
     },
     {
       name: "fuel",
       icon: fuel,
-      button: ["Upload Bills", "View Transaction"],
-      pauseWallet: true,
     },
 
     {
       name: "gift",
       icon: gift,
-      pauseWallet: false,
     },
     {
       name: "telecom",
       icon: telecom,
-      pauseWallet: false,
     },
     {
       name: "books",
       icon: books,
-      pauseWallet: false,
     },
     {
       name: "learning",
       icon: learning,
-      pauseWallet: false,
     },
     {
       name: "gadget",
       icon: gadget,
-      pauseWallet: false,
     },
   ];
 
@@ -135,89 +126,7 @@ const BenefitWalletContainer = () => {
                 </Typography>
                 <Typography sx={{ fontSize: "18px" }}>₹ 4,500</Typography>
               </Box>
-              {wallet.pauseWallet && (
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: "10px",
-                      textDecoration: "underline",
-                      color: "#E81515",
-                    }}
-                  >
-                    Pause Wallet
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: "6px",
-                      mt: "4px",
-                      fontWeight: 800,
-                      color: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                      height: "12px",
-                      width: "12px",
-                      borderRadius: "100%",
-                      bgcolor: "#E81515",
-                    }}
-                  >
-                    ||
-                  </Typography>
-                </Box>
-              )}
             </Box>
-
-            {wallet?.button && (
-              <>
-                <Box sx={{ display: "flex", alignItems: "start", gap: "1rem" }}>
-                  {wallet.button.map((button, index) => (
-                    <Typography
-                      key={index}
-                      sx={{
-                        fontSize: "14px",
-                        border: 1,
-                        color: "#3725EA",
-                        width: "fit-content",
-                        p: 1,
-                        borderRadius: "5px",
-                      }}
-                    >
-                      {button}
-                    </Typography>
-                  ))}
-                </Box>
-                <Box
-                  component={"div"}
-                  sx={{
-                    display: "flex",
-                    color: "#5B5B5B",
-                    pt: 1,
-                  }}
-                >
-                  <Typography sx={{ fontSize: "14px" }}>
-                    How to Use? - Where I can use the card?
-                  </Typography>
-                  <Typography
-                    sx={{
-                      border: 2,
-                      height: 10,
-                      width: 10,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      borderRadius: "50%",
-                      fontSize: "10px",
-                      fontWeight: 800,
-                      p: 1,
-                      ml: 1,
-                    }}
-                  >
-                    i
-                  </Typography>
-                </Box>
-              </>
-            )}
           </Box>
 
           <Box

@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 
-import barChart from "../assets/svg/barChart.svg";
-import boltOutlined from "../assets/svg/boltOutlined.svg";
-import checkIcon from "../assets/svg/checkIcon.svg";
+import barChart from "../../assets/svg/barChart.svg";
+import boltOutlined from "../../assets/svg/boltOutlined.svg";
+import checkIcon from "../../assets/svg/checkIcon.svg";
 
 const FeatureExcerpt = ({feature }) => { 
   const featureIcon = {
