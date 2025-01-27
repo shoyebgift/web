@@ -15,11 +15,12 @@ import {
 import logo from "../../assets/svg/OptiFii.svg";
 
 import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { unprotectedHeaderLinks } from "../../utils/index";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const UnprotectedHeader = () => {
+  const { pathname } = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isMediumScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
@@ -51,13 +52,12 @@ const UnprotectedHeader = () => {
           <IconButton
             component={NavLink}
             to="/"
+            width={isMobile ? "100px" : isMediumScreen ? "150px" : "200px"}
             sx={{
               ":hover": { backgroundColor: "transparent" },
-
-              width: isMobile ? "100px" : isMediumScreen ? "150px" : "200px",
             }}
           >
-            <img className="unprotected-header-logo" src={logo} alt="OptiFii" />
+            <Box component={"img"} src={logo} alt="OptiFii" />
           </IconButton>
         </Toolbar>
 
@@ -101,8 +101,9 @@ const UnprotectedHeader = () => {
                 onClick={() => toggleDrawer(false)}
                 onKeyDown={() => toggleDrawer(false)}
               >
-                <img
-                  className="unprotected-header-logo"
+                <Box
+                  component={"img"}
+                  width={"100%"}
                   src={logo}
                   alt="OptiFii"
                 />
@@ -210,31 +211,41 @@ const UnprotectedHeader = () => {
                 <Button
                   component={NavLink}
                   to="/signin"
+                  onClick={() => toggleDrawer(false)}
+                  onKeyDown={() => toggleDrawer(false)}
                   sx={{
                     color: "black",
                     textTransform: "none",
-                    ":hover": {
-                      backgroundColor: "transparent",
-                    },
-
                     "&:hover": {
-                      backgroundColor: "rgba(0, 0, 0, 0.1)",
+                      background: "linear-gradient(to right, #6311CB, #8F40FB)",
+                      color: "white",
                     },
                     borderRadius: "10px",
-                    px: 5,
+                    px: 6.5,
                     width: "min-content",
                     textWrap: "nowrap",
                     mx: "auto",
+                    "&.Mui-disabled": {
+                      background: "linear-gradient(45deg, #6311cb, #c33fad)",
+                      color: "#FFFFFF",
+                    },
                   }}
+                  disabled={pathname.startsWith("/signin")}
                 >
                   Sign In
                 </Button>
                 <Button
                   component={NavLink}
                   to="/signup"
+                  onClick={() => toggleDrawer(false)}
+                  onKeyDown={() => toggleDrawer(false)}
                   variant="contained"
                   color="primary"
                   sx={{
+                    "&:hover": {
+                      background: "linear-gradient(to right, #6311CB, #8F40FB)",
+                      color: "white",
+                    },
                     textTransform: "none",
                     backgroundColor: "black",
                     borderRadius: "10px",
@@ -242,7 +253,12 @@ const UnprotectedHeader = () => {
                     width: "min-content",
                     textWrap: "nowrap",
                     mx: "auto",
+                    "&.Mui-disabled": {
+                      background: "linear-gradient(45deg, #6311cb, #c33fad)",
+                      color: "#FFFFFF",
+                    },
                   }}
+                  disabled={pathname.startsWith("/signup")}
                 >
                   Create an Account
                 </Button>
@@ -267,6 +283,8 @@ const UnprotectedHeader = () => {
                 justifyContent: "center",
                 width: isMediumScreen ? "100%" : "auto",
                 alignItems: "center",
+
+                gap: "1rem",
               }}
             >
               {unprotectedHeaderLinks.map((link, index) => {
@@ -293,7 +311,6 @@ const UnprotectedHeader = () => {
                         md: "3px, 10px",
                         lg: "8px 10px",
                       },
-                      ml: 1,
                       borderRadius: "5px",
                       display: "flex",
                       alignItems: "center",
@@ -376,7 +393,6 @@ const UnprotectedHeader = () => {
                       `no-select anchor ${isActive ? "active-link" : ""}`
                     }
                     style={{
-                      marginLeft: "1rem",
                       height: "fit-content",
                       whiteSpace: "nowrap",
                     }}
@@ -402,14 +418,22 @@ const UnprotectedHeader = () => {
                 component={NavLink}
                 to="/signin"
                 sx={{
-                  marginRight: "1rem",
+                  "&:hover": {
+                    background: "linear-gradient(to right, #6311CB, #8F40FB)",
+                    color: "white",
+                  },
+                  mr: { sm: "2rem", md: ".5rem" },
                   color: "black",
                   textTransform: "none",
-                  ":hover": {
-                    backgroundColor: "transparent",
-                  },
+                  borderRadius: "10px",
+                  py: "5px",
                   marginBottom: isMediumScreen ? "1rem" : "0",
+                  "&.Mui-disabled": {
+                    background: "linear-gradient(45deg, #6311cb, #c33fad)",
+                    color: "#FFFFFF",
+                  },
                 }}
+                disabled={pathname.startsWith("/signin")}
               >
                 Sign In
               </Button>
@@ -419,12 +443,21 @@ const UnprotectedHeader = () => {
                 variant="contained"
                 color="primary"
                 sx={{
+                  "&:hover": {
+                    background: "linear-gradient(to right, #6311CB, #8F40FB)",
+                    color: "white",
+                  },
                   textTransform: "none",
                   backgroundColor: "black",
                   borderRadius: "10px",
                   marginBottom: isMediumScreen ? "1rem" : "0",
                   zIndex: 1,
+                  "&.Mui-disabled": {
+                    background: "linear-gradient(45deg, #6311cb, #c33fad)",
+                    color: "#FFFFFF",
+                  },
                 }}
+                disabled={pathname.startsWith("/signup")}
               >
                 Create an Account
               </Button>

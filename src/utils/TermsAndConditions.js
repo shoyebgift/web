@@ -94,8 +94,8 @@ export const termsAndConditions = {
               url: "/",
             },
             {
-              name: "https://www.optifii.com/giftcards__",
-              url: "/giftcards",
+              name: "https://www.optifii.com/giftcards",
+              url: "/gift-cards",
             },
           ],
         },

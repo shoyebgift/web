@@ -8,6 +8,8 @@ import BenefitsPage from "../pages/Benefits";
 import RewardsPage from "../pages/Rewards";
 import ContactUsPage from "../pages/ContactUs";
 import TermsAndPolicyPages from "../pages/TermsAndPolicy";
+import SignUpPage from './../pages/SignUp';
+import SignInPage from "../pages/signIn";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +83,22 @@ const router = createBrowserRouter([
         element: (
           <UnprotectedLayout>
             <TermsAndPolicyPages />
+          </UnprotectedLayout>
+        ),
+      },
+      {
+        path: "/SignUp",
+        element: (
+          <UnprotectedLayout>
+            <SignUpPage />
+          </UnprotectedLayout>
+        ),
+      },
+      {
+        path: "/SignIn",
+        element: (
+          <UnprotectedLayout>
+            <SignInPage />
           </UnprotectedLayout>
         ),
       },

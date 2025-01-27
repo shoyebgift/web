@@ -1,5 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  scrollbar-color: #5e0fcd #f0f0f0;
+  scrollbar-width: thin;
 }
 
 * {

@@ -6,9 +6,6 @@
   position: relative;
 }
 
-.unprotected-header-logo {
-  width: 100%;
-}
 
 .anchor {
   text-decoration: none;
@@ -23,9 +20,6 @@
 }
 
 
-.anchor:active {
-  background-color: rgb(51, 51, 51, 0.1);
-}
 
 .active-link {
   background: linear-gradient(45deg, #6311cb, #c33fad) !important;

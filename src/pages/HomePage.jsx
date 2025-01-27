@@ -85,9 +85,9 @@ const HomePage = () => {
             component={"h1"}
             variant={"h2"}
             sx={{
-              fontSize: { lg: "55px", md: "50px", xs: "28px" },
+              fontSize: { lg: "50px", md: "48px", xs: "28px" },
               lineHeight: { lg: "55px", md: "42px", xs: "32px" },
-              fontWeight: "800",
+              fontWeight: "600",
               whiteSpace: "pre-line",
               mt: "1rem",
             }}
