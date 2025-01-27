@@ -9,7 +9,7 @@ import RewardsPage from "../pages/Rewards";
 import ContactUsPage from "../pages/ContactUs";
 import TermsAndPolicyPages from "../pages/TermsAndPolicy";
 import SignUpPage from './../pages/SignUp';
-import SignInPage from "../pages/signIn";
+import SignInPage from "../pages/SignIn";
 
 const router = createBrowserRouter([
   {
