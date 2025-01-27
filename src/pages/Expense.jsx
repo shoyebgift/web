@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 import multiWallet from "../assets/img/multiWallet.png";
-import createWalletPolicy from "../assets/img/createWalletPolicy.png";
+import createWalletPolicy from "../assets/img/walletPolicy.png";
 import totalSpending from "../assets/img/totalSpending.png";
 import employeeTransaction from "../assets/img/employeeTransaction.png";
 
