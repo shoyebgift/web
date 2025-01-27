@@ -17,7 +17,7 @@ const DummyCards = ({ type }) => {
         borderRadius: "6px",
         position: "relative",
         overflow: "hidden",
-        padding: "1rem",
+        padding: { xs: "10px", md: "15px" }, 
         color: "white",
       }}
     >
@@ -51,11 +51,11 @@ const DummyCards = ({ type }) => {
 
       <Typography
         sx={{
-          fontSize: { xs: "7px", md: "12px" },
-          mt: { xs: 1.5, md: 2 },
+          fontSize: { xs: "4px", md: "6px", lg: "8px" },
+          mt:1,
         }}
       >
-        Gift more with OptiFii {type} Gift cards inside the boxes.
+        Gift more with OptiFii Digital Gift cards, OptiFii Physical Gift cards, OptiFii Insta Gift cards
       </Typography>
 
       {type === "physical" ? (
@@ -67,8 +67,8 @@ const DummyCards = ({ type }) => {
           sx={{
             rotate: "45deg",
             position: "absolute",
-            bottom: { xs: "-70px", sm: "-80px", md: "-100px" }, // Responsive position
-            left: { xs: "-30px", sm: "-40px", md: "-50px" }, // Responsive position
+            bottom: { xs: "-70px", sm: "-80px", md: "-100px" },
+            left: { xs: "-30px", sm: "-40px", md: "-50px" }, 
             filter: "blur(3px)",
           }}
         />

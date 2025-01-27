@@ -15,11 +15,11 @@ const BenefitCard = ({ type }) => {
     topPart: [
       { title: "Wallet Type", value: "PreFilled" },
       { title: "Department", value: "Sales" },
-      { title: "Wallet amount", value: "\u20B9 50,000" },
+      { title: "Wallet amount", value: "\u20B9 17,000" },
     ],
     bottomPart: [
-      { title: "Created By", value: "Kartikey Gautam" },
-      { title: "Approved By", value: "Manav Sain" },
+      { title: "Created By", value: "Avinash" },
+      { title: "Approved By", value: "Gautam Dhingra" },
     ],
   };
 
