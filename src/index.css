@@ -1,7 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  scrollbar-color: #5e0fcd #f0f0f0;
-  scrollbar-width: thin;
+ 
 }
 
 * {
@@ -45,3 +44,9 @@ img {
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+

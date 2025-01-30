@@ -42,7 +42,7 @@ const RewardsPage = () => {
         }}
       >
         <Box sx={{ mx: { xs: "auto", md: "2rem" } }}>
-          <FeatureExcerpt feature={rewards.features[2]} />
+          <FeatureExcerpt feature={rewards.features[0]} />
         </Box>
 
         {/* image part  */}

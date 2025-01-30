@@ -17,7 +17,7 @@ const DummyCards = ({ type }) => {
         borderRadius: "6px",
         position: "relative",
         overflow: "hidden",
-        padding: { xs: "10px", md: "15px" }, 
+        padding: { xs: "10px", md: "15px" },
         color: "white",
       }}
     >
@@ -51,11 +51,19 @@ const DummyCards = ({ type }) => {
 
       <Typography
         sx={{
-          fontSize: { xs: "4px", md: "6px", lg: "8px" },
-          mt:1,
+          fontSize: { xs: "6px", md: "10px" },
+          mt: 1,
         }}
       >
-        Gift more with OptiFii Digital Gift cards, OptiFii Physical Gift cards, OptiFii Insta Gift cards
+        Gift more with OptiFii{" "}
+        <Typography
+          component={"span"}
+          fontSize={"inherit"}
+          textTransform={"capitalize"}
+        >
+          {type}
+        </Typography>{" "}
+        Gift cards
       </Typography>
 
       {type === "physical" ? (
@@ -68,7 +76,7 @@ const DummyCards = ({ type }) => {
             rotate: "45deg",
             position: "absolute",
             bottom: { xs: "-70px", sm: "-80px", md: "-100px" },
-            left: { xs: "-30px", sm: "-40px", md: "-50px" }, 
+            left: { xs: "-30px", sm: "-40px", md: "-50px" },
             filter: "blur(3px)",
           }}
         />

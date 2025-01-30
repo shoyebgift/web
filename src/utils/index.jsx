@@ -63,6 +63,12 @@ export const unprotectedNavlinks = {
     },
   ],
 };
+export const socialLink = [
+  {
+    name: "linkedIn",
+    path: "https://www.linkedin.com/company/optifii/",
+  },
+];
 
 export const unprotectedHeaderLinks = [
   {

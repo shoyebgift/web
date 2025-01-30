@@ -1,5 +1,6 @@
 import "./styles/footer.css";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
   Divider,
   Typography,
@@ -7,53 +8,23 @@ import {
   IconButton,
   useTheme,
   useMediaQuery,
-  TextField,
-  Button,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/svg/OptiFii.svg";
-import { unprotectedNavlinks } from "../../utils";
-import { useState } from "react";
+import { unprotectedNavlinks, socialLink } from "../../utils";
 
 const Footer = () => {
   const theme = useTheme();
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const commonEmailDomains =
-    /@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|aol\.com|live\.com|msn\.com)$/i;
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setLoading(true);
-    setTimeout(() => {
-      if (commonEmailDomains.test(email.toLowerCase())) {
-        setError("Please enter your work email address.");
-        setLoading(false);
-      } else {
-        const companyEmailPattern = /@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
-
-        if (!companyEmailPattern.test(email.toLowerCase())) {
-          setError("Please enter a valid email address.");
-        } else {
-          setError("");
-          setEmail("");
-        }
-        setLoading(false);
-      }
-    }, 3000);
+  const socialIcons = {
+    linkedIn: <LinkedInIcon sx={{ fontSize: 20 }} />,
   };
-
   return (
     <Box
       sx={{
         display: "flex",
         position: "relative",
-        zIndex: 10,
+        zIndex: 5,
         flexDirection: "column",
         gap: 2,
       }}
@@ -68,7 +39,7 @@ const Footer = () => {
           py: 2,
           fontWeight: "400",
           display: "grid",
-          gridTemplateColumns: isMediumScreen ? "1fr" : "1fr 2fr 1fr",
+          gridTemplateColumns: isMediumScreen ? "1fr" : "1fr 3fr",
           height: "min-content",
         }}
       >
@@ -180,78 +151,43 @@ const Footer = () => {
               </Box>
             );
           })}
-        </Box>
 
-        {/* newsletter Subscribe  */}
-        <Box component={"div"} align={isMediumScreen ? "center" : "left"}>
-          <Typography
-            component={"h2"}
-            sx={{
-              fontSize: "13px",
-              fontWeight: "400",
-              color: "#94A3B8",
-              mt: 3,
-            }}
-          >
-            {" "}
-            NEWSLETTER
-          </Typography>
+          {/* social media links */}
 
-          <Box
-            sx={{
-              display: "flex",
-              gap: 2,
-              mt: 2,
-              mx: { xs: "auto", md: "0" },
-              maxWidth: "350px",
-              width: "80%",
-              flexDirection: "column",
-            }}
-          >
-            <TextField
-              name="newsletter"
-              id="newsletter"
-              autoComplete="newsletter"
-              label="Enter your email address"
-              variant="outlined"
-              size="small"
-              type="email"
-              fullWidth
+          <Box component={"div"} align="left">
+            {/* heading */}
+            <Typography
+              component={"h2"}
+              align="left"
               sx={{
+                fontSize: "13px",
                 fontWeight: "400",
-
-                borderRadius: "5px",
-                "& .MuiInputBase-input": {
-                  fontSize: "14px",
-                },
-                "& .MuiFormLabel-root": {
-                  fontSize: "14px",
-                },
+                color: "#94A3B8",
+                textTransform: "uppercase",
               }}
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setError("");
-              }}
-              error={!!error}
-              helperText={error}
-            />
-
-            <Button
-              variant="contained"
-              loading={loading}
-              loadingPosition="center"
-              sx={{
-                textTransform: "none",
-                "&:disabled": {
-                  backgroundColor: "rgba(0, 0, 0, 0.3)",
-                  color: "rgba(255, 255, 255, 0.5)",
-                },
-              }}
-              onClick={(e) => handleSubmit(e)}
             >
-              Subscribe Now
-            </Button>
+              social
+            </Typography>
+            {socialLink.map((item, index) => {
+              return (
+                <Box
+                  key={index}
+                  component={"a"}
+                  href={item.path}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="footer-link"
+                  display={"flex"}
+                  alignItems={"center"}
+                  mt={1}
+                >
+                  {socialIcons[item.name]}
+                  <Typography fontWeight={500} textTransform={"capitalize"}>
+                    {item.name}
+                  </Typography>
+                </Box>
+              );
+            })}
           </Box>
         </Box>
       </Box>

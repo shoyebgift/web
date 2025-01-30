@@ -171,7 +171,7 @@ const TermsAndPolicyPages = () => {
     };
 
     return data.map((item, index) => (
-      <Box key={index} sx={{ mb: 1 }}>
+      <Box key={index} sx={{ mb: 1 }} >
         <Typography
           key={index}
           component={"h2"}
@@ -246,7 +246,6 @@ const TermsAndPolicyPages = () => {
       position={"relative"}
       zIndex={5}
       my={4}
-      height={"70%"}
       borderRadius={2.5}
       width="90%"
       mx={"auto"}

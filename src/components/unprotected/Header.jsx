@@ -19,7 +19,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { unprotectedHeaderLinks } from "../../utils/index";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const UnprotectedHeader = () => {
+const Header = () => {
   const { pathname } = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -45,7 +45,7 @@ const UnprotectedHeader = () => {
           display: "grid",
           gridTemplateColumns: "1fr 2fr",
           position: "relative",
-          zIndex: 30,
+          zIndex: 5,
         }}
       >
         <Toolbar>
@@ -469,4 +469,4 @@ const UnprotectedHeader = () => {
   );
 };
 
-export default UnprotectedHeader;
+export default Header;

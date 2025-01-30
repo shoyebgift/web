@@ -1,5 +1,5 @@
 import "./styles/unprotected.css";
-import UnprotectedHeader from "../components/unprotected/UnprotectedHeader";
+import UnprotectedHeader from "../components/unprotected/Header";
 import Footer from "../components/unprotected/Footer";
 import { Box, Typography } from "@mui/material";
 
@@ -15,7 +15,7 @@ const UnprotectedLayout = ({ children }) => {
         mx: "auto",
         minHeight: "100vh",
         maxWidth: "1500px",
-        width: "100vw",
+        width: "100%",
         backgroundColor: "#f5f5f5",
       }}
     >
