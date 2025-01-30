@@ -115,9 +115,9 @@ const AboutCompany = ({
       label: "Type",
       type: "dropdown",
       options: [
+        "Limited Liability Partnership (LLP)",
         "Private Limited Company",
         "Public Limited Company",
-        "Limited Liability Partnership (LLP)",
         "Section 8 Company (Non-Profit)",
         "Sole Proprietorship",
         "One Person Company (OPC)",
@@ -131,7 +131,7 @@ const AboutCompany = ({
 
   return (
     <Box width={"100%"} mx={"auto"} maxWidth={"500px"}>
-      <Typography fontSize={"16px"} fontWeight={500} mb={1} color="#3E3E3E">
+      <Typography fontSize={"20px"} fontWeight={600} mb={1} color="#3E3E3E">
         Add about company
       </Typography>
       <Typography fontSize={"14px"} fontWeight={500} mb={1} color="#323232">

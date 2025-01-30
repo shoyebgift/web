@@ -68,6 +68,7 @@ const HomePage = () => {
           display: "flex",
           flexDirection: { md: "row", xs: "column" },
           width: "100%",
+          zIndex: 10,
         }}
       >
         {/* left of the top part */}
@@ -172,6 +173,7 @@ const HomePage = () => {
             overflow: "hidden",
             position: "relative",
             width: { xs: "100%", md: "50%" },
+            zIndex: 10,
           }}
         >
           <DummyDashboard />

@@ -36,7 +36,6 @@ const Header = () => {
   return (
     <div className="unprotected-header">
       <AppBar
-        position="static"
         sx={{
           mt: "1rem",
           backgroundColor: "transparent",
@@ -45,7 +44,7 @@ const Header = () => {
           display: "grid",
           gridTemplateColumns: "1fr 2fr",
           position: "relative",
-          zIndex: 5,
+          zIndex: 20,
         }}
       >
         <Toolbar>
@@ -306,6 +305,7 @@ const Header = () => {
                       },
                       cursor: "pointer",
                       position: "relative",
+                      zIndex: 20,
                       padding: {
                         sm: "3.5px 10px",
                         md: "3px, 10px",

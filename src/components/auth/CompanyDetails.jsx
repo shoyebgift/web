@@ -395,7 +395,7 @@ const CompanyDetails = ({
 
   return (
     <Box width={"100%"} mx={"auto"} maxWidth={"500px"}>
-      <Typography fontSize={"16px"} fontWeight={500} mb={1} color="#3E3E3E">
+      <Typography fontSize={"20px"} fontWeight={600} mb={1} color="#3E3E3E">
         Add company details
       </Typography>
       <Typography fontSize={"14px"} fontWeight={500} mb={1} color="#323232">
