@@ -8,8 +8,11 @@ import BenefitsPage from "../pages/Benefits";
 import RewardsPage from "../pages/Rewards";
 import ContactUsPage from "../pages/ContactUs";
 import TermsAndPolicyPages from "../pages/TermsAndPolicy";
-import SignUpPage from './../pages/SignUp';
+import SignUpPage from "./../pages/SignUp";
 import SignInPage from "../pages/SignIn";
+import ProtectedLayout from "./../layouts/Protected";
+import GiftVouchersPage from "../pages/GiftVouchers";
+import BrandVouchersPage from "../components/protected/giftsVouchers/BrandVouchers";
 
 const router = createBrowserRouter([
   {
@@ -101,6 +104,32 @@ const router = createBrowserRouter([
             <SignInPage />
           </UnprotectedLayout>
         ),
+      },
+      {
+        path: "/:user",
+        element: <ProtectedLayout />,
+        children: [
+          {
+            path: "dashboard",
+          },
+          {
+            path: "gifts-&-rewards",
+            element: <GiftVouchersPage />,
+
+            children: [
+              {
+                path: "apply-for-gift-card",
+              },
+              {
+                path: "gift-cards",
+              },
+              {
+                path: "my-vouchers",
+                element: <BrandVouchersPage />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

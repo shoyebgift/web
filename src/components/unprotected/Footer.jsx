@@ -17,7 +17,7 @@ const Footer = () => {
   const theme = useTheme();
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
   const socialIcons = {
-    linkedIn: <LinkedInIcon sx={{ fontSize: 20 }} />,
+    linkedIn: <LinkedInIcon sx={{ fontSize: 16 }} />,
   };
   return (
     <Box
@@ -171,6 +171,7 @@ const Footer = () => {
             {socialLink.map((item, index) => {
               return (
                 <Box
+                  fontFamily="inherit"
                   key={index}
                   component={"a"}
                   href={item.path}
@@ -178,11 +179,16 @@ const Footer = () => {
                   rel="noreferrer"
                   className="footer-link"
                   display={"flex"}
-                  alignItems={"center"}
+                  sx={{ alignItems: "center" }}
+                  justifyItems={"center"}
                   mt={1}
                 >
                   {socialIcons[item.name]}
-                  <Typography fontWeight={500} textTransform={"capitalize"}>
+                  <Typography
+                    fontFamily="inherit"
+                    fontSize={"14px"}
+                    textTransform={"capitalize"}
+                  >
                     {item.name}
                   </Typography>
                 </Box>

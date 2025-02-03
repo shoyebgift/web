@@ -19,6 +19,82 @@ export const getAnnotation = (index, annotationType) => {
   }
 };
 
+export const protectedNavlinks = [
+  {
+    heading: "",
+    items: [
+      {
+        label: "Dashboard",
+        to: "dashboard",
+        icon: "HomeOutlinedIcon",
+      },
+    ],
+  },
+  {
+    heading: "Shop",
+    items: [
+      {
+        label: "Manage Human Resource",
+        to: "human-resource",
+        icon: "SignalCellularAltOutlinedIcon",
+        subLinks: [
+          {
+            label: "Employees",
+            to: "employees",
+          },
+          { label: "Approvers", to: "approvers" },
+          { label: "Manage Departments & Roles", to: "departments" },
+        ],
+      },
+      {
+        label: "OptiFii Expense",
+        to: "expense",
+        icon: "RequestPageOutlinedIcon",
+      },
+      {
+        label: "OptiFii Tax Benefit",
+        to: "tax-benefits",
+        icon: "AdsClickOutlinedIcon",
+      },
+      {
+        label: "OptiFii Gifts & Vouchers",
+        to: "gifts-&-rewards",
+        icon: "AdsClickOutlinedIcon",
+        subLinks: [
+          { label: "Dashboard", to: "gifts-&-rewards/apply-for-gift-card" },
+          { label: "Gift Cards", to: "gifts-&-rewards/gift-cards" },
+          { label: "Brand Vouchers", to: "gifts-&-rewards/my-vouchers" },
+        ],
+      },
+    ],
+  },
+  {
+    heading: "Analytics", 
+    items: [
+      {
+        label: "Reports",
+        to: "reports",
+        icon: "AnalyticsOutlinedIcon",
+      },
+      {
+        label: "Support & Ticket",
+        to: "support",
+        icon: "NotificationsOutlinedIcon",
+      },
+    ],
+  },
+  {
+    heading: "Settings",
+    items: [
+      {
+        label: "Settings",
+        to: "settings",
+        icon: "SettingsOutlinedIcon",
+      },
+    ],
+  },
+];
+
 export const unprotectedNavlinks = {
   company: [
     {
