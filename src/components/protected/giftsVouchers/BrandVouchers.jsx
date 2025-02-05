@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import {
   Box,
   Button,
   InputAdornment,
-  Table,
-  TableBody,
+  Pagination,
   TableCell,
-  TableContainer,
-  TableHead,
   TableRow,
   TextField,
 } from "@mui/material";
@@ -17,31 +15,147 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import draft from "../../../assets/svg/draft.svg";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { myVouchers } from "../../../utils/tableJson";
+import SortDropdown from "../../SortDropdown";
+import EntriesButton from "../../EntriesButton";
+import TableComponent from "../../TableComponent";
+import FilterComponent from "../../FilterComponent";
 
 const BrandVouchersPage = () => {
   const tableHeader = [
-    "Sr. No",
-    "Date & Time",
-    "Total Users",
-    "Order Status",
-    "Total Order Value",
-    "Allotment History",
+    { title: "Sr. No", name: "srNo" },
+    { title: "Date & Time", name: "dateTime" },
+    { title: "Total Users", name: "totalUsers" },
+    { title: "Total Order Value", name: "totalOrderValue" },
+    { title: "Order Status", name: "orderStatus" },
+    { title: "Allotment History", name: "allotmentHistory" },
+  ];
+  const [sortOption, setSortOption] = useState("date-asc");
+  const [entries, setEntries] = useState(10);
+  const [sortedData, setSortedData] = useState(myVouchers);
+  const [page, setPage] = useState(1);
+
+  const handleEntriesChange = (event) => {
+    setEntries(event.target.value);
+    setPage(1);
+  };
+
+  const handleChange = (event) => {
+    const selectedSort = event.target.value;
+    setSortOption(selectedSort);
+
+    if (!selectedSort) return;
+
+    // Sorting logic based on selected option
+    let sorted = [...myVouchers];
+    switch (selectedSort) {
+      case "date-asc":
+        sorted.sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
+        break;
+      case "date-desc":
+        sorted.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime));
+        break;
+      case "users-asc":
+        sorted.sort((a, b) => a.totalUsers - b.totalUsers);
+        break;
+      case "users-desc":
+        sorted.sort((a, b) => b.totalUsers - a.totalUsers);
+        break;
+      case "order-asc":
+        sorted.sort((a, b) => a.totalOrderValue - b.totalOrderValue);
+        break;
+      case "order-desc":
+        sorted.sort((a, b) => b.totalOrderValue - a.totalOrderValue);
+        break;
+      default:
+        break;
+    }
+    console.log(sorted);
+
+    setSortedData(sorted);
+  };
+
+  const sortOptions = [
+    { value: "date-asc", label: "Date & Time (Ascending)" },
+    { value: "date-desc", label: "Date & Time (Descending)" },
+    { value: "users-asc", label: "Total Users (Ascending)" },
+    { value: "users-desc", label: "Total Users (Descending)" },
+    { value: "order-asc", label: "Total Order Value (Ascending)" },
+    { value: "order-desc", label: "Total Order Value (Descending)" },
   ];
 
-  const tableData = myVouchers.map((data, index) => [
-    index + 1,
-    data.dateTime,
-    `${data.totalUsers} employees`,
-    data.orderStatus,
-    `₹ ${data.totalOrderValue}`,
-    <Button size="small" sx={{ textTransform: "none" }}>
-      <FileDownloadOutlinedIcon /> Download
-    </Button>,
-  ]);
+  // Get paginated data
+  const startIndex = entries === "all" ? 0 : (page - 1) * entries;
+  const endIndex =
+    entries === "all" ? sortedData.length : startIndex + parseInt(entries);
+  const showEntries = sortedData.slice(startIndex, endIndex);
+
+  // 🔹 **Row Rendering Logic**
+  const renderRow = (row, rowIndex) => (
+    <TableRow key={rowIndex}>
+      {tableHeader.map((header) => (
+        <TableCell
+          key={header.name}
+          sx={{
+            textAlign: "center",
+            color: "#667085",
+            padding: 0.2,
+          }}
+        >
+          {header.name === "srNo" ? (
+            rowIndex + 1
+          ) : header.name === "dateTime" ? (
+            new Intl.DateTimeFormat("en-US", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: true,
+            }).format(new Date(row[header.name]))
+          ) : header.name === "orderStatus" ? (
+            <Box
+              bgcolor={
+                row[header.name] === "scheduled" ? "#F8F3FF" : "#00A43814"
+              }
+              color={row[header.name] === "scheduled" ? "#6311CB" : "#00A438"}
+              p={"5px 10px"}
+              borderRadius={4}
+              textTransform={"capitalize"}
+              display={"flex"}
+              alignItems={"center"}
+              gap={"4px"}
+              justifyContent={"center"}
+              fontSize={"10px"}
+              maxWidth={"fit-content"}
+              mx={"auto"}
+            >
+              <Box
+                height={"4px"}
+                width={"4px"}
+                borderRadius={"100%"}
+                bgcolor={
+                  row[header.name] === "scheduled" ? "#6311CB" : "#00A438"
+                }
+              />
+              {row[header.name]}
+            </Box>
+          ) : header.name === "totalUsers" ? (
+            `${row[header.name]} Employees`
+          ) : header.name === "totalOrderValue" ? (
+            `₹ ${row[header.name]}`
+          ) : (
+            <Button size="small" sx={{ textTransform: "none" }}>
+              <FileDownloadOutlinedIcon /> Download
+            </Button>
+          )}
+        </TableCell>
+      ))}
+    </TableRow>
+  );
 
   return (
     <Box mt={3}>
-      <Box bgcolor={"#FFF"} borderRadius={2} p={2} mt={3}>
+      <Box bgcolor={"#FFF"} borderRadius={2} p={2}>
         <Box
           height="40px"
           display={"flex"}
@@ -126,55 +240,86 @@ const BrandVouchersPage = () => {
             </Box>
           </Box>
         </Box>
+        <Box mt={2}>
+          <Box
+            display={"flex"}
+            gap={2}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            {" "}
+            <Box display={"flex"} gap={2} alignItems={"center"}>
+              {" "}
+              <SortDropdown
+                sortOptions={sortOptions}
+                sortOption={sortOption}
+                handleChange={handleChange}
+              />
+              <EntriesButton
+                entries={entries}
+                handleChange={handleEntriesChange}
+              />
+            </Box>
+            <Box display={"flex"} gap={2} alignItems={"center"}>
+              <Button
+                variant="outlined"
+                startIcon={<FileUploadOutlinedIcon fontSize="small" />}
+                sx={{
+                  border: "1px solid black",
+                  textTransform: "none",
+                  fontSize: "12px",
+                  color: "#667085",
+                }}
+              >
+                {" "}
+                Export{" "}
+              </Button>
 
-        <TableContainer sx={{ maxHeight: 440, mt: 3 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {tableHeader.map((header, index) => (
-                  <TableCell
-                    key={index}
-                    sx={{
-                      textAlign: "center",
-                      fontWeight: "600",
-                      color: "#667085",
-                    }}
-                  >
-                    {header}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tableData.map((row, rowIndex) => (
-                <TableRow key={rowIndex}>
-                  {row.map((item, colIndex) => {
-                    return (
-                      <TableCell
-                        key={colIndex}
-                        sx={{
-                          fontSize: "small",
-                          textAlign: "center",
-                        }}
-                      >
-                        {colIndex === 1
-                          ? new Intl.DateTimeFormat("en-US", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric",
-                              hour: "numeric",
-                              minute: "2-digit",
-                              hour12: true,
-                            }).format(new Date(item))
-                          : item}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              {/* Filter dropdown here  */}
+              <FilterComponent />
+            </Box>
+          </Box>
+          <TableComponent
+            tableHeader={tableHeader}
+            tableData={showEntries}
+            renderRow={renderRow}
+          />
+        </Box>
+      </Box>
+      <Box
+        bgcolor={"#FFFFFF"}
+        mt={1}
+        p={2}
+        borderRadius="5px"
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+      >
+        <Box display="flex" alignItems="center" color={"#667085"} fontSize={12}>
+          Showing{" "}
+          {entries === "all"
+            ? "All"
+            : `${(page - 1) * entries + 1} to ${Math.min(
+                page * entries,
+                sortedData.length
+              )}`}{" "}
+          of {sortedData.length}
+        </Box>
+
+        <Pagination
+          variant="outlined"
+          size="small"
+          shape="rounded"
+          count={entries === "all" ? 1 : Math.ceil(sortedData.length / entries)}
+          showLastButton
+          page={page}
+          onChange={(event, value) => setPage(value)}
+          sx={{
+            "& .MuiPaginationItem-root": {
+              fontSize: "12px",
+            },
+          }}
+        />
       </Box>
     </Box>
   );

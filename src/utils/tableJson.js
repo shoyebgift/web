@@ -119,4 +119,10 @@ export const myVouchers = [
     orderStatus: "completed",
     totalOrderValue: 89000,
   },
+  {
+    dateTime: "2024-02-03T12:30:00Z",
+    totalUsers: 6100,
+    orderStatus: "completed",
+    totalOrderValue: 89000,
+  },
 ];

@@ -86,6 +86,7 @@ const Navbar = () => {
           {group.items.map((link) => (
             <Box key={link.label}>
               <Box
+                mb={2}
                 component={NavLink}
                 display="flex"
                 alignItems="center"

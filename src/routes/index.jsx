@@ -13,6 +13,7 @@ import SignInPage from "../pages/SignIn";
 import ProtectedLayout from "./../layouts/Protected";
 import GiftVouchersPage from "../pages/GiftVouchers";
 import BrandVouchersPage from "../components/protected/giftsVouchers/BrandVouchers";
+import BuyVouchers from "../components/protected/giftsVouchers/BuyVouchers";
 
 const router = createBrowserRouter([
   {
@@ -125,7 +126,17 @@ const router = createBrowserRouter([
               },
               {
                 path: "my-vouchers",
-                element: <BrandVouchersPage />,
+
+                children: [
+                  {
+                    path: "",
+                    element: <BrandVouchersPage />,
+                  },
+                  {
+                    path: "apply-for-brand-voucher",
+                    element: <BuyVouchers />,
+                  },
+                ],
               },
             ],
           },

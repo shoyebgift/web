@@ -23,7 +23,9 @@ const ProtectedLayout = () => {
         height={"100%"}
       >
         <Navbar />
-        <Outlet />
+        <Box overflow={"auto"} height="calc(100vh - 60px)">
+          <Outlet />
+        </Box>
       </Box>
     </Box>
   );
