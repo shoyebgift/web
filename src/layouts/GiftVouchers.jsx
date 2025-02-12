@@ -14,7 +14,7 @@ const GiftVouchersLayout = () => {
   }, [path]);
 
   return (
-    <Box p={2}>
+    <Box p ={2} >
       <BreadCrumb />
       <Outlet />
     </Box>

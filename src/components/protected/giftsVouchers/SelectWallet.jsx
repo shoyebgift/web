@@ -3,7 +3,6 @@ import { Box, Button, Typography } from "@mui/material";
 import cash from "../../../assets/img/wallet/cash.png";
 import card from "../../../assets/img/wallet/card.png";
 import cash1 from "../../../assets/svg/cash.svg";
-
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -13,10 +12,40 @@ const SelectWallet = () => {
   const [walletType, setWalletType] = useState("");
   const { cardWallets } = useSelector((state) => state.wallet);
 
+  const [hoveredWallet, setHoveredWallet] = useState(null);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
   const handleProceed = () => {
     if (walletType === "card" && cardWallets.length === 0) {
       navigate(`${walletType}/where-to-share`);
     } else navigate(`${walletType}`);
+  };
+
+  const handleMouseMove = (e, type) => {
+    if (hoveredWallet !== type) return;
+
+    const box = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - box.left) / box.width - 0.5) * 20;
+    const y = ((e.clientY - box.top) / box.height - 0.5) * -20;
+
+    setRotation({ x, y });
+
+    // Cursor position for glow effect
+    setCursorPosition({
+      x: e.clientX - box.left,
+      y: e.clientY - box.top,
+    });
+  };
+
+  const handleMouseEnter = (type) => {
+    setHoveredWallet(type);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredWallet(null);
+    setRotation({ x: 0, y: 0 });
+    setCursorPosition({ x: 0, y: 0 });
   };
 
   return (
@@ -44,16 +73,47 @@ const SelectWallet = () => {
           <Box
             key={type}
             borderRadius={"6px"}
-            height={"373px"}
-            width={"270px"}
+            height={"390px"}
+            width={"300px"}
             mt={6}
             sx={{
               background: "linear-gradient(180deg, #6311CB 0%, #1F1584 100%)",
+              transition: "transform 0.1s ease-out, box-shadow 0.2s ease-out",
+              transform:
+                hoveredWallet === type
+                  ? `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
+                  : "none",
+              boxShadow:
+                hoveredWallet === type
+                  ? "0px 10px 30px rgba(0, 0, 0, 0.3)"
+                  : "none",
+              position: "relative",
+              overflow: "hidden",
+              p: "17px",
             }}
-            position={"relative"}
-            overflow={"hidden"}
-            p={"17px"}
+            onMouseEnter={() => handleMouseEnter(type)}
+            onMouseMove={(e) => handleMouseMove(e, type)}
+            onMouseLeave={handleMouseLeave}
           >
+            {/* Cursor Glow Effect */}
+            {hoveredWallet === type && (
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: cursorPosition.y - 125,
+                  left: cursorPosition.x - 125,
+                  width: "250px",
+                  height: "250px",
+                  background:
+                    "radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%)",
+                  pointerEvents: "none",
+                  borderRadius: "50%",
+                  filter: "blur(30px)",
+                  zIndex: 1,
+                }}
+              />
+            )}
+
             <Button
               variant="outlined"
               onClick={() => setWalletType(type)}
@@ -69,7 +129,6 @@ const SelectWallet = () => {
                 color: walletType === type ? "#6311CB" : "white",
               }}
             >
-              {" "}
               {type === walletType ? "Selected" : "Select"}
             </Button>
 
@@ -80,7 +139,8 @@ const SelectWallet = () => {
               fontFamily={"Geologica"}
               fontWeight={"bold"}
               textTransform={"capitalize"}
-              fontSize={"20px"}
+              fontSize={"28px"}
+              className="no-select"
             >
               {type} wallet
             </Typography>
@@ -90,10 +150,11 @@ const SelectWallet = () => {
               width={"90%"}
               mt={3}
               whiteSpace={"pre-line"}
+              className="no-select"
             >
               {type === "cash"
-                ? "Share amount to the users Cash wallet.\nUser can withdraw the cash easily anytime."
-                : "Now personalised your Company wallet with name of your choice.\nCreate custom policy for the wallet"}
+                ? "Share amount to the user's Cash wallet.\nUser can withdraw the cash easily anytime."
+                : "Now personalize your Company wallet with a name of your choice.\nCreate custom policies for the wallet"}
             </Typography>
 
             {type === "cash" ? (
@@ -101,24 +162,16 @@ const SelectWallet = () => {
                 <Box
                   component={"img"}
                   src={cash}
-                  alt="card"
+                  alt="cash"
                   width={"200px"}
-                  sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                  }}
+                  sx={{ position: "absolute", bottom: 0, right: 0 }}
                 />
                 <Box
                   component={"img"}
                   src={cash1}
-                  alt="card"
+                  alt="cash"
                   width="50%"
-                  sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: "-12%",
-                  }}
+                  sx={{ position: "absolute", bottom: 0, left: "-12%" }}
                 />
               </>
             ) : (

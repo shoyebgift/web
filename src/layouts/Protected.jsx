@@ -28,7 +28,7 @@ const ProtectedLayout = () => {
 
       <Box
         display={"grid"}
-        gridTemplateColumns={"307px 1fr"}
+        gridTemplateColumns={"250px 1fr"}
         overflow={"hidden"}
         height={"100%"}
       >

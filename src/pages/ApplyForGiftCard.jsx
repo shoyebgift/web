@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 const ApplyForGiftCardPage = () => {
   return (
-    <Box p={2} mt={2}>
+    <Box mt={2}>
       <Outlet />
     </Box>
   );

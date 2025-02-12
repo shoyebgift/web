@@ -14,6 +14,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import WalletApprovalDialog from "./WalletApprovalDialog";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 const WalletHome = () => {
   const navigate = useNavigate();
   const { user } = useParams();
@@ -76,6 +77,8 @@ const WalletHome = () => {
               variant="outlined"
               size="small"
               sx={{
+                fontFamily: "Gilroy",
+                fontWeight: 500,
                 borderColor: "#D2D2D2",
                 color: "black",
                 textTransform: "none",
@@ -91,6 +94,8 @@ const WalletHome = () => {
               variant="outlined"
               size="small"
               sx={{
+                fontFamily: "Gilroy",
+                fontWeight: 500,
                 borderColor: "#D2D2D2",
                 color: "black",
                 textTransform: "none",
@@ -99,6 +104,7 @@ const WalletHome = () => {
                 },
               }}
               startIcon={<FileUploadOutlinedIcon />}
+              endIcon={<ExpandMoreOutlinedIcon />}
             >
               Export
             </Button>
@@ -106,6 +112,8 @@ const WalletHome = () => {
               variant="contained"
               size="small"
               sx={{
+                fontFamily: "Gilroy",
+                fontWeight: 500,
                 bgcolor: "#6211CB",
                 color: "white",
                 borderRadius: "6px",
@@ -151,6 +159,9 @@ const WalletHome = () => {
                   variant="contained"
                   sx={{
                     bgcolor: "#6211CB",
+                    fontFamily: "Albert Sans",
+                    fontWeight: 600,
+                    fontSize: "16px",
                     color: "white",
                     borderRadius: "6px",
                     textTransform: "none",
@@ -200,6 +211,9 @@ const WalletHome = () => {
                   <Button
                     variant="contained"
                     sx={{
+                      fontFamily: "Albert Sans",
+                      fontWeight: 600,
+                      fontSize: "16px",
                       bgcolor: "#6211CB",
                       color: "white",
                       borderRadius: "6px",
@@ -219,6 +233,9 @@ const WalletHome = () => {
                     variant="contained"
                     onClick={() => handleClick(wallet?.id)}
                     sx={{
+                      fontFamily: "Albert Sans",
+                      fontWeight: 600,
+                      fontSize: "16px",
                       bgcolor: "#6211CB",
                       color: "white",
                       borderRadius: "6px",

@@ -115,12 +115,12 @@ const ProtectedHeader = () => {
                 display={"flex"}
                 alignItems="center"
               >
-                UserName{" "}
+                Jenney Joe{" "}
                 <ArrowDropDownOutlinedIcon
                   sx={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
                 />
               </Typography>
-              <Tooltip title="sadawdsfdwusername@dwdl.com">
+              <Tooltip title="jenney@dwdl.com">
                 <Typography
                   color="#A1A1AA"
                   variant="body2"
@@ -132,7 +132,7 @@ const ProtectedHeader = () => {
                     maxWidth: "100%",
                   }}
                 >
-                  sadawdsfdwusername@dwdl.com
+                  jenney@dwdl.com
                 </Typography>
               </Tooltip>
             </Box>
