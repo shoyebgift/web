@@ -1,15 +1,15 @@
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
-import BreadCrumb from "./../components/BreadCrumb";
+import BreadCrumb from "../components/BreadCrumb";
 
-const GiftVouchersPage = () => {
+const GiftVouchersLayout = () => {
   const path = useLocation().pathname;
   const navigate = useNavigate();
   const { user } = useParams();
   useEffect(() => {
     if (path === `/${user}/gifts-&-rewards`) {
-      navigate("apply-for-gift-card");
+      navigate("dashboard");
     }
   }, [path]);
 
@@ -21,4 +21,4 @@ const GiftVouchersPage = () => {
   );
 };
 
-export default GiftVouchersPage;
+export default GiftVouchersLayout;

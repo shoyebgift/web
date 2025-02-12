@@ -1,6 +1,271 @@
+@import url("https://fonts.cdnfonts.com/css/geologica");
+@import url("https://fonts.googleapis.com/css2?family=Afacad:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-BlackItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-BlackItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-Black.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-BoldItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-Bold.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-DemiBold.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-DemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-DemiBoldItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-DemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-ExtraBold.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-ExtraBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-ThinItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-ExtraBoldItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-ExtraBoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-ExtraLightItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-ExtraLightItalic.woff") format("woff");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-ExtraLight.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-Italic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-LightItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-Light.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-MediumItalic.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-Medium.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/TTCommons-Regular.woff2") format("woff2"),
+    url("/fonts/ttCommons/TTCommons-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Commons";
+  src: url("/fonts/ttCommons/2") format("woff2"),
+    url("/fonts/ttCommons/") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Heavy.woff2') format('woff2'),
+      url('/fonts/Gilroy/Gilroy-Heavy.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Bold.woff2') format('woff2'),
+      url('/fonts/Gilroy/Gilroy-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Medium.woff2') format('woff2'),
+      url('/fonts/Gilroy/Gilroy-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Light.woff2') format('woff2'),
+      url('/fonts/Gilroy/Gilroy-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-ExtraBold.woff2') format('woff2'),
+      url('/fonts/Gilroy/Gilroy-ExtraBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Light.woff2') format('woff2'),
+      url('/fonts/Gilroy/Gilroy-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/fonts/Gilroy/Gilroy-Regular.woff2') format('woff2'),
+      url('/fonts/Gilroy/Gilroy-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/Amiri/Amiri-Italic.woff2') format('woff2'),
+      url('/fonts/Amiri/Amiri-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/Amiri/Amiri-Bold.woff2') format('woff2'),
+      url('/fonts/Amiri/Amiri-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/Amiri/Amiri-BoldItalic.woff2') format('woff2'),
+      url('/fonts/Amiri/Amiri-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('/fonts/Amiri/Amiri-Regular.woff2') format('woff2'),
+      url('/fonts/Amiri/Amiri-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
- 
 }
 
 * {
@@ -49,4 +314,3 @@ input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
   display: none;
 }
-

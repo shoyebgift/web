@@ -160,7 +160,6 @@ const DirectorDetails = ({ setCurrentStage, formData, setFormData }) => {
   };
 
   const handleChange = (index, name, value) => {
-    console.log(index, name, value);
     setDirectorDetails((prev) =>
       prev.map((director, i) =>
         i === index ? { ...director, [name]: value } : director

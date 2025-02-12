@@ -107,7 +107,7 @@ const ProtectedHeader = () => {
             }}
             onClick={handleClick} // Open the dropdown menu
           >
-            <Avatar />
+            <Avatar sx={{ height: 40, width: 40 }} />
             <Box overflow="hidden">
               <Typography
                 variant="body1"

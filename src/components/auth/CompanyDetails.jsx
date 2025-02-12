@@ -57,7 +57,6 @@ const CompanyDetails = ({
       : {}),
   });
 
-  console.log(companyDetailsData);
   const [errorMessage, setErrorMessage] = useState({
     cin: { message: "CIN is required!" },
     company_pan: { message: "Company PAN is required!" },

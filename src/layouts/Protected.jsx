@@ -1,10 +1,13 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import ProtectedHeader from "./../components/protected/Header";
 import Navbar from "./../components/protected/Navbar";
 
 const ProtectedLayout = () => {
+  
+
+
   return (
     <Box
       bgcolor={"#F3F3F9"}

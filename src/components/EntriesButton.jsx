@@ -3,7 +3,14 @@ import React from "react";
 
 const EntriesButton = ({ entries, handleChange }) => {
   return (
-    <Box display={"flex"} gap={1} alignItems={"center"} fontSize={"12px"}>
+    <Box
+      display={"flex"}
+      gap={1}
+      alignItems={"center"}
+      fontSize={"14px"}
+      fontFamily={"Gilroy"}
+      color={"#707070"}
+    >
       Show{" "}
       <Select
         sx={{

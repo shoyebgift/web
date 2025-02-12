@@ -78,7 +78,8 @@ const Navbar = () => {
             ml={4}
             textTransform={"uppercase"}
             color="#E4E4E4"
-            my={1}
+            my={2}
+            fontFamily={"Gilroy"}
           >
             {group.heading}
           </Typography>
@@ -145,6 +146,8 @@ const Navbar = () => {
                     display={"flex"}
                     alignItems={"center"}
                     gap={1}
+                    fontFamily={"Gilroy"}
+                    fontWeight={"500"}
                   >
                     {link.label}{" "}
                     {link.subLinks && (
@@ -185,6 +188,8 @@ const Navbar = () => {
                 display={"flex"}
                 flexDirection={"column"}
                 color={"white"}
+                fontFamily={"Gilroy"}
+                fontSize={"12px"}
               >
                 {link.subLinks &&
                   link.subLinks.map((subLink) => (
@@ -204,8 +209,9 @@ const Navbar = () => {
                           color: "#7f58af",
                         },
                         "&.active": {
-                          color: "#ffffff !important",
 
+                          color: "#ffffff !important",
+                          fontWeight: "500",
                           "& .active__sublink": {
                             bgcolor: "blue",
                           },

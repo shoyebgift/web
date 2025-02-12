@@ -1,3 +1,17 @@
+export function maskEmail(email) {
+  const [firstPart, secondPart] = email.split("@");
+  if (firstPart.length <= 2) {
+    return firstPart[0] + "*@" + secondPart;
+  }
+
+  const maskFirstPart = firstPart[0] + "****" + firstPart[firstPart.length - 1];
+  return maskFirstPart + "@" + secondPart;
+}
+
+export function maskCardNumber(cardNumber) {
+  return cardNumber.slice(0, 4) + "**** **** **** ";
+}
+
 export const getAnnotation = (index, annotationType) => {
   switch (annotationType) {
     case "number":
@@ -40,10 +54,13 @@ export const protectedNavlinks = [
         subLinks: [
           {
             label: "Employees",
-            to: "employees",
+            to: "human-resource/employees",
           },
-          { label: "Approvers", to: "approvers" },
-          { label: "Manage Departments & Roles", to: "departments" },
+          { label: "Approvers", to: "human-resource/approvers" },
+          {
+            label: "Manage Departments & Roles",
+            to: "human-resource/departments",
+          },
         ],
       },
       {
@@ -61,7 +78,7 @@ export const protectedNavlinks = [
         to: "gifts-&-rewards",
         icon: "AdsClickOutlinedIcon",
         subLinks: [
-          { label: "Dashboard", to: "gifts-&-rewards/apply-for-gift-card" },
+          { label: "Dashboard", to: "gifts-&-rewards/dashboard" },
           { label: "Gift Cards", to: "gifts-&-rewards/gift-cards" },
           { label: "Brand Vouchers", to: "gifts-&-rewards/my-vouchers" },
         ],
@@ -69,7 +86,7 @@ export const protectedNavlinks = [
     ],
   },
   {
-    heading: "Analytics", 
+    heading: "Analytics",
     items: [
       {
         label: "Reports",

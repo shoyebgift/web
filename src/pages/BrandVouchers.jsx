@@ -12,21 +12,22 @@ import {
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import draft from "../../../assets/svg/draft.svg";
+import draft from "../assets/svg/draft.svg";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { myVouchers } from "../../../utils/tableJson";
-import SortDropdown from "../../SortDropdown";
-import EntriesButton from "../../EntriesButton";
-import TableComponent from "../../TableComponent";
-import FilterComponent from "../../FilterComponent";
+import SortDropdown from "../components/SortDropdown";
+import EntriesButton from "../components/EntriesButton";
+import TableComponent from "../components/TableComponent";
+import FilterComponent from "../components/FilterComponent";
+import { useSelector } from "react-redux";
 
 const BrandVouchersPage = () => {
+  const { myVouchers } = useSelector((state) => state.voucher.vouchers);
   const tableHeader = [
     { title: "Sr. No", name: "srNo" },
     { title: "Date & Time", name: "dateTime" },
-    { title: "Total Users", name: "totalUsers" },
-    { title: "Total Order Value", name: "totalOrderValue" },
-    { title: "Order Status", name: "orderStatus" },
+    { title: "Total Users", name: "employee" },
+    { title: "Total Order Value", name: "totalAmount" },
+    { title: "Order Status", name: "orderstatus" },
     { title: "Allotment History", name: "allotmentHistory" },
   ];
   const [sortOption, setSortOption] = useState("date-asc");
@@ -69,7 +70,6 @@ const BrandVouchersPage = () => {
       default:
         break;
     }
-    console.log(sorted);
 
     setSortedData(sorted);
   };
@@ -102,7 +102,7 @@ const BrandVouchersPage = () => {
           }}
         >
           {header.name === "srNo" ? (
-            rowIndex + 1
+            (page - 1) * entries + rowIndex + 1
           ) : header.name === "dateTime" ? (
             new Intl.DateTimeFormat("en-US", {
               day: "numeric",
@@ -112,7 +112,7 @@ const BrandVouchersPage = () => {
               minute: "2-digit",
               hour12: true,
             }).format(new Date(row[header.name]))
-          ) : header.name === "orderStatus" ? (
+          ) : header.name === "orderstatus" ? (
             <Box
               bgcolor={
                 row[header.name] === "scheduled" ? "#F8F3FF" : "#00A43814"
@@ -139,9 +139,9 @@ const BrandVouchersPage = () => {
               />
               {row[header.name]}
             </Box>
-          ) : header.name === "totalUsers" ? (
-            `${row[header.name]} Employees`
-          ) : header.name === "totalOrderValue" ? (
+          ) : header.name === "employee" ? (
+            `${row[header.name].length} Employees`
+          ) : header.name === "totalAmount" ? (
             `₹ ${row[header.name]}`
           ) : (
             <Button size="small" sx={{ textTransform: "none" }}>
@@ -279,11 +279,13 @@ const BrandVouchersPage = () => {
               <FilterComponent />
             </Box>
           </Box>
-          <TableComponent
-            tableHeader={tableHeader}
-            tableData={showEntries}
-            renderRow={renderRow}
-          />
+          <Box mt={3} height={"calc(100vh - 350px)"} sx={{ overflowY: "auto" }}>
+            <TableComponent
+              tableHeader={tableHeader}
+              tableData={showEntries}
+              renderRow={renderRow}
+            />
+          </Box>
         </Box>
       </Box>
       <Box

@@ -11,9 +11,20 @@ import TermsAndPolicyPages from "../pages/TermsAndPolicy";
 import SignUpPage from "./../pages/SignUp";
 import SignInPage from "../pages/SignIn";
 import ProtectedLayout from "./../layouts/Protected";
-import GiftVouchersPage from "../pages/GiftVouchers";
-import BrandVouchersPage from "../components/protected/giftsVouchers/BrandVouchers";
-import BuyVouchers from "../components/protected/giftsVouchers/BuyVouchers";
+import GiftVouchersLayout from "../layouts/GiftVouchers";
+import BrandVouchersPage from "../pages/BrandVouchers";
+import BuyVouchers from "../pages/BuyVouchers";
+import DraftVoucherPage from "../pages/DraftVoucher";
+import ApplyForGiftCardPage from "../pages/ApplyForGiftCard";
+import SelectWallet from "../components/protected/giftsVouchers/SelectWallet";
+import WalletHome from "../components/protected/giftsVouchers/WalletHome";
+import WhereToShare from "./../components/protected/giftsVouchers/WhereToShare";
+import AddWalletEmployee from "../components/protected/giftsVouchers/AddWalletEmployee";
+import CreateWalletProcess from "../components/protected/giftsVouchers/CreateWalletProcess";
+import HumanResourcesLayout from "../layouts/HumanResources";
+import EmployeesPage from "../pages/Employees";
+import WalletOrders from '../components/protected/giftsVouchers/WalletOrders';
+import WalletOrdersDetails from "../components/protected/humanResources/WalletOrdersDetails";
 
 const router = createBrowserRouter([
   {
@@ -66,7 +77,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "/contact-us",
+        path: "contact-us",
         element: (
           <UnprotectedLayout>
             <ContactUsPage />
@@ -74,7 +85,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/terms-conditions",
+        path: "terms-conditions",
         element: (
           <UnprotectedLayout>
             <TermsAndPolicyPages />
@@ -106,6 +117,8 @@ const router = createBrowserRouter([
           </UnprotectedLayout>
         ),
       },
+
+      //protected routes
       {
         path: "/:user",
         element: <ProtectedLayout />,
@@ -113,13 +126,121 @@ const router = createBrowserRouter([
           {
             path: "dashboard",
           },
+
+          {
+            path: "human-resource",
+            element: <HumanResourcesLayout />,
+            children: [
+              {
+                path: "employees",
+                children: [
+                  {
+                    path: "",
+                    element: <EmployeesPage />,
+                  },
+                  {
+                    path: "cash/:orderId/",
+                    element: <WalletOrdersDetails />,
+                  },
+                  {
+                    path: "card/:walletId/:orderId/",
+                    element: <WalletOrdersDetails />,
+                  },
+                ],
+              },
+            ],
+          },
+
           {
             path: "gifts-&-rewards",
-            element: <GiftVouchersPage />,
+            element: <GiftVouchersLayout />,
 
             children: [
               {
-                path: "apply-for-gift-card",
+                path: "dashboard",
+                element: <ApplyForGiftCardPage />,
+                children: [
+                  {
+                    path: "",
+                    element: (
+                      <CreateWalletProcess>
+                        <SelectWallet />
+                      </CreateWalletProcess>
+                    ),
+                  },
+                  {
+                    path: "cash",
+                    children: [
+                      {
+                        path: "",
+                        element: (
+                          <CreateWalletProcess>
+                            <WalletHome />
+                          </CreateWalletProcess>
+                        ),
+                      },
+                      {
+                        path: "add-employee",
+                        element: (
+                          <CreateWalletProcess>
+                            <AddWalletEmployee />
+                          </CreateWalletProcess>
+                        ),
+                      },
+                      {
+                        path: "orders",
+                        element: <WalletOrders />,
+                      },
+                    ],
+                  },
+                  {
+                    path: "card",
+                    children: [
+                      {
+                        path: "",
+                        element: (
+                          <CreateWalletProcess>
+                            <WalletHome />
+                          </CreateWalletProcess>
+                        ),
+                      },
+                      {
+                        path: "where-to-share",
+                        element: (
+                          <CreateWalletProcess>
+                            <WhereToShare />
+                          </CreateWalletProcess>
+                        ),
+                      },
+                      {
+                        path: "edit/:walletId/where-to-share",
+                        element: (
+                          <CreateWalletProcess>
+                            <WhereToShare />
+                          </CreateWalletProcess>
+                        ),
+                      },
+
+                      {
+                        path: ":walletId",
+                        children: [
+                          {
+                            path: "add-employee",
+                            element: (
+                              <CreateWalletProcess>
+                                <AddWalletEmployee />
+                              </CreateWalletProcess>
+                            ),
+                          },
+                          {
+                            path: "orders",
+                            element: <WalletOrders />,
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
               },
               {
                 path: "gift-cards",
@@ -135,6 +256,10 @@ const router = createBrowserRouter([
                   {
                     path: "apply-for-brand-voucher",
                     element: <BuyVouchers />,
+                  },
+                  {
+                    path: "voucher-draft",
+                    element: <DraftVoucherPage />,
                   },
                 ],
               },

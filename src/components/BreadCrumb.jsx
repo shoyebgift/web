@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 const Breadcrumb = () => {
   const location = useLocation();
-  const { user } = useParams();
+  const { user, walletId } = useParams();
 
   const pathSegments = location.pathname
     .split("/")
@@ -20,6 +20,34 @@ const Breadcrumb = () => {
       </Typography>
     );
   }
+
+  if (
+    location.pathname === `/${user}/gifts-&-rewards/dashboard` ||
+    location.pathname === `/${user}/gifts-&-rewards/dashboard/card` ||
+    location.pathname === `/${user}/gifts-&-rewards/dashboard/cash` ||
+    location.pathname ===
+      `/${user}/gifts-&-rewards/dashboard/card/where-to-share` ||
+    location.pathname ===
+      `/${user}/gifts-&-rewards/dashboard/cash/add-employee` ||
+    location.pathname ===
+      `/${user}/gifts-&-rewards/dashboard/card/${walletId}/add-employee`
+  ) {
+    return (
+      <Typography fontSize={"14px"}>
+        Optifii Gifts & Rewards / Apply for gift card
+      </Typography>
+    );
+  }
+
+  if (location.pathname.split("/").includes("orders")) {
+    return (
+      <Typography fontSize={"14px"}>
+        Optifii Gifts & Rewards / Application Status /{" "}
+        {walletId ? "Card Wallet" : "Cash Wallet"}
+      </Typography>
+    );
+  }
+
   return (
     <Box display="flex" alignItems="center" gap={1}>
       <Typography fontSize={"14px"}>Optifii</Typography>
