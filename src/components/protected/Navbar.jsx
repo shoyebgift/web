@@ -87,7 +87,7 @@ const Navbar = () => {
           {group.items.map((link) => (
             <Box key={link.label}>
               <Box
-                mb={2}
+                mb={1}
                 component={NavLink}
                 display="flex"
                 alignItems="center"
@@ -127,7 +127,7 @@ const Navbar = () => {
                   width="0"
                   bgcolor="blue"
                   sx={{
-                    minHeight: "32px",
+                    minHeight: "43px",
                   }}
                   borderRadius={1}
                 />
@@ -139,6 +139,7 @@ const Navbar = () => {
                   width={"100%"}
                   alignItems={"center"}
                   gap={1}
+                  height={"43px"}
                 >
                   <Box component={linksIcons[link.icon]} fontSize={"20px"} />
                   <Typography

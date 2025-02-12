@@ -1,12 +1,19 @@
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import ProtectedHeader from "./../components/protected/Header";
 import Navbar from "./../components/protected/Navbar";
 
 const ProtectedLayout = () => {
-  
+  const { user } = useParams();
+  const pathname = window.location.pathname;
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (pathname === `/${user}`) {
+      navigate(`/${user}/dashboard`);
+    }
+  }, []);
 
   return (
     <Box
