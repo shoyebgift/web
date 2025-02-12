@@ -10,7 +10,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import websiteLogo from "../../assets/webLogo.jpg";
 
 import { protectedNavlinks } from "../../utils/index";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -35,7 +35,7 @@ const Navbar = () => {
 
   return (
     <Box
-      width={"300px"}
+      width={"100%"}
       bgcolor={"#210A33"}
       height="calc(100vh - 60px)"
       color={"white"}
@@ -71,8 +71,8 @@ const Navbar = () => {
 
       {/* links */}
 
-      {protectedNavlinks.map((group) => (
-        <Box key={group.heading || 1}>
+      {protectedNavlinks.map((group, index) => (
+        <Box key={index}>
           <Typography
             fontSize={"11px"}
             ml={4}
@@ -152,7 +152,7 @@ const Navbar = () => {
                   >
                     {link.label}{" "}
                     {link.subLinks && (
-                      <Button
+                      <IconButton
                         color="inherit"
                         size="small"
                         sx={{
@@ -173,7 +173,7 @@ const Navbar = () => {
                             rotate: expanded[link.label] ? "180deg" : "0deg",
                           }}
                         />
-                      </Button>
+                      </IconButton>
                     )}
                   </Typography>
                 </Box>
@@ -204,7 +204,7 @@ const Navbar = () => {
                       p={1}
                       color={"white"}
                       fontSize={"14px"}
-                      fontFamily={'Gilroy'}
+                      fontFamily={"Gilroy"}
                       height={"min-content"}
                       sx={{
                         "&:hover": {
