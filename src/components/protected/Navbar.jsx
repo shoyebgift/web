@@ -7,7 +7,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
 import AdsClickOutlinedIcon from "@mui/icons-material/AdsClickOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import websiteLogo from "../../assets/svg/websiteLogo.svg";
+import websiteLogo from "../../assets/webLogo.jpg";
 
 import { protectedNavlinks } from "../../utils/index";
 import { Box, Button, Typography } from "@mui/material";
@@ -35,8 +35,8 @@ const Navbar = () => {
 
   return (
     <Box
-      width={"307px"}
-      bgcolor={"#1A0436"}
+      width={"300px"}
+      bgcolor={"#210A33"}
       height="calc(100vh - 60px)"
       color={"white"}
       pt={1}
@@ -65,7 +65,7 @@ const Navbar = () => {
         />
         <Typography fontSize={"12px"} fontWeight={"bold"}>
           {" "}
-          Website Developers India Pvt Ltd
+          Tata Motors
         </Typography>
       </Box>
 
@@ -203,14 +203,14 @@ const Navbar = () => {
                       gap={1}
                       p={1}
                       color={"white"}
-                      fontSize={"12px"}
+                      fontSize={"14px"}
+                      fontFamily={'Gilroy'}
                       height={"min-content"}
                       sx={{
                         "&:hover": {
                           color: "#7f58af",
                         },
                         "&.active": {
-
                           color: "#ffffff !important",
                           fontWeight: "500",
                           "& .active__sublink": {

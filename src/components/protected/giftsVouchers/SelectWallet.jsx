@@ -45,7 +45,7 @@ const SelectWallet = () => {
             key={type}
             borderRadius={"6px"}
             height={"373px"}
-            width={"254px"}
+            width={"270px"}
             mt={6}
             sx={{
               background: "linear-gradient(180deg, #6311CB 0%, #1F1584 100%)",
@@ -85,13 +85,15 @@ const SelectWallet = () => {
               {type} wallet
             </Typography>
             <Typography
-              fontFamily={"TT Commons"}
-              fontSize={"12px"}
-              width={"80%"}
+              fontFamily={"Geologica"}
+              fontSize={"11px"}
+              width={"90%"}
               mt={3}
+              whiteSpace={"pre-line"}
             >
-              Choose a plan and get onboard in minutes. Then get $100 credits
-              for your next payment.
+              {type === "cash"
+                ? "Share amount to the users Cash wallet.\nUser can withdraw the cash easily anytime."
+                : "Now personalised your Company wallet with name of your choice.\nCreate custom policy for the wallet"}
             </Typography>
 
             {type === "cash" ? (
@@ -141,7 +143,7 @@ const SelectWallet = () => {
         ))}
       </Box>
 
-      <Box textAlign={"center"} mt={18}>
+      <Box textAlign={"center"} mt={10} mb={25}>
         <Button
           disabled={walletType === ""}
           onClick={handleProceed}

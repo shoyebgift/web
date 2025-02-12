@@ -45,7 +45,7 @@ export const protectedNavlinks = [
     ],
   },
   {
-    heading: "Shop",
+    heading: "Analytics",
     items: [
       {
         label: "Manage Human Resource",
@@ -86,7 +86,7 @@ export const protectedNavlinks = [
     ],
   },
   {
-    heading: "Analytics",
+    heading: "",
     items: [
       {
         label: "Reports",

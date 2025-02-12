@@ -33,7 +33,7 @@ const Breadcrumb = () => {
       `/${user}/gifts-&-rewards/dashboard/card/${walletId}/add-employee`
   ) {
     return (
-      <Typography fontSize={"14px"}>
+      <Typography fontSize={"14px"} fontFamily={"Gilroy"} fontWeight={500}>
         Optifii Gifts & Rewards / Apply for gift card
       </Typography>
     );
@@ -41,7 +41,7 @@ const Breadcrumb = () => {
 
   if (location.pathname.split("/").includes("orders")) {
     return (
-      <Typography fontSize={"14px"}>
+      <Typography fontSize={"14px"} fontFamily={"Gilroy"} fontWeight={500}>
         Optifii Gifts & Rewards / Application Status /{" "}
         {walletId ? "Card Wallet" : "Cash Wallet"}
       </Typography>
@@ -50,7 +50,9 @@ const Breadcrumb = () => {
 
   return (
     <Box display="flex" alignItems="center" gap={1}>
-      <Typography fontSize={"14px"}>Optifii</Typography>
+      <Typography fontSize={"14px"} fontFamily={"Gilroy"} fontWeight={500}>
+        Optifii
+      </Typography>
       {pathSegments.map((segment, index) => {
         let formattedSegment = segment
           .replace(/-/g, " ")
@@ -59,11 +61,31 @@ const Breadcrumb = () => {
 
         return (
           <React.Fragment key={segment}>
-            {index > 0 && <Typography fontSize={"14px"}>/</Typography>}
+            {index > 0 && (
+              <Typography
+                fontSize={"14px"}
+                fontFamily={"Gilroy"}
+                fontWeight={500}
+              >
+                /
+              </Typography>
+            )}
             {index === pathSegments.length - 1 ? (
-              <Typography fontSize={"14px"}>{formattedSegment}</Typography>
+              <Typography
+                fontSize={"14px"}
+                fontFamily={"Gilroy"}
+                fontWeight={500}
+              >
+                {formattedSegment}
+              </Typography>
             ) : (
-              <Typography fontSize={"14px"}>{formattedSegment}</Typography>
+              <Typography
+                fontSize={"14px"}
+                fontFamily={"Gilroy"}
+                fontWeight={500}
+              >
+                {formattedSegment}
+              </Typography>
             )}
           </React.Fragment>
         );
