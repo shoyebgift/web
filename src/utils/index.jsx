@@ -91,11 +91,8 @@ export const protectedNavlinks = [
           { label: "Brand Vouchers", to: "gifts-&-rewards/my-vouchers" },
         ],
       },
-    ],
-  },
-  {
-    heading: "",
-    items: [
+
+      // tepm added
       {
         label: "Reports",
         to: "reports",
@@ -108,6 +105,21 @@ export const protectedNavlinks = [
       },
     ],
   },
+  // {
+  //   heading: "",
+  //   items: [
+  //     {
+  //       label: "Reports",
+  //       to: "reports",
+  //       icon: chartBarSquare,
+  //     },
+  //     {
+  //       label: "Support & Ticket",
+  //       to: "support",
+  //       icon: bell,
+  //     },
+  //   ],
+  // },
   {
     heading: "Settings",
     items: [

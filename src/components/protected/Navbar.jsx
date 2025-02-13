@@ -122,7 +122,7 @@ const Navbar = () => {
                   width="0"
                   bgcolor="blue"
                   sx={{
-                    minHeight: "43px",
+                    minHeight: "40px",
                   }}
                   borderRadius={1}
                 />
@@ -134,7 +134,7 @@ const Navbar = () => {
                   width={"100%"}
                   alignItems={"center"}
                   gap={0.5}
-                  height={"43px"}
+                  height={"40px"}
                   fontFamily={"Gilroy"}
                   fontWeight={"300"}
                   fontSize={"14px"}
