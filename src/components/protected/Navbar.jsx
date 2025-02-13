@@ -34,19 +34,28 @@ const Navbar = () => {
         display={"flex"}
         alignItems={"center"}
         gap={2}
-        m={2}
+        my={2}
+        mx={1}
         bgcolor={"#382450"}
+        boxShadow="0px 4px 10px rgba(0, 0, 0, 0.4)"
         p={1}
         borderRadius={1}
       >
         <Box
-          component={"img"}
+          component="img"
           src={websiteLogo}
           alt="website logo"
-          width={"25px"}
+          width="30px"
+          height="auto"
           className="no-select"
+          sx={{ objectFit: "contain" }}
         />
-        <Typography fontSize={"12px"} fontFamily={"Geologica"} fontWeight={"bold"}>
+        <Typography
+          fontSize={"14px"}
+          fontFamily={"Geologica"}
+          fontWeight={600}
+          letterSpacing={"0.5px"}
+        >
           {" "}
           Tata Motors
         </Typography>
