@@ -15,10 +15,10 @@ import {
 } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
+import KeyboardDoubleArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardDoubleArrowLeftOutlined";
 import logo from "../../assets/svg/OptiFii.svg";
 
-const ProtectedHeader = () => {
+const ProtectedHeader = ({ setShowNavbar, showNavbar }) => {
   // State to control menu
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -51,39 +51,55 @@ const ProtectedHeader = () => {
       px={"20px"}
       gap={2}
     >
-      {/* Logo */}
-      <Box
-        component={"img"}
-        src={logo}
-        alt={"logo"}
-        width={"100px"}
-        className="no-select"
-      />
+      <Box display={"flex"} alignItems={"center"} gap={1}>
+        {/* Logo */}
+        <Box
+          component={"img"}
+          src={logo}
+          alt={"logo"}
+          width={"100px"}
+          className="no-select"
+        />
+        <IconButton
+          disableRipple
+          sx={{
+            color: "#6311CB",
+            ml: "100px",
+            p: 1,
+            bgcolor: "#6311CB29",
+            borderRadius: 2,
+          }}
+        >
+          <KeyboardDoubleArrowLeftOutlinedIcon
+            sx={{ transform: showNavbar ? "rotate(000deg)" : "rotate(180deg)" }}
+          />
+        </IconButton>
 
-      {/* Search Field */}
-      <TextField
-        placeholder={"Type to search"}
-        variant={"outlined"}
-        size="small"
-        sx={{
-          width: "650px",
-          "& .MuiOutlinedInput-root": {
-            height: "40px",
-            fontSize: "14px",
-            borderRadius: "10px",
-          },
-        }}
-        color="primary"
-        slotProps={{
-          input: {
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchOutlinedIcon sx={{ color: "#A1A1AA" }} />
-              </InputAdornment>
-            ),
-          },
-        }}
-      />
+        {/* Search Field */}
+        <TextField
+          placeholder={"Type to search"}
+          variant={"outlined"}
+          size="small"
+          sx={{
+            width: "400px",
+            "& .MuiOutlinedInput-root": {
+              height: "40px",
+              fontSize: "14px",
+              borderRadius: "10px",
+            },
+          }}
+          color="primary"
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchOutlinedIcon sx={{ color: "#A1A1AA" }} />
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+      </Box>
 
       {/* Right Icons and Profile */}
       <Box display={"flex"} alignItems={"center"} gap={2}>

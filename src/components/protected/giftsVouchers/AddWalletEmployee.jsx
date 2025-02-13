@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import SuccessIcon from "../../SuccessIcon";
 import { updatewallet } from "../../../features/walletSlice";
+import EmployeeAvatarGroup from "./../../EmployeeAvatarGroup";
 
 const AddWalletEmployee = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const AddWalletEmployee = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [orderId, setOrderId] = useState(null);
   const [showCompleted, setShowCompleted] = useState(false);
+  const [showApplicationPreview, setShowApplicationPreview] = useState(false);
 
   const handleSubmit = () => {
     dispatch(
@@ -37,7 +39,8 @@ const AddWalletEmployee = () => {
         totalAmount,
       })
     );
-    setShowCompleted(true);
+    setShowCompleted(false);
+    setShowApplicationPreview(true);
   };
   const handleSubmitNewApplication = () => {
     navigate(
@@ -276,7 +279,125 @@ const AddWalletEmployee = () => {
         </Button>
       </Box>
 
-      <Dialog open={showCompleted} onClose={() => handleSubmitNewApplication()}>
+      {/* preview popup  */}
+      <Dialog
+        open={showApplicationPreview}
+        onClose={() => {
+          setShowApplicationPreview(false);
+          setShowCompleted(true);
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              height: "465px",
+              width: "624px",
+              borderRadius: "6.5px",
+              p: 2,
+            },
+          },
+        }}
+      >
+        <DialogTitle
+          fontSize={"26px"}
+          fontFamily={"Gilroy"}
+          fontWeight={500}
+          color="#101828"
+        >
+          Application Preview
+          <Typography
+            fontFamily={"TT Commons"}
+            fontSize={"20px"}
+            color="#A0A0A0"
+          >
+            Order ID:{" "}
+            <Typography
+              component={"span"}
+              fontFamily={"TT Commons"}
+              fontSize={"20px"}
+              color="#3725EA"
+            >
+              #{orderId}
+            </Typography>
+          </Typography>
+        </DialogTitle>
+        <DialogContent>
+          <Typography
+            fontFamily={"TT Commons"}
+            fontSize={"24px"}
+            color="#667085"
+          >
+            Total Users:{" "}
+            <Typography
+              component={"span"}
+              fontFamily={"TT Commons"}
+              fontSize={"24px"}
+              color="#101828"
+            >
+              {excelData.length}
+            </Typography>
+          </Typography>
+
+          <Box mt={2} textAlign={"start"} width={"fit-content"}>
+            <EmployeeAvatarGroup
+              employees={excelData}
+              width={"45px"}
+              height={"45px"}
+              hideTooltip={true}
+              fontSize="22px"
+            />
+          </Box>
+          <Typography
+            mt={4}
+            fontFamily={"TT Commons"}
+            fontSize={"23px"}
+            color="#667085"
+          >
+            Total Amount:{" "}
+          </Typography>
+          <Typography
+            fontFamily={"TT Commons"}
+            fontSize={"20px"}
+            color="#101828"
+          >
+            ₹ {totalAmount}
+          </Typography>
+        </DialogContent>
+        <DialogActions
+          sx={{
+            justifyContent: "center",
+            width: "95%",
+            mx: "auto",
+            mb: 2,
+            height: "58px",
+          }}
+        >
+          <Button
+            variant="contained"
+            fullWidth
+            sx={{
+              textTransform: "none",
+              bgcolor: "#6311CB",
+              color: "white",
+              fontFamily: "TT Commons",
+              fontSize: "23px",
+              px: 2,
+            }}
+            onClick={() => {
+              setShowApplicationPreview(false);
+              setShowCompleted(true);
+            }}
+          >
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* completed popup  */}
+      <Dialog
+        open={showCompleted}
+        onClose={() => handleSubmitNewApplication()}
+        slotProps={{ paper: { sx: { p: 2, borderRadius: "6.5px" } } }}
+      >
         <DialogTitle>
           <SuccessIcon />
         </DialogTitle>

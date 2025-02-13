@@ -310,7 +310,7 @@ const WhereToShare = () => {
                       flexWrap="wrap"
                       justifyItems={"center"}
                       p={"5px"}
-                      height={"44px"}
+                      minHeight={"44px"}
                       border={"1.04px solid #D0D5DD"}
                       borderRadius={"8px"}
                     >

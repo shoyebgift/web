@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import ProtectedHeader from "./../components/protected/Header";
 import Navbar from "./../components/protected/Navbar";
@@ -8,6 +8,7 @@ const ProtectedLayout = () => {
   const { user } = useParams();
   const pathname = window.location.pathname;
   const navigate = useNavigate();
+  const [showNavbar, setShowNavbar] = useState(true);
 
   useEffect(() => {
     if (pathname === `/${user}`) {
@@ -24,7 +25,7 @@ const ProtectedLayout = () => {
       maxHeight={"100vh"}
       height={"fit-content"}
     >
-      <ProtectedHeader />
+      <ProtectedHeader setShowNavbar={setShowNavbar} showNavbar={showNavbar} />
 
       <Box
         display={"grid"}

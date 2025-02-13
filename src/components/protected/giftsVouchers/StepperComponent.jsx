@@ -99,8 +99,8 @@ export default function CustomizedSteppers() {
       height={"130px"}
     >
       <Box
-        width={"95vw"}
-        minWidth={"100%"}
+        // width={"90vw"}
+        width={"120%"}
         height={"130px"}
         position={"absolute"}
         top={'60%'}

@@ -14,7 +14,12 @@ const WalletApprovalDialog = ({ open, onClose, wallet }) => {
   const navigate = useNavigate();
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="sm">
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth="sm"
+      slotProps={{ paper: { sx: { p: 2, borderRadius: "6.5px" } } }}
+    >
       {/* Dialog Title */}
       <DialogTitle>
         <Typography fontFamily="Gilroy" fontSize="20px" color="#000000" p={1}>

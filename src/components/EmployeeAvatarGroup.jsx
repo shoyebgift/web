@@ -3,12 +3,19 @@ import Avatar from "@mui/material/Avatar";
 import AvatarGroup from "@mui/material/AvatarGroup";
 import { Tooltip, Typography } from "@mui/material";
 
-const EmployeeAvatarGroup = ({ employees }) => {
+const EmployeeAvatarGroup = ({
+  employees,
+  height,
+  width,
+  hideTooltip = false,
+  fontSize = "12px",
+}) => {
   return (
     <Tooltip
       title={employees.length + " Employees"}
       placement="top"
       arrow
+      disableHoverListener={hideTooltip}
       slotProps={{
         tooltip: {
           sx: {
@@ -30,8 +37,8 @@ const EmployeeAvatarGroup = ({ employees }) => {
         renderSurplus={(surplus) => (
           <Typography
             sx={{
-              fontSize: "12px",
-              fontFamily: "Inter",
+              fontSize: fontSize,
+              fontFamily: "TT Commons",
               fontWeight: "500",
               color: "#7F56D9",
             }}
@@ -45,8 +52,8 @@ const EmployeeAvatarGroup = ({ employees }) => {
           mx: "auto",
 
           "& .css-18k2bs-MuiAvatar-root": {
-            width: "24px",
-            height: "24px",
+            width: width ? width : "24px",
+            height: height ? height : "24px",
             bgcolor: "#F9F5FF",
             zIndex: employees.length,
           },
@@ -58,11 +65,11 @@ const EmployeeAvatarGroup = ({ employees }) => {
             alt={employee.name}
             src={employee.profileImage || ""}
             sx={{
-              width: "24px",
-              height: "24px",
+              width: width ? width : "24px",
+              height: height ? height : "24px",
 
-              fontSize: "12px",
-              fontFamily: "Inter",
+              fontSize: fontSize,
+              fontFamily: "TT Commons",
               fontWeight: "500",
               zIndex: index,
               bgcolor: "#F9F5FF",
