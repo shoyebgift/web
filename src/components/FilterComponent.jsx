@@ -74,7 +74,7 @@ function FilterDropdown() {
       >
         Filter
       </Button>
-      <Menu
+      {/* <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
@@ -190,7 +190,7 @@ function FilterDropdown() {
             Apply
           </Button>
         </MenuItem>
-      </Menu>
+      </Menu> */}
     </Box>
   );
 }

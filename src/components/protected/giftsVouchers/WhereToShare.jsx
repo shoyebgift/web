@@ -401,6 +401,11 @@ const WhereToShare = () => {
               px: 4,
               textTransform: "none",
               backgroundColor: "#6311CB",
+              '&:disabled': {
+                color: "white",
+                opacity: 0.5,
+                backgroundColor: "#6311CB",
+              }
             }}
             onClick={handleSubmit}
           >

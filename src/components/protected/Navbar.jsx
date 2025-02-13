@@ -1,29 +1,12 @@
 import React, { useState } from "react";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAltOutlined";
-import RequestPageOutlinedIcon from "@mui/icons-material/RequestPageOutlined";
-import AnalyticsOutlinedIcon from "@mui/icons-material/AnalyticsOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import AdsClickOutlinedIcon from "@mui/icons-material/AdsClickOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import websiteLogo from "../../assets/webLogo.jpg";
 
 import { protectedNavlinks } from "../../utils/index";
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const linksIcons = {
-    HomeOutlinedIcon,
-    SignalCellularAltOutlinedIcon,
-    RequestPageOutlinedIcon,
-    AnalyticsOutlinedIcon,
-    SettingsOutlinedIcon,
-    NotificationsOutlinedIcon,
-    AdsClickOutlinedIcon,
-  };
-
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = (key) => {
@@ -63,7 +46,7 @@ const Navbar = () => {
           width={"25px"}
           className="no-select"
         />
-        <Typography fontSize={"12px"} fontWeight={"bold"}>
+        <Typography fontSize={"12px"} fontFamily={"Geologica"} fontWeight={"bold"}>
           {" "}
           Tata Motors
         </Typography>
@@ -87,7 +70,6 @@ const Navbar = () => {
           {group.items.map((link) => (
             <Box key={link.label}>
               <Box
-                mb={1}
                 component={NavLink}
                 display="flex"
                 alignItems="center"
@@ -104,7 +86,9 @@ const Navbar = () => {
                       width: "4px",
                     },
                     "& .background-col": {
-                      bgcolor: "#382450",
+                      // bgcolor: "#382450",
+                      background:
+                        "linear-gradient(90deg,rgba(55,37,234,0.6) 0%,rgba(94,15,205,0.6) 100%)",
                       ml: 1,
                       transition: "margin 0.2s ease",
                     },
@@ -113,7 +97,9 @@ const Navbar = () => {
                     width: "4px",
                   },
                   "&:hover .background-col": {
-                    bgcolor: "#382450",
+                    // bgcolor: "#382450",
+                    background:
+                      "linear-gradient(90deg,rgba(55,37,234,0.6) 0%,rgba(94,15,205,0.6) 100%)",
                     ml: 1,
                     transition: "margin 0.2s ease",
                   },
@@ -138,51 +124,53 @@ const Navbar = () => {
                   borderRadius={"2px 0 0 2px"}
                   width={"100%"}
                   alignItems={"center"}
-                  gap={1}
+                  gap={0.5}
                   height={"43px"}
+                  fontFamily={"Gilroy"}
+                  fontWeight={"300"}
+                  fontSize={"14px"}
                 >
-                  <Box component={linksIcons[link.icon]} fontSize={"20px"} />
-                  <Typography
-                    fontSize={"14px"}
-                    display={"flex"}
-                    alignItems={"center"}
-                    gap={1}
-                    fontFamily={"Gilroy"}
-                    fontWeight={"500"}
-                  >
-                    {link.label}{" "}
-                    {link.subLinks && (
-                      <IconButton
-                        color="inherit"
-                        size="small"
+                  {/* icon  */}
+                  <Box
+                    component={"img"}
+                    height={"18px"}
+                    width={"18px"}
+                    src={link.icon}
+                    alt="icon"
+                  />
+                  {link.label}{" "}
+                  {link.subLinks && (
+                    <IconButton
+                      color="inherit"
+                      size="small"
+                      sx={{
+                        "&.MuiButtonBase-root": {
+                          width: "fit-content",
+                          padding: "0px",
+                        },
+                      }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        toggleExpanded(link.label);
+                      }}
+                    >
+                      <ExpandMoreIcon
+                        fontSize="small"
                         sx={{
-                          "&.MuiButtonBase-root": {
-                            width: "fit-content",
-                            padding: "0px",
-                          },
+                          rotate: expanded[link.label] ? "180deg" : "0deg",
                         }}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          toggleExpanded(link.label);
-                        }}
-                      >
-                        <ExpandMoreIcon
-                          fontSize="small"
-                          sx={{
-                            rotate: expanded[link.label] ? "180deg" : "0deg",
-                          }}
-                        />
-                      </IconButton>
-                    )}
-                  </Typography>
+                      />
+                    </IconButton>
+                  )}
                 </Box>
               </Box>
               <Box
-                pl={4}
+                pl={2}
+                pb={1}
                 sx={{
                   textDecoration: "none",
-                  maxHeight: expanded[link.label] ? "100px" : 0,
+                  maxHeight: expanded[link.label] ? "120px" : 0,
                   overflow: "hidden",
                   transition: "max-height 0.3s ease",
                 }}
@@ -205,6 +193,7 @@ const Navbar = () => {
                       color={"white"}
                       fontSize={"14px"}
                       fontFamily={"Gilroy"}
+                      fontWeight={"300"}
                       height={"min-content"}
                       sx={{
                         "&:hover": {
@@ -212,7 +201,7 @@ const Navbar = () => {
                         },
                         "&.active": {
                           color: "#ffffff !important",
-                          fontWeight: "500",
+                          fontWeight: "400",
                           "& .active__sublink": {
                             bgcolor: "blue",
                           },

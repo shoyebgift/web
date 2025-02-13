@@ -1,3 +1,11 @@
+import home from "../assets/svg/protectedNavbar/home.svg";
+import bell from "../assets/svg/protectedNavbar/bell.svg";
+import chartBar from "../assets/svg/protectedNavbar/chart-bar.svg";
+import chartBarSquare from "../assets/svg/protectedNavbar/chart-square-bar.svg";
+import cog from "../assets/svg/protectedNavbar/cog.svg";
+import cursorClick from "../assets/svg/protectedNavbar/cursor-click.svg";
+import requestPage from "../assets/svg/protectedNavbar/request-page.svg";
+
 export function maskEmail(email) {
   const [firstPart, secondPart] = email.split("@");
   if (firstPart.length <= 2) {
@@ -40,7 +48,7 @@ export const protectedNavlinks = [
       {
         label: "Dashboard",
         to: "dashboard",
-        icon: "HomeOutlinedIcon",
+        icon: home,
       },
     ],
   },
@@ -50,7 +58,7 @@ export const protectedNavlinks = [
       {
         label: "Manage Human Resource",
         to: "human-resource",
-        icon: "SignalCellularAltOutlinedIcon",
+        icon: chartBar,
         subLinks: [
           {
             label: "Employees",
@@ -66,17 +74,17 @@ export const protectedNavlinks = [
       {
         label: "OptiFii Expense",
         to: "expense",
-        icon: "RequestPageOutlinedIcon",
+        icon: requestPage,
       },
       {
         label: "OptiFii Tax Benefit",
         to: "tax-benefits",
-        icon: "AdsClickOutlinedIcon",
+        icon: cursorClick,
       },
       {
         label: "OptiFii Gifts & Vouchers",
         to: "gifts-&-rewards",
-        icon: "AdsClickOutlinedIcon",
+        icon: cursorClick,
         subLinks: [
           { label: "Dashboard", to: "gifts-&-rewards/dashboard" },
           { label: "Gift Cards", to: "gifts-&-rewards/gift-cards" },
@@ -91,12 +99,12 @@ export const protectedNavlinks = [
       {
         label: "Reports",
         to: "reports",
-        icon: "AnalyticsOutlinedIcon",
+        icon: chartBarSquare,
       },
       {
         label: "Support & Ticket",
         to: "support",
-        icon: "NotificationsOutlinedIcon",
+        icon: bell,
       },
     ],
   },
@@ -106,7 +114,7 @@ export const protectedNavlinks = [
       {
         label: "Settings",
         to: "settings",
-        icon: "SettingsOutlinedIcon",
+        icon: cog,
       },
     ],
   },

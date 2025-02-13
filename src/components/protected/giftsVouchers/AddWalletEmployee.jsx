@@ -243,7 +243,7 @@ const AddWalletEmployee = () => {
       >
         <Button
           variant="outlined"
-          onClick={() => navigate(`/${user}/gifts-&-rewards/dashboard`)}
+          onClick={() => handleSubmitNewApplication()}
           sx={{
             borderColor: "#6311CB",
             color: "#6311CB",
@@ -264,6 +264,11 @@ const AddWalletEmployee = () => {
             px: 4,
             textTransform: "none",
             backgroundColor: "#6311CB",
+            "&:disabled": {
+              backgroundColor: "#6311CB",
+              color: "white",
+              opacity: 0.5,
+            },
           }}
           onClick={handleSubmit}
         >

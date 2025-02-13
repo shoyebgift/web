@@ -253,7 +253,7 @@ const WalletHome = () => {
 
                 {/* View Policy */}
                 <WalletApprovalDialog
-                  open={showPolicy}
+                  open={showPolicy===wallet.id}
                   onClose={() => setShowPolicy(false)}
                   wallet={wallet}
                 />

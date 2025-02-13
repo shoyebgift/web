@@ -10,7 +10,7 @@ import Check from "@mui/icons-material/Check";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 // Define custom colors
@@ -93,52 +93,71 @@ export default function CustomizedSteppers() {
       spacing={4}
       p={2}
       borderRadius={2}
+      maxHeight={"130px"}
+      overflow={"hidden"}
+      position={"relative"}
+      height={"130px"}
     >
-      <Stepper
-        alternativeLabel
-        activeStep={activeStep}
-        sx={{ width: "100%" }}
-        connector={<QontoConnector />}
+      <Box
+        width={"95vw"}
+        minWidth={"100%"}
+        height={"130px"}
+        position={"absolute"}
+        top={'60%'}
+        left={"50%"}
+        sx={{
+          transform: "translateX(-50%) translateY(-50%)",
+        }}
       >
-        {steps.map((label, index) => (
-          <Step key={index} completed={index < activeStep}>
-            <StepLabel slots={{ stepIcon: QontoStepIcon }}>
-              <Typography
-                color="#9C9C9C"
-                fontSize={"14px"}
-                fontFamily={"TT Commons"}
-              >
-                STEP {index + 1}
-              </Typography>
-              <Typography
-                fontFamily={"Gilroy"}
-                fontWeight={500}
-                color="black"
-                fontSize={"14px"}
-              >
-                {label}
-              </Typography>
-              <Typography
-                fontFamily={"TT Commons"}
-                fontSize={"14px"}
-                color={
-                  index < activeStep
-                    ? "#78c786"
-                    : activeStep === index
-                    ? "#3725EA"
-                    : "#666666"
-                }
-              >
-                {index < activeStep
-                  ? "Done"
-                  : index === activeStep
-                  ? "In Progress"
-                  : "Pending"}
-              </Typography>
-            </StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+        {" "}
+        <Stepper
+          alternativeLabel
+          activeStep={activeStep}
+          sx={{ width: "100%" }}
+          connector={<QontoConnector />}
+        >
+          {steps.map((label, index) => (
+            <Step key={index} completed={index < activeStep}>
+              <StepLabel slots={{ stepIcon: QontoStepIcon }}>
+                <Typography
+                  color="#9C9C9C"
+                  fontSize={"13px"}
+                  fontFamily={"TT Commons"}
+                  fontWeight={300}
+                >
+                  STEP {index + 1}
+                </Typography>
+                <Typography
+                  fontFamily={"Gilroy"}
+                  fontWeight={500}
+                  color="black"
+                  fontSize={"14px"}
+                >
+                  {label}
+                </Typography>
+                <Typography
+                  fontFamily={"TT Commons"}
+                  fontSize={"14px"}
+                  fontWeight={500}
+                  color={
+                    index < activeStep
+                      ? "#78c786"
+                      : activeStep === index
+                      ? "#3725EA"
+                      : "#666666"
+                  }
+                >
+                  {index < activeStep
+                    ? "Done"
+                    : index === activeStep
+                    ? "In Progress"
+                    : "Pending"}
+                </Typography>
+              </StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      </Box>
     </Stack>
   );
 }

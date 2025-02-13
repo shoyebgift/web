@@ -117,6 +117,7 @@ const FileUploader = ({
         <button
           variant="text"
           style={{
+            cursor:'pointer',
             p: 0,
             color: "#3725EA",
             textTransform: "none",

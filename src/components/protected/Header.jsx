@@ -96,6 +96,7 @@ const ProtectedHeader = () => {
         {/* Profile Button */}
         <Box position={"relative"}>
           <Button
+            disableRipple
             sx={{
               textTransform: "none",
               width: "250px",
@@ -110,20 +111,19 @@ const ProtectedHeader = () => {
             <Avatar sx={{ height: 40, width: 40 }} />
             <Box overflow="hidden">
               <Typography
-                variant="body1"
-                fontWeight="bold"
                 display={"flex"}
                 alignItems="center"
+                fontFamily={"TT Commons"}
+                fontSize={"18px"}
               >
                 Jenney Joe{" "}
-                <ArrowDropDownOutlinedIcon
-                  sx={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
-                />
               </Typography>
               <Tooltip title="jenney@dwdl.com">
                 <Typography
                   color="#A1A1AA"
-                  variant="body2"
+                  fontFamily={"TT Commons"}
+                  fontSize={"16px"}
+                  fontWeight={500}
                   sx={{
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
