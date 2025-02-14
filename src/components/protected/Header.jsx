@@ -62,16 +62,17 @@ const ProtectedHeader = ({ setShowNavbar, showNavbar }) => {
         />
         <IconButton
           disableRipple
+          onClick={() => setShowNavbar(!showNavbar)}
           sx={{
             color: "#6311CB",
             ml: "100px",
-            p: 1,
+            p: .5,
             bgcolor: "#6311CB29",
             borderRadius: 2,
           }}
         >
           <KeyboardDoubleArrowLeftOutlinedIcon
-            sx={{ transform: showNavbar ? "rotate(000deg)" : "rotate(180deg)" }}
+            sx={{ transform: showNavbar ? "rotate(0deg)" : "rotate(180deg)" }}
           />
         </IconButton>
 

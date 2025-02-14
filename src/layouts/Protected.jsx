@@ -29,11 +29,14 @@ const ProtectedLayout = () => {
 
       <Box
         display={"grid"}
-        gridTemplateColumns={"250px 1fr"}
+        sx={{
+          transition: "grid-template-columns 0.3s ease",
+        }}
+        gridTemplateColumns={showNavbar ? "250px 1fr" : "0px 1fr"}
         overflow={"hidden"}
         height={"100%"}
       >
-        <Navbar />
+        <Navbar showNavbar={showNavbar} />
         <Box overflow={"auto"} height="calc(100vh - 60px)">
           <Outlet />
         </Box>

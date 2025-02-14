@@ -6,7 +6,7 @@ import { protectedNavlinks } from "../../utils/index";
 import { Box, IconButton, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ showNavbar }) => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = (key) => {
@@ -25,6 +25,8 @@ const Navbar = () => {
       pt={1}
       pb={2}
       sx={{
+        opacity: showNavbar ? 1 : 0,
+        transition: "opacity 0.3s ease",
         overflowY: "auto",
         overflowX: "hidden",
       }}
