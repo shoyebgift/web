@@ -155,14 +155,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "TT Commons";
-  src: url("/fonts/ttCommons/2") format("woff2"),
-    url("/fonts/ttCommons/") format("woff");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
 
 @font-face {
   font-family: 'Gilroy';

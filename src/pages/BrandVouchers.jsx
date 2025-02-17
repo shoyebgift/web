@@ -102,7 +102,11 @@ const BrandVouchersPage = () => {
           }}
         >
           {header.name === "srNo" ? (
-            (page - 1) * entries + rowIndex + 1
+            entries === "all" ? (
+              rowIndex + 1
+            ) : (
+              (page - 1) * entries + rowIndex + 1
+            )
           ) : header.name === "dateTime" ? (
             new Intl.DateTimeFormat("en-US", {
               day: "numeric",

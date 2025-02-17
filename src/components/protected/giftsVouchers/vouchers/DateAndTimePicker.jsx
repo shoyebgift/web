@@ -2,18 +2,15 @@ import React, { useState } from "react";
 import { LocalizationProvider, DateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Button, Box } from "@mui/material";
+import dayjs from "dayjs";
 
-const DateAndTimePicker = ({
-  onProceed,
-  setTimeForPayment,
-  setShowDateTimePicker,
-}) => {
-  const [selectedDate, setSelectedDate] = useState(null);
+const DateAndTimePicker = ({ onProceed, setShowDateTimePicker }) => {
+  const [selectedDate, setSelectedDate] = useState(dayjs());
   const [errMsg, setErrMsg] = useState("null");
   const [err, setErr] = useState(false);
   const handleProceed = () => {
     if (selectedDate) {
-      if (selectedDate < new Date()) {
+      if (selectedDate.isBefore(dayjs())) {
         setErr(true);
         setErrMsg("Cannot Schedule for the past!");
         return;
@@ -44,6 +41,7 @@ const DateAndTimePicker = ({
             setErrMsg("");
             setSelectedDate(newValue);
           }}
+          ampm
           disablePast
           slotProps={{
             textField: {

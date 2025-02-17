@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 const Breadcrumb = () => {
   const location = useLocation();
-  const { user, walletId } = useParams();
+  const { user, walletId, voucherId } = useParams();
 
   const pathSegments = location.pathname
     .split("/")
@@ -12,7 +12,8 @@ const Breadcrumb = () => {
 
   if (
     location.pathname ===
-    `/${user}/gifts-&-rewards/my-vouchers/apply-for-brand-voucher`
+      `/${user}/gifts-&-rewards/my-vouchers/apply-for-brand-voucher` ||
+    location.pathname.split("/").includes(voucherId)
   ) {
     return (
       <Typography fontSize={"14px"}>

@@ -7,14 +7,14 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import SortDropdown from "../../SortDropdown";
-import EntriesButton from "../../EntriesButton";
-import FilterComponent from "../../FilterComponent";
+import SortDropdown from "../../../SortDropdown";
+import EntriesButton from "../../../EntriesButton";
+import FilterComponent from "../../../FilterComponent";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import TableComponent from "../../TableComponent";
-import EmployeeAvatarGroup from "../../EmployeeAvatarGroup";
+import TableComponent from "../../../TableComponent";
+import EmployeeAvatarGroup from "../../../EmployeeAvatarGroup";
 
 const WalletOrders = () => {
   const { cardWallets, cashWallets } = useSelector((state) => state.wallet);
@@ -99,9 +99,12 @@ const WalletOrders = () => {
             fontFamily: "TT Commons",
           }}
         >
-
           {header.name === "srNo" ? (
-            (page - 1) * entries + rowIndex + 1
+            entries === "all" ? (
+              rowIndex + 1
+            ) : (
+              (page - 1) * entries + rowIndex + 1
+            )
           ) : header.name === "order_ID" ? (
             <Typography
               component={Link}
@@ -129,7 +132,6 @@ const WalletOrders = () => {
               color={
                 row[header.name] === "fully_loaded" ? "#027A48" : "#A9A9A9"
               }
-
               fontWeight={500}
               p={"4px 10px"}
               bgcolor={"#ECFDF3"}

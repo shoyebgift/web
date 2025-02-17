@@ -16,14 +16,14 @@ import BrandVouchersPage from "../pages/BrandVouchers";
 import BuyVouchers from "../pages/BuyVouchers";
 import DraftVoucherPage from "../pages/DraftVoucher";
 import ApplyForGiftCardPage from "../pages/ApplyForGiftCard";
-import SelectWallet from "../components/protected/giftsVouchers/SelectWallet";
-import WalletHome from "../components/protected/giftsVouchers/WalletHome";
-import WhereToShare from "./../components/protected/giftsVouchers/WhereToShare";
-import AddWalletEmployee from "../components/protected/giftsVouchers/AddWalletEmployee";
-import CreateWalletProcess from "../components/protected/giftsVouchers/CreateWalletProcess";
+import SelectWallet from "../components/protected/giftsVouchers/gpr/SelectWallet";
+import WalletHome from "../components/protected/giftsVouchers/gpr/WalletHome";
+import WhereToShare from "../components/protected/giftsVouchers/gpr/WhereToShare";
+import AddWalletEmployee from "../components/protected/giftsVouchers/gpr/AddWalletEmployee";
+import CreateWalletProcess from "../components/protected/giftsVouchers/gpr/CreateWalletProcess";
 import HumanResourcesLayout from "../layouts/HumanResources";
 import EmployeesPage from "../pages/Employees";
-import WalletOrders from '../components/protected/giftsVouchers/WalletOrders';
+import WalletOrders from "../components/protected/giftsVouchers/gpr/WalletOrders";
 import WalletOrdersDetails from "../components/protected/humanResources/WalletOrdersDetails";
 
 const router = createBrowserRouter([
@@ -259,7 +259,25 @@ const router = createBrowserRouter([
                   },
                   {
                     path: "voucher-draft",
-                    element: <DraftVoucherPage />,
+                    children: [
+                      {
+                        path: "",
+                        element: <DraftVoucherPage />,
+                      },
+                      {
+                        path: ":voucherId",
+                        children: [
+                          {
+                            path: "",
+                            element: <BuyVouchers />,
+                          },
+                          {
+                            path: "pay",
+                            element: <BuyVouchers />,
+                          },
+                        ],
+                      },
+                    ],
                   },
                 ],
               },

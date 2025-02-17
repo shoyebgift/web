@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Divider,
   IconButton,
   Tooltip,
   Typography,
@@ -114,13 +113,12 @@ const WalletHome = () => {
               sx={{
                 fontFamily: "Gilroy",
                 fontWeight: 500,
-                bgcolor: "#6211CB",
                 color: "white",
                 borderRadius: "6px",
                 textTransform: "none",
+                background: "linear-gradient(to right, #6311CB, #8F40FB)",
                 "&:hover": {
-                  background: "linear-gradient(to right, #6311CB, #8F40FB)",
-                  color: "white",
+                  opacity: 0.9,
                 },
               }}
               startIcon={<AddIcon />}
@@ -158,16 +156,16 @@ const WalletHome = () => {
                   startIcon={<AddIcon />}
                   variant="contained"
                   sx={{
-                    bgcolor: "#6211CB",
+                    // bgcolor: "#6211CB",
                     fontFamily: "Albert Sans",
                     fontWeight: 600,
                     fontSize: "16px",
                     color: "white",
                     borderRadius: "6px",
                     textTransform: "none",
+                    background: "linear-gradient(to right, #6311CB, #8F40FB)",
                     "&:hover": {
-                      background: "linear-gradient(to right, #6311CB, #8F40FB)",
-                      color: "white",
+                      opacity: 0.9,
                     },
                   }}
                 >
@@ -253,7 +251,7 @@ const WalletHome = () => {
 
                 {/* View Policy */}
                 <WalletApprovalDialog
-                  open={showPolicy===wallet.id}
+                  open={showPolicy === wallet.id}
                   onClose={() => setShowPolicy(false)}
                   wallet={wallet}
                 />

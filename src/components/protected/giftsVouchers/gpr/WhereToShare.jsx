@@ -12,7 +12,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addwallet, updateWalletPolicy } from "../../../features/walletSlice";
+import { addwallet, updateWalletPolicy } from "../../../../features/walletSlice";
 
 const WhereToShare = () => {
   const navigate = useNavigate();

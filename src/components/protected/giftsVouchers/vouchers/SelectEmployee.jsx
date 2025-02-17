@@ -15,13 +15,11 @@ import {
   Typography,
 } from "@mui/material";
 
-import * as XLSX from "@e965/xlsx";
-import Papa from "papaparse";
-import FileUploader from "../../FileUploader";
+import FileUploader from "../../../FileUploader";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
-import SortDropdown from "../../SortDropdown";
-import EntriesButton from "../../EntriesButton";
-import TableComponent from "../../TableComponent";
+import SortDropdown from "../../../SortDropdown";
+import EntriesButton from "../../../EntriesButton";
+import TableComponent from "../../../TableComponent";
 
 const SelectEmployee = ({
   setBrandVoucherData,
@@ -42,7 +40,13 @@ const SelectEmployee = ({
   const [sortedData, setSortedData] = useState(
     brandVoucherData?.employee || []
   );
-
+  const expectedHeaders = [
+    "emp_Id",
+    "name",
+    "email_address",
+    "phone_number",
+    "amount",
+  ];
   const handleProceed = () => {
     setBrandVoucherData((prev) => ({
       ...prev,
@@ -56,145 +60,10 @@ const SelectEmployee = ({
     setCurrentStage((prev) => prev - 1);
   };
 
-  const handleFileUpload = (e) => {
-    setExcelData([]);
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const fileExt = file.name.split(".").pop().toLowerCase();
-    const allowedFileTypes = ["xlsx", "xls", "csv"];
-
-    if (!allowedFileTypes.includes(fileExt)) {
-      setFileError(
-        "Invalid file type. Please upload a .xls, .xlsx, or .csv file."
-      );
-      return;
-    }
-
-    const expectedHeaders = [
-      "emp_Id",
-      "name",
-      "email_address",
-      "phone_number",
-      "amount",
-    ];
-
-    // Function to validate and process parsed data
-    const processParsedData = (jsonData) => {
-      if (!jsonData.length) {
-        setFileError("The uploaded file is empty.");
-        return;
-      }
-
-      // Extract the header row
-      const headerRow = jsonData[0];
-
-      // Validate headers
-      const missingHeaders = expectedHeaders.filter(
-        (header) => !headerRow.includes(header)
-      );
-      if (missingHeaders.length > 0) {
-        setFileError(
-          `Invalid file format. The following required columns are missing: ${missingHeaders.join(
-            ", "
-          )}.`
-        );
-        return;
-      }
-
-      // **🚀 Find the last row with actual data (ignoring empty rows)**
-      let lastValidRowIndex = jsonData.length - 1;
-      while (
-        lastValidRowIndex > 0 &&
-        jsonData[lastValidRowIndex].every((cell) => !cell)
-      ) {
-        lastValidRowIndex--;
-      }
-
-      if (lastValidRowIndex < 1) {
-        setFileError("No data found in the file");
-        return;
-      }
-      // Process the data only up to the last valid row
-      const mappedData = [];
-      const errors = [];
-      let sumAmount = 0;
-
-      jsonData.slice(1, lastValidRowIndex + 1).forEach((row, rowIndex) => {
-        const rowObject = {};
-
-        expectedHeaders.forEach((header, index) => {
-          rowObject[header] = row[index] ? row[index].toString().trim() : "";
-
-          // Check if required fields are empty
-          if (rowObject[header] === "") {
-            rowHasEmptyField = true;
-            errors.push(`Row ${rowIndex + 2}: Missing value for "${header}".`);
-          }
-        });
-        sumAmount += Number(rowObject.amount);
-
-        mappedData.push(rowObject);
-      });
-
-      if (errors.length > 0) {
-        setFileError(errors.join(" "));
-        return;
-      }
-
-      // ✅ Set the parsed data to state
-      setExcelData(mappedData);
-      setTotalAmount(sumAmount);
-      setFileError(null); // Clear any previous errors if data is valid
-    };
-
-    if (fileExt === "csv") {
-      // Parse CSV file using PapaParse
-      Papa.parse(file, {
-        complete: (results) => {
-          processParsedData(results.data);
-        },
-        header: false, // Read as an array, since we validate headers separately
-        skipEmptyLines: true,
-        error: (error) => {
-          setFileError("Error parsing CSV file. Please check the format.");
-        },
-      });
-    } else {
-      // Parse Excel file using @e965/xlsx
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        try {
-          const data = new Uint8Array(event.target.result);
-          const workbook = XLSX.read(data, { type: "array" });
-          const sheet = workbook.Sheets[workbook.SheetNames[0]];
-          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-          processParsedData(jsonData);
-        } catch (error) {
-          setFileError(
-            "An error occurred while processing the Excel file. Please try again."
-          );
-        }
-      };
-      reader.readAsArrayBuffer(file);
-    }
-  };
-
   const handleRemoveFile = () => {
     setExcelData([]);
-    setFileError("");
+    setFileError(false);
     setTotalAmount(0);
-  };
-
-  const handleDownloadSheet = () => {
-    const fileUrl = "/Voucher_Order.xlsx";
-    const link = document.createElement("a");
-    link.href = fileUrl;
-    link.download = "sample.xlsx";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const tableHeader =
@@ -293,7 +162,11 @@ const SelectEmployee = ({
           }}
         >
           {header.name === "srNo" ? (
-            (page - 1) * entries + rowIndex + 1
+            entries === "all" ? (
+              rowIndex + 1
+            ) : (
+              (page - 1) * entries + rowIndex + 1
+            )
           ) : header.name === "Amount" ? (
             <TextField />
           ) : header.name === "name" ? (
@@ -326,8 +199,11 @@ const SelectEmployee = ({
       </Typography>
 
       <FileUploader
-        handleFileUpload={handleFileUpload}
-        handleDownloadSheet={handleDownloadSheet}
+        xlFile="/Voucher_Order.xlsx"
+        setExcelData={setExcelData}
+        setTotalAmount={setTotalAmount}
+        expectedHeaders={expectedHeaders}
+        setFileError={setFileError}
         fileError={fileError}
         handleRemoveFile={handleRemoveFile}
       />
@@ -457,7 +333,7 @@ const SelectEmployee = ({
           <Button
             variant="contained"
             onClick={handleProceed}
-            disabled={totalAmount === 0 || fileError}
+            disabled={totalAmount === 0 || fileError.length > 0}
             sx={{
               "&:hover": {
                 background: "linear-gradient(to right, #6311CB, #8F40FB)",

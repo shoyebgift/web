@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import cash from "../../../assets/img/wallet/cash.png";
-import card from "../../../assets/img/wallet/card.png";
-import cash1 from "../../../assets/svg/cash.svg";
+import cash from "../../../../assets/img/wallet/cash.png";
+import card from "../../../../assets/img/wallet/card.png";
+import cash1 from "../../../../assets/svg/cash.svg";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -12,9 +12,9 @@ const SelectWallet = () => {
   const [walletType, setWalletType] = useState("");
   const { cardWallets } = useSelector((state) => state.wallet);
 
-  const [hoveredWallet, setHoveredWallet] = useState(null);
-  const [rotation, setRotation] = useState({ x: 0, y: 0 });
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [hoveredWallet, setHoveredWallet] = useState("");
+  const boxRef = useRef({});
+  const glowRef = useRef({});
 
   const handleProceed = () => {
     if (walletType === "card" && cardWallets.length === 0) {
@@ -23,18 +23,27 @@ const SelectWallet = () => {
   };
 
   const handleMouseMove = (e, type) => {
-    if (hoveredWallet !== type) return;
+    if (
+      hoveredWallet !== type ||
+      !boxRef.current[type] ||
+      !glowRef.current[type]
+    )
+      return;
 
-    const box = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - box.left) / box.width - 0.5) * 20;
-    const y = ((e.clientY - box.top) / box.height - 0.5) * -20;
+    requestAnimationFrame(() => {
+      const box = boxRef.current[type].getBoundingClientRect();
+      const x = ((e.clientX - box.left) / box.width - 0.5) * 20;
+      const y = ((e.clientY - box.top) / box.height - 0.5) * -20;
 
-    setRotation({ x, y });
+      boxRef.current[
+        type
+      ].style.transform = `rotateX(${x}deg) rotateY(${y}deg) translate3d(0, 0, 0)`;
 
-    // Cursor position for glow effect
-    setCursorPosition({
-      x: e.clientX - box.left,
-      y: e.clientY - box.top,
+      const glow = glowRef.current[type];
+      const glowX = e.clientX - box.left;
+      const glowY = e.clientY - box.top;
+      glow.style.left = `${glowX}px`;
+      glow.style.top = `${glowY}px`;
     });
   };
 
@@ -42,10 +51,15 @@ const SelectWallet = () => {
     setHoveredWallet(type);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (type) => {
     setHoveredWallet(null);
-    setRotation({ x: 0, y: 0 });
-    setCursorPosition({ x: 0, y: 0 });
+    if (boxRef.current[type]) {
+      boxRef.current[type].style.transform = "none";
+    }
+
+    if (glowRef.current[type]) {
+      glowRef.current[type].style.opacity = 0;
+    }
   };
 
   return (
@@ -74,6 +88,7 @@ const SelectWallet = () => {
           return (
             <Box
               key={type}
+              ref={(el) => (boxRef.current[type] = el)}
               borderRadius={"6px"}
               height={"390px"}
               width={"300px"}
@@ -81,10 +96,6 @@ const SelectWallet = () => {
               sx={{
                 background: "linear-gradient(180deg, #6311CB 0%, #1F1584 100%)",
                 transition: "transform 0.1s ease-out, box-shadow 0.2s ease-out",
-                transform:
-                  hoveredWallet === type
-                    ? `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`
-                    : "none",
                 boxShadow:
                   hoveredWallet === type
                     ? "0px 10px 30px rgba(0, 0, 0, 0.3)"
@@ -95,15 +106,15 @@ const SelectWallet = () => {
               }}
               onMouseEnter={() => handleMouseEnter(type)}
               onMouseMove={(e) => handleMouseMove(e, type)}
-              onMouseLeave={handleMouseLeave}
+              onMouseLeave={() => handleMouseLeave(type)}
             >
               {/* Cursor Glow Effect */}
               {hoveredWallet === type && (
                 <Box
+                  ref={(el) => (glowRef.current[type] = el)}
                   sx={{
                     position: "absolute",
-                    top: cursorPosition.y - 200,
-                    left: cursorPosition.x - 200,
+                    transform: "translate(-50%, -50%)",
                     width: "400px",
                     height: "400px",
                     background:
@@ -132,7 +143,6 @@ const SelectWallet = () => {
                   position: "relative",
                   overflow: "hidden",
                   width: isSelected ? "120px" : "80px", // Width change with transition
-                 
                 }}
               >
                 {/* "Selected" State */}
@@ -253,7 +263,7 @@ const SelectWallet = () => {
               background: "linear-gradient(to right, #6311CB, #8F40FB)",
               color: "white",
             },
-            '&:disabled': {
+            "&:disabled": {
               backgroundColor: "#6311CB",
               color: "white",
               opacity: 0.5,

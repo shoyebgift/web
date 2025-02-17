@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Box, Button, Radio, Typography } from "@mui/material";
-import nike from "../../../assets/temp/nike.png";
-import parkAvenue from "../../../assets/temp/parkAvenue.png";
-import amazon from "../../../assets/temp/amazon.png";
-import handm from "../../../assets/temp/handm.png";
-import bewakoof from "../../../assets/temp/bewakoof.png";
+import { Box, Button, Divider, Radio, Typography } from "@mui/material";
+import nike from "../../../../assets/temp/nike.png";
+import parkAvenue from "../../../../assets/temp/parkAvenue.png";
+import amazon from "../../../../assets/temp/amazon.png";
+import handm from "../../../../assets/temp/handm.png";
+import bewakoof from "../../../../assets/temp/bewakoof.png";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
-import { brandVoucher } from "../../../utils/brandVoucher";
+import { brandVoucher } from "../../../../utils/brandVoucher";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ApplyVouchers = ({
@@ -54,7 +54,14 @@ const ApplyVouchers = ({
     <>
       {/* Popular Brands Section */}
       <Box bgcolor="#FFFFFF" p={2} borderRadius={2}>
-        <Typography>Choose from popular brands</Typography>
+        <Typography
+          fontSize={"16px"}
+          fontFamily={"Gilroy"}
+          fontWeight={500}
+          mb={2}
+        >
+          Choose from popular brands
+        </Typography>
         <Box
           display="flex"
           flexDirection="row"
@@ -81,11 +88,12 @@ const ApplyVouchers = ({
               height="34px"
               width="120px"
               p="4px"
-              onClick={() =>
+              onClick={() => {
+                setCategory("all");
                 setSelectedBrand((prev) =>
                   prev === brand.name ? null : brand.name
-                )
-              }
+                );
+              }}
             />
           ))}
         </Box>
@@ -93,7 +101,14 @@ const ApplyVouchers = ({
 
       {/* Category Filter */}
       <Box mt={2} bgcolor="#FFFFFF" p={2} borderRadius={2}>
-        <Typography>Choose from categories</Typography>
+        <Typography
+          fontSize={"16px"}
+          fontFamily={"Gilroy"}
+          fontWeight={500}
+          mb={2}
+        >
+          Shop by category
+        </Typography>
 
         <Box
           display="flex"
@@ -109,6 +124,8 @@ const ApplyVouchers = ({
             p="0 20px"
             borderRadius={1}
             color={category === "all" ? "#3725EA" : ""}
+            fontFamily={"TT Commons"}
+            fontSize={"14px"}
             sx={{
               cursor: "pointer",
               "&:hover": { backgroundColor: "#3725EA26" },
@@ -119,7 +136,12 @@ const ApplyVouchers = ({
           {Object.keys(brandVoucher).map((cat) => (
             <Typography
               key={cat}
-              onClick={() => setCategory(cat)}
+              onClick={() => {
+                setSelectedBrand(null);
+                setCategory(cat);
+              }}
+              fontFamily={"TT Commons"}
+              fontSize={"14px"}
               bgcolor={category === cat ? "#3725EA26" : ""}
               p="0 20px"
               borderRadius={1}
@@ -135,6 +157,7 @@ const ApplyVouchers = ({
           ))}
         </Box>
 
+        <Divider sx={{ my: 2 }} />
         {/* Vouchers List */}
         <Box
           mt={2}
@@ -147,9 +170,11 @@ const ApplyVouchers = ({
           <Box display="flex" flexWrap="wrap" gap={2} alignItems="flex-start">
             {filteredVouchers.length === 0 ? (
               <Typography
-                fontSize={"14px"}
+                fontSize={"16px"}
                 fontStyle={"italic"}
                 color={"#4E4E4E"}
+                fontWeight={500}
+                fontFamily={"TT Commons"}
               >
                 No vouchers found
               </Typography>

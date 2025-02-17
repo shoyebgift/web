@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 
-import { templatesImg, templateCategories } from "../../../utils/tempalets";
+import { templatesImg, templateCategories } from "../../../../utils/tempalets";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 
 const SelectTemplete = ({
   setBrandVoucherData,
   brandVoucherData,
   setCurrentStage,
+  mode,
 }) => {
   const [category, setCategory] = useState("all");
   const [selectedTemplate, setSelectedTemplate] = useState({
@@ -15,13 +16,13 @@ const SelectTemplete = ({
     message: brandVoucherData?.message || "",
   });
   const [showPreview, setShowPreview] = useState(false);
-
   let filteredVouchers =
     category === "all"
       ? templatesImg
       : templatesImg.filter((item) => item.category === category);
 
   const handleBack = () => {
+    if (mode) return;
     if (showPreview) return setShowPreview(false);
 
     setCurrentStage((prev) => prev - 1);
@@ -63,11 +64,22 @@ const SelectTemplete = ({
       overflow={"hidden"}
     >
       <Box bgcolor={"#fff"} p={2} borderRadius={2} overflow={"auto"}>
-        <Typography fontSize={"14px"} fontWeight={500}>
+        <Typography
+          fontSize={"16px"}
+          fontFamily={"Gilroy"}
+          fontWeight={500}
+          mb={2}
+        >
           Select template
         </Typography>
         <Box>
-          <Typography color="#4E4E4E" mt={1} fontSize={"14px"} fontWeight={500}>
+          <Typography
+            color="#4E4E4E"
+            my={1}
+            fontSize={"14px"}
+            fontFamily={"Gilroy"}
+            fontWeight={500}
+          >
             Category
           </Typography>
           <Box
@@ -86,6 +98,7 @@ const SelectTemplete = ({
               fontWeight={500}
               color={category === "all" ? "#3725EA" : ""}
               bgcolor={category === "all" ? "#3725EA26" : ""}
+              fontFamily={"TT Commons"}
               sx={{
                 cursor: "pointer",
                 "&:hover": { backgroundColor: "#3725EA26" },
@@ -100,6 +113,7 @@ const SelectTemplete = ({
               <Typography
                 key={item.id}
                 borderRadius={2}
+                fontFamily={"TT Commons"}
                 px={1}
                 fontSize={"14px"}
                 color={category === item.id ? "#3725EA" : ""}
@@ -142,7 +156,8 @@ const SelectTemplete = ({
                   p={1}
                   component={"img"}
                   src={item.image}
-                  width={"270px"}
+                  height={"156px"}
+                  width={"auto"}
                   borderRadius={2}
                   sx={{
                     objectFit: "contain",
@@ -166,7 +181,9 @@ const SelectTemplete = ({
         borderRadius={2}
         sx={{ overflowX: "hidden", overflowY: "auto" }}
       >
-        <Typography fontSize={"18px"}>Preview</Typography>
+        <Typography fontSize={"18px"} fontFamily={"Gilroy"} fontWeight={500}>
+          Preview
+        </Typography>
         <Box p={2}>
           {selectedTemplate.templateId ? (
             <Box
@@ -191,6 +208,8 @@ const SelectTemplete = ({
             fontSize={"16px"}
             lineHeight={"30px"}
             whiteSpace={"pre-line"}
+            fontFamily={"Gilroy"}
+            fontWeight={500}
           >
             {" "}
             {` Hi Receiver,\n You've got a ${brandVoucherData.voucher.name} E-Gift card`}
@@ -201,6 +220,7 @@ const SelectTemplete = ({
             fontSize={"16px"}
             lineHeight={"30px"}
             whiteSpace={"pre-line"}
+            fontFamily={"Roboto"}
           >
             {selectedTemplate?.message
               ? `${selectedTemplate.message}`
@@ -244,23 +264,69 @@ const SelectTemplete = ({
               gap={1}
               display={"grid"}
               gridTemplateColumns={"1fr 1fr 1fr"}
+              fontFamily={"TT Commons"}
+              fontSize={"14px"}
             >
-              <Typography fontSize={"14px"} fontWeight={500}>
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
                 Minimum
               </Typography>
-              :<Typography>500</Typography>
-              <Typography fontSize={"14px"} fontWeight={500}>
+              :
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
+                500
+              </Typography>
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
                 Maximum
               </Typography>
-              :<Typography>10000</Typography>
-              <Typography fontSize={"14px"} fontWeight={500}>
+              :
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
+                10000
+              </Typography>
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
                 Discount
               </Typography>
-              :<Typography>{brandVoucherData.voucher.discount}%</Typography>
-              <Typography fontSize={"14px"} fontWeight={500}>
+              :
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
+                {brandVoucherData.voucher.discount}%
+              </Typography>
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
                 Validity
               </Typography>
-              :<Typography>6 months</Typography>
+              :
+              <Typography
+                fontFamily={"TT Commons"}
+                fontSize={"14px"}
+                fontWeight={500}
+              >
+                6 months
+              </Typography>
             </Box>
           </Box>
         )}
@@ -299,6 +365,7 @@ const SelectTemplete = ({
           <Button
             onClick={handleBack}
             variant="outlined"
+            disabled={!!mode}
             sx={{
               height: "35px",
               borderColor: "#6311CB",

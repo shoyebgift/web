@@ -4,11 +4,11 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
 import { useDispatch } from "react-redux";
-import { addMyVoucher, draftVouchers } from "../../../features/voucherSlice";
+import { addMyVoucher, draftVouchers } from "../../../../features/voucherSlice";
 import DateTimePicker from "./DateAndTimePicker";
 import { useNavigate, useParams } from "react-router-dom";
 
-const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
+const PaymentModal = ({ brandVoucherData, setCurrentStage, mode }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useParams();
@@ -47,6 +47,7 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
   ];
 
   const handleBack = () => {
+    if (mode) return;
     setCurrentStage((prev) => prev - 1);
   };
 
@@ -81,9 +82,17 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
       position={"relative"}
     >
       <Box width={"370px"} borderRadius={2} bgcolor={"#fff"} p={2}>
-        <Typography fontSize={"18px"}>Payment</Typography>
+        <Typography
+          fontSize={"18px"}
+          fontFamily={"TT Commons"}
+          fontWeight={500}
+        >
+          Payment
+        </Typography>
         <Box
           fontSize={"18px"}
+          fontFamily={"TT Commons"}
+          fontWeight={500}
           lineHeight={"30px"}
           display={"flex"}
           gap={1}
@@ -95,7 +104,13 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
           alignItems={"center"}
         >
           Order Summary:{" "}
-          <Typography>&#8377; {brandVoucherData.totalAmount}</Typography>
+          <Typography
+            fontSize={"18px"}
+            fontFamily={"TT Commons"}
+            fontWeight={500}
+          >
+            &#8377; {brandVoucherData.totalAmount}
+          </Typography>
         </Box>
 
         <Box
@@ -118,8 +133,14 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
               alignItems={"center"}
               justifyContent={"space-between"}
             >
-              <Typography>{item.name}</Typography>
-              <Typography color="black">
+              <Typography fontFamily={"TT Commons"} fontSize={"16px"}>
+                {item.name}
+              </Typography>
+              <Typography
+                color="black"
+                fontFamily={"TT Commons"}
+                fontSize={"16px"}
+              >
                 {item.name === "Discount % applied"
                   ? `${item.value}%`
                   : `₹ ${item.value}`}
@@ -128,7 +149,12 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
           ))}
         </Box>
         <Box>
-          <Typography fontSize={"14px"} fontWeight={500}>
+          <Typography
+            fontFamily={"TT Commons"}
+            fontSize={"16px"}
+            my={1}
+            fontWeight={500}
+          >
             Master card balance{" "}
           </Typography>
           <Box
@@ -140,7 +166,11 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
             backgroundColor={" #3725EA1A"}
             borderRadius={2}
           >
-            <Typography fontSize={"16px"} fontWeight={500}>
+            <Typography
+              fontSize={"18px"}
+              fontWeight={500}
+              fontFamily={"TT Commons"}
+            >
               &#8377; {availableBalance}
             </Typography>
             <Button
@@ -149,7 +179,7 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
                 backgroundColor: "#6311CB",
                 color: "#FFFFFF",
                 textTransform: "none",
-                fontSize: "14px",
+                fontSize: "12px",
                 fontWeight: 500,
                 display: "flex",
                 alignItems: "center",
@@ -159,7 +189,7 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
                 },
               }}
             >
-              <AddOutlinedIcon sx={{ fontSize: "16px" }} />
+              <AddOutlinedIcon sx={{ fontSize: "14px" }} />
               Load Money
             </Button>
           </Box>
@@ -203,6 +233,7 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
             <Button
               onClick={handleBack}
               variant="outlined"
+              disabled={mode === "pay"}
               sx={{
                 borderColor: "#6311CB",
                 color: "#6311CB",
@@ -233,18 +264,18 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage }) => {
       </Box>
       {showDateTimePicker && (
         <Box
-          position={"absolute"}
+          position={"fixed"}
           top={0}
           left={0}
           p={2}
           width={"100%"}
-          height={"calc(100vh - 130px)"}
+          height={"calc(100vh)"}
           bgcolor="rgba(0, 0, 0, 0.5)"
           display={"flex"}
           justifyContent={"center"}
-          alignItems={"center"}
+          alignItems={"start"}
         >
-          <Box bgcolor={"#fff"} borderRadius={2} p={2}>
+          <Box bgcolor={"#fff"} borderRadius={2} p={2} mt={8}>
             <DateTimePicker
               onProceed={handleSchedule}
               setShowDateTimePicker={setShowDateTimePicker}

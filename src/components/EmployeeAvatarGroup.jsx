@@ -34,28 +34,23 @@ const EmployeeAvatarGroup = ({
     >
       <AvatarGroup
         max={6}
-        renderSurplus={(surplus) => (
-          <Typography
-            sx={{
-              fontSize: fontSize,
-              fontFamily: "TT Commons",
-              fontWeight: "500",
-              color: "#7F56D9",
-            }}
-          >
-            +{surplus}
-          </Typography>
-        )}
+        renderSurplus={(surplus) => <>+{surplus}</>}
         sx={{
           width: "fit-content",
           alignItems: "center",
           mx: "auto",
 
-          "& .css-18k2bs-MuiAvatar-root": {
+          "& .MuiAvatar-root:first-of-type": {
+            zIndex: employees.length,
+          },
+          "&  .MuiAvatar-root": {
             width: width ? width : "24px",
             height: height ? height : "24px",
             bgcolor: "#F9F5FF",
-            zIndex: employees.length,
+            color: "#7F56D9",
+            fontSize: fontSize,
+            fontFamily: "TT Commons",
+            fontWeight: "500",
           },
         }}
       >
@@ -65,15 +60,7 @@ const EmployeeAvatarGroup = ({
             alt={employee.name}
             src={employee.profileImage || ""}
             sx={{
-              width: width ? width : "24px",
-              height: height ? height : "24px",
-
-              fontSize: fontSize,
-              fontFamily: "TT Commons",
-              fontWeight: "500",
               zIndex: index,
-              bgcolor: "#F9F5FF",
-              color: "#7F56D9",
             }}
           >
             {!employee.profileImage && employee.name[0]}
