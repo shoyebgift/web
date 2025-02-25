@@ -31,10 +31,23 @@ const voucherSlice = createSlice({
       ];
     },
     draftVouchers: (state, action) => {
-      state.vouchers.draftVouchers = [
-        ...state.vouchers.draftVouchers,
-        { ...action.payload, id: Date.now() },
-      ];
+      const index = state.vouchers.draftVouchers.findIndex(
+        (voucher) => voucher.id === action.payload.id
+      );
+
+      if (index !== -1) {
+        // Update existing voucher
+        state.vouchers.draftVouchers[index] = {
+          ...state.vouchers.draftVouchers[index],
+          ...action.payload,
+        };
+      } else {
+        // Add new voucher
+        state.vouchers.draftVouchers = [
+          ...state.vouchers.draftVouchers,
+          { ...action.payload, id: Date.now() },
+        ];
+      }
     },
     removeDraftVoucher: (state, action) => {
       state.vouchers.draftVouchers = state.vouchers.draftVouchers.filter(

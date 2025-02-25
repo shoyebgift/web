@@ -22,7 +22,7 @@ const AddWalletEmployee = () => {
   const navigate = useNavigate();
   const { cardWallets, cashWallets } = useSelector((state) => state.wallet);
 
-  const [fileError, setFileError] = useState(false);
+  const [fileError, setFileError] = useState([]);
   const [excelData, setExcelData] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [orderId, setOrderId] = useState(null);
@@ -57,7 +57,7 @@ const AddWalletEmployee = () => {
 
   const handleRemoveFile = () => {
     setExcelData([]);
-    setFileError(false);
+    setFileError([]);
     setTotalAmount(0);
   };
 
@@ -123,7 +123,7 @@ const AddWalletEmployee = () => {
         </Button>
         <Button
           variant="contained"
-          disabled={!excelData.length || excelData.length === 0 || fileError}
+          disabled={excelData?.length === 0 || fileError?.length > 0}
           sx={{
             color: "white",
             px: 4,

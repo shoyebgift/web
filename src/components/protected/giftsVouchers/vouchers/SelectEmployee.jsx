@@ -28,7 +28,7 @@ const SelectEmployee = ({
 }) => {
   const [selectEmployeeFrom, setSelectEmployeeFrom] = useState("employee");
   const [excelData, setExcelData] = useState([]);
-  const [fileError, setFileError] = useState(false);
+  const [fileError, setFileError] = useState([]);
   const [totalAmount, setTotalAmount] = useState(
     brandVoucherData?.totalAmount || 0
   );
@@ -62,7 +62,7 @@ const SelectEmployee = ({
 
   const handleRemoveFile = () => {
     setExcelData([]);
-    setFileError(false);
+    setFileError([]);
     setTotalAmount(0);
   };
 
@@ -333,7 +333,7 @@ const SelectEmployee = ({
           <Button
             variant="contained"
             onClick={handleProceed}
-            disabled={totalAmount === 0 || fileError.length > 0}
+            disabled={totalAmount === 0 || fileError?.length > 0}
             sx={{
               "&:hover": {
                 background: "linear-gradient(to right, #6311CB, #8F40FB)",

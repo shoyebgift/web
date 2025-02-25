@@ -18,15 +18,15 @@ const FileUploader = ({
 
   const handleUpload = (e) => {
     handleFileUpload(e);
-    if (!fileError) {
-      setFileName(e.target.files[0].name);
-    }
+
+    setFileName(e.target.files[0].name);
+
     fileInputRef.current.value = "";
   };
 
   const handleFileUpload = (e) => {
     setExcelData([]);
-    setFileError(null); // Reset error before new upload
+    setFileError([]); // Reset error before new upload
     const file = e.target.files[0];
     if (!file) return;
 
@@ -100,8 +100,12 @@ const FileUploader = ({
           }
         });
 
-        // Sum card_balance instead of amount
-        sumAmount += Number(rowObject["card_balance"] || 0);
+        // Sum amount
+        if (setTotalAmount) {
+          sumAmount += Number(
+            rowObject["card_balance"] || rowObject["amount"] || 0
+          );
+        }
 
         mappedData.push(rowObject);
       });
@@ -113,7 +117,9 @@ const FileUploader = ({
 
       // ✅ Set the parsed data to state
       setExcelData(mappedData);
-      setTotalAmount(sumAmount);
+      if (setTotalAmount) {
+        setTotalAmount(sumAmount);
+      }
       setFileError(false); // Clear previous errors if data is valid
     };
 
