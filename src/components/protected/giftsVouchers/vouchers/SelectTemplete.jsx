@@ -22,8 +22,8 @@ const SelectTemplete = ({
       : templatesImg.filter((item) => item.category === category);
 
   const handleBack = () => {
-    if (mode) return;
     if (showPreview) return setShowPreview(false);
+    if (mode) return;
 
     setCurrentStage((prev) => prev - 1);
   };
@@ -365,7 +365,7 @@ const SelectTemplete = ({
           <Button
             onClick={handleBack}
             variant="outlined"
-            disabled={!!mode}
+            disabled={!!mode && !showPreview}
             sx={{
               height: "35px",
               borderColor: "#6311CB",

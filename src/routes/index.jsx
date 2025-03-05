@@ -25,6 +25,8 @@ import HumanResourcesLayout from "../layouts/HumanResources";
 import EmployeesPage from "../pages/Employees";
 import WalletOrders from "../components/protected/giftsVouchers/gpr/WalletOrders";
 import WalletOrdersDetails from "../components/protected/humanResources/WalletOrdersDetails";
+import DashboardPage from "./../pages/Dashboard";
+import AddBankAccountPage from "../components/protected/Dashboard/AddBankAccount";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +127,16 @@ const router = createBrowserRouter([
         children: [
           {
             path: "dashboard",
+            children: [
+              {
+                path: "",
+                element: <DashboardPage />,
+              },
+              {
+                path: "add-bank-account",
+                element: <AddBankAccountPage />,
+              },
+            ],
           },
 
           {
