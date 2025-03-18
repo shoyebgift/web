@@ -37,8 +37,10 @@ const ExpensePage = () => {
           <Typography
             component={"h2"}
             sx={{
-              fontSize: { lg: "36px", md: "28px", xs: "20px" },
+              fontSize: { lg: "20px", md: "18px", xs: "16px" },
               fontWeight: "800",
+              mt: "1rem",
+              textAlign: "start",
             }}
           >
             Keep track of all expense
@@ -46,15 +48,15 @@ const ExpensePage = () => {
           <Typography
             component={"p"}
             sx={{
-              fontWeight: "800",
-              mt: "1rem",
               fontSize: { xs: "12px", sm: "14px", md: "16px" },
+              fontWeight: "400",
               color: "#52525B",
               textAlign: "start",
+              my: "1rem",
             }}
           >
-            Measure what matters with ready-to-use reports. You can
-            filter, export, and drilldown on the data in a couple clicks.
+            Measure what matters with ready-to-use reports. You can filter,
+            export, and drilldown on the data in a couple of clicks.
           </Typography>
         </Box>
 
@@ -90,7 +92,7 @@ const ExpensePage = () => {
               maxWidth: "500px",
               height: "auto",
               "@media (max-width: 1050px) and (min-width: 900px)": {
-                maxWidth: "350px", 
+                maxWidth: "350px",
               },
             }}
           />
