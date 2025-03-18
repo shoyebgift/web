@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import SuccessDialog from "../components/SuccessDialog";
 
 const ContactUsPage = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ const ContactUsPage = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
 
   const commonEmailDomains =
     /@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|aol\.com|live\.com|msn\.com)$/i;
@@ -80,6 +82,7 @@ const ContactUsPage = () => {
         phone: "",
         message: "",
       });
+      setOpenSuccessDialog(true);
     }
   };
 
@@ -249,7 +252,7 @@ const ContactUsPage = () => {
                           color: "#667085",
                         }}
                       >
-                       IND {formData.countryCode}
+                        IND {formData.countryCode}
                       </InputAdornment>
                     ),
                   },
@@ -315,6 +318,13 @@ const ContactUsPage = () => {
           "GiftrytDigital Ventures Private Limited \nMumbai, India\nsupport@optifii.com"
         }
       </Typography>
+      {openSuccessDialog && (
+        <SuccessDialog
+          open={true}
+          onClose={() => setOpenSuccessDialog(false)}
+          message={`Thank you for submiting!\nWe will surely get in touch with you.`}
+        />
+      )}
     </Box>
   );
 };

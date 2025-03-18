@@ -57,7 +57,7 @@ const FeatureContainer = ({
             mx: { xs: "auto", md: "0" },
           }}
           src={image}
-          alt={`${image}.png`}
+          alt={image}
         />
       </Box>
     </Box>

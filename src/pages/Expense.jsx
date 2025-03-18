@@ -53,7 +53,7 @@ const ExpensePage = () => {
               textAlign: "start",
             }}
           >
-            Measure what matters with Untitled’s easy-to-use reports. You can
+            Measure what matters with ready-to-use reports. You can
             filter, export, and drilldown on the data in a couple clicks.
           </Typography>
         </Box>

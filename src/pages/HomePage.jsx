@@ -22,9 +22,11 @@ import mail from "../assets/svg/mail.svg";
 import { homePage } from "../utils/index";
 import FeatureTitleExcerpt from "../components/unprotected/FeatureTitleExcerpt";
 import DummyDashboard from "../components/unprotected/DummyDashboard";
+import SuccessDialog from "../components/SuccessDialog";
 
 const HomePage = () => {
   const { header, description, features } = homePage;
+
   const featureIcon = {
     MailOutlineIcon: mail,
     boltOutlined,
@@ -33,6 +35,7 @@ const HomePage = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [openSuccessDialog, setOpenSuccessDialog] = useState(false);
 
   const commonEmailDomains =
     /@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|aol\.com|live\.com|msn\.com)$/i;
@@ -53,6 +56,7 @@ const HomePage = () => {
         } else {
           setError("");
           setEmail("");
+          setOpenSuccessDialog(true);
         }
         setLoading(false);
       }
@@ -320,6 +324,14 @@ const HomePage = () => {
           </Box>
         ))}
       </Box>
+
+      {openSuccessDialog && (
+        <SuccessDialog
+          open={true}
+          onClose={() => setOpenSuccessDialog(false)}
+          message={`Thank you for submiting!\nWe will reach out to you soon.`}
+        />
+      )}
     </Box>
   );
 };

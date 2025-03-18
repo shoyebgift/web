@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Box, Typography } from "@mui/material";
 
 import physical from "../../assets/img/wallet/cardFront.png";
 import cash from "../../assets/img/wallet/cash.png";
 import cash1 from "../../assets/svg/cash.svg";
 import instaGiftCard from "../../assets/svg/instaGiftCard.svg";
+import VanillaTilt from "vanilla-tilt";
 
 const DummyCards = ({ type }) => {
+  const tiltRef = useRef(null);
+
+  useEffect(() => {
+    const node = tiltRef.current;
+    if (node) {
+      VanillaTilt.init(node, {
+        max: 5,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.5,
+      });
+    }
+    return () => {
+      if (node?.vanillaTilt) {
+        node.vanillaTilt.destroy();
+      }
+    };
+  }, []);
+
   return (
     <Box
+      ref={tiltRef}
       className="no-select"
       sx={{
         width: { xs: "120px", md: "200px", lg: "230px" }, // Responsive width

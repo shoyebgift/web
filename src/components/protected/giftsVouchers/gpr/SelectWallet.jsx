@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import cash from "../../../../assets/img/wallet/cash.png";
 import card from "../../../../assets/img/wallet/card.png";
@@ -6,15 +6,15 @@ import cash1 from "../../../../assets/svg/cash.svg";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import VanillaTilt from "vanilla-tilt";
 
 const SelectWallet = () => {
   const navigate = useNavigate();
   const [walletType, setWalletType] = useState("");
   const { cardWallets } = useSelector((state) => state.wallet);
 
-  const [hoveredWallet, setHoveredWallet] = useState("");
-  const boxRef = useRef({});
-  const glowRef = useRef({});
+  const cashRef = useRef(null);
+  const cardRef = useRef(null);
 
   const handleProceed = () => {
     if (walletType === "card" && cardWallets.length === 0) {
@@ -22,45 +22,28 @@ const SelectWallet = () => {
     } else navigate(`${walletType}`);
   };
 
-  const handleMouseMove = (e, type) => {
-    if (
-      hoveredWallet !== type ||
-      !boxRef.current[type] ||
-      !glowRef.current[type]
-    )
-      return;
+  useEffect(() => {
+    const refs = [cashRef.current, cardRef.current];
 
-    requestAnimationFrame(() => {
-      const box = boxRef.current[type].getBoundingClientRect();
-      const x = ((e.clientX - box.left) / box.width - 0.5) * 20;
-      const y = ((e.clientY - box.top) / box.height - 0.5) * -20;
-
-      boxRef.current[
-        type
-      ].style.transform = `rotateX(${x}deg) rotateY(${y}deg) translate3d(0, 0, 0)`;
-
-      const glow = glowRef.current[type];
-      const glowX = e.clientX - box.left;
-      const glowY = e.clientY - box.top;
-      glow.style.left = `${glowX}px`;
-      glow.style.top = `${glowY}px`;
+    refs.forEach((node) => {
+      if (node) {
+        VanillaTilt.init(node, {
+          max: 5,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.5,
+        });
+      }
     });
-  };
 
-  const handleMouseEnter = (type) => {
-    setHoveredWallet(type);
-  };
-
-  const handleMouseLeave = (type) => {
-    setHoveredWallet(null);
-    if (boxRef.current[type]) {
-      boxRef.current[type].style.transform = "none";
-    }
-
-    if (glowRef.current[type]) {
-      glowRef.current[type].style.opacity = 0;
-    }
-  };
+    return () => {
+      refs.forEach((node) => {
+        if (node?.vanillaTilt) {
+          node.vanillaTilt.destroy();
+        }
+      });
+    };
+  }, []);
 
   return (
     <Box p={2} mt={2} borderRadius={2} bgcolor={"#FFFFFF"} height={"100%"}>
@@ -85,10 +68,11 @@ const SelectWallet = () => {
       >
         {["cash", "card"].map((type) => {
           const isSelected = walletType === type;
+          const ref = type === "cash" ? cashRef : cardRef;
           return (
             <Box
+              ref={ref}
               key={type}
-              ref={(el) => (boxRef.current[type] = el)}
               borderRadius={"6px"}
               height={"390px"}
               width={"300px"}
@@ -96,37 +80,12 @@ const SelectWallet = () => {
               sx={{
                 background: "linear-gradient(180deg, #6311CB 0%, #1F1584 100%)",
                 transition: "transform 0.1s ease-out, box-shadow 0.2s ease-out",
-                boxShadow:
-                  hoveredWallet === type
-                    ? "0px 10px 30px rgba(0, 0, 0, 0.3)"
-                    : "none",
+
                 position: "relative",
                 overflow: "hidden",
                 p: "17px",
               }}
-              onMouseEnter={() => handleMouseEnter(type)}
-              onMouseMove={(e) => handleMouseMove(e, type)}
-              onMouseLeave={() => handleMouseLeave(type)}
             >
-              {/* Cursor Glow Effect */}
-              {hoveredWallet === type && (
-                <Box
-                  ref={(el) => (glowRef.current[type] = el)}
-                  sx={{
-                    position: "absolute",
-                    transform: "translate(-50%, -50%)",
-                    width: "400px",
-                    height: "400px",
-                    background:
-                      "radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 60%)",
-                    pointerEvents: "none",
-                    borderRadius: "50%",
-                    filter: "blur(45px)",
-                    zIndex: 1,
-                  }}
-                />
-              )}
-
               <Button
                 variant="outlined"
                 onClick={() => setWalletType(type)}
