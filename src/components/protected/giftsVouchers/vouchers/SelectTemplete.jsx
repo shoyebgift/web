@@ -3,6 +3,7 @@ import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 
 import { templatesImg, templateCategories } from "../../../../utils/tempalets";
 import KeyboardBackspaceOutlinedIcon from "@mui/icons-material/KeyboardBackspaceOutlined";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SelectTemplete = ({
   setBrandVoucherData,
@@ -10,6 +11,9 @@ const SelectTemplete = ({
   setCurrentStage,
   mode,
 }) => {
+  const { user } = useParams();
+  const navigate = useNavigate();
+
   const [category, setCategory] = useState("all");
   const [selectedTemplate, setSelectedTemplate] = useState({
     templateId: brandVoucherData?.templateId || "",
@@ -23,7 +27,9 @@ const SelectTemplete = ({
 
   const handleBack = () => {
     if (showPreview) return setShowPreview(false);
-    if (mode) return;
+    if (mode === "edit") {
+      return navigate(`/${user}/gifts-&-rewards/my-vouchers/voucher-draft`);
+    }
 
     setCurrentStage((prev) => prev - 1);
   };
@@ -365,7 +371,6 @@ const SelectTemplete = ({
           <Button
             onClick={handleBack}
             variant="outlined"
-            disabled={!!mode && !showPreview}
             sx={{
               height: "35px",
               borderColor: "#6311CB",

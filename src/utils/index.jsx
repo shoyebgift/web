@@ -75,6 +75,18 @@ export const protectedNavlinks = [
         label: "OptiFii Expense",
         to: "expense",
         icon: requestPage,
+        subLinks: [
+          { label: "Dashboard", to: "expense/dashboard" },
+          { label: "Wallet Program", to: "expense/wallet-program" },
+          {
+            label: "Advance Expense Request",
+            to: "expense/advance-expense-request",
+          },
+          {
+            label: "Reimbursement Request",
+            to: "expense/reimbursement-request",
+          },
+        ],
       },
       {
         label: "OptiFii Tax Benefit",

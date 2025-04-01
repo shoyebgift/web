@@ -154,7 +154,7 @@ const DashboardPage = () => {
                 mx: "auto",
                 textTransform: "none",
                 background: "linear-gradient(to right, #3725EA, #5E0FCD)",
-                fontSize: "0.75rem",
+                fontSize: "0.6rem",
               }}
               variant="contained"
               startIcon={
@@ -172,7 +172,7 @@ const DashboardPage = () => {
                 bgcolor: "#80008024",
                 color: "black",
                 boxShadow: `0 0 0 0.79px #800080`,
-                fontSize: "0.75rem",
+                fontSize: "0.6rem",
               }}
               variant="contained"
             >

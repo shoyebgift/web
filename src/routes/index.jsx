@@ -27,6 +27,7 @@ import WalletOrders from "../components/protected/giftsVouchers/gpr/WalletOrders
 import WalletOrdersDetails from "../components/protected/humanResources/WalletOrdersDetails";
 import DashboardPage from "./../pages/Dashboard";
 import AddBankAccountPage from "../components/protected/Dashboard/AddBankAccount";
+import OptifiiExpenseLayout from "../layouts/OptifiiExpense";
 
 const router = createBrowserRouter([
   {
@@ -35,89 +36,55 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: (
-          <UnprotectedLayout>
-            <HomePage />
-          </UnprotectedLayout>
-        ),
-      },
-      {
-        path: "solutions",
-        element: (
-          <UnprotectedLayout>
-            <SolutionsPage />
-          </UnprotectedLayout>
-        ),
-      },
-      {
-        path: "products",
+        element: <UnprotectedLayout />,
         children: [
           {
-            path: "expense",
-            element: (
-              <UnprotectedLayout>
-                <ExpensePage />
-              </UnprotectedLayout>
-            ),
+            path:'',
+            element:<HomePage/>
           },
           {
-            path: "benefits",
-            element: (
-              <UnprotectedLayout>
-                <BenefitsPage />
-              </UnprotectedLayout>
-            ),
+            path: "solutions",
+            element: <SolutionsPage />,
           },
           {
-            path: "rewards",
-            element: (
-              <UnprotectedLayout>
-                <RewardsPage />
-              </UnprotectedLayout>
-            ),
+            path: "products",
+            children: [
+              {
+                path: "expense",
+                element: <ExpensePage />,
+              },
+              {
+                path: "benefits",
+                element: <BenefitsPage />,
+              },
+              {
+                path: "rewards",
+                element: <RewardsPage />,
+              },
+            ],
+          },
+          {
+            path: "contact-us",
+            element: <ContactUsPage />,
+          },
+          {
+            path: "terms-conditions",
+            element: <TermsAndPolicyPages />,
+          },
+
+          {
+            path: "/privacy-policy",
+            element: <TermsAndPolicyPages />,
+          },
+          {
+            path: "/SignUp",
+            element: <SignUpPage />,
+          },
+          {
+            path: "/SignIn",
+            element: <SignInPage />,
           },
         ],
-      },
-      {
-        path: "contact-us",
-        element: (
-          <UnprotectedLayout>
-            <ContactUsPage />
-          </UnprotectedLayout>
-        ),
-      },
-      {
-        path: "terms-conditions",
-        element: (
-          <UnprotectedLayout>
-            <TermsAndPolicyPages />
-          </UnprotectedLayout>
-        ),
-      },
-
-      {
-        path: "/privacy-policy",
-        element: (
-          <UnprotectedLayout>
-            <TermsAndPolicyPages />
-          </UnprotectedLayout>
-        ),
-      },
-      {
-        path: "/SignUp",
-        element: (
-          <UnprotectedLayout>
-            <SignUpPage />
-          </UnprotectedLayout>
-        ),
-      },
-      {
-        path: "/SignIn",
-        element: (
-          <UnprotectedLayout>
-            <SignInPage />
-          </UnprotectedLayout>
-        ),
       },
 
       //protected routes
@@ -159,6 +126,29 @@ const router = createBrowserRouter([
                     element: <WalletOrdersDetails />,
                   },
                 ],
+              },
+            ],
+          },
+
+          {
+            path: "expense",
+            element: <OptifiiExpenseLayout />,
+            children: [
+              {
+                path: "dashboard",
+                element: <>optifii expense</>,
+              },
+              {
+                path: "wallet-program",
+                element: <> wallet program</>,
+              },
+              {
+                path: "advance-expense-request",
+                element: <> advance expense request</>,
+              },
+              {
+                path: "reimbursement-request",
+                element: <> reimbursement request</>,
               },
             ],
           },

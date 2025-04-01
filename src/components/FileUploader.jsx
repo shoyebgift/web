@@ -16,6 +16,21 @@ const FileUploader = ({
   const fileInputRef = useRef(null);
   const [fileName, setFileName] = useState("");
 
+  const commonEmailDomains =
+    /@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com|icloud\.com|aol\.com|live\.com|msn\.com)$/i;
+  const companyEmailPattern = /@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+
+  const validateCompanyEmail = (email, rowIndex) => {
+    const lowerEmail = email.toLowerCase();
+    if (commonEmailDomains.test(lowerEmail)) {
+      return `Row ${rowIndex + 2}: Please enter a company email address.`;
+    }
+    if (!companyEmailPattern.test(lowerEmail)) {
+      return `Row ${rowIndex + 2}: Please enter a valid email address.`;
+    }
+    return null;
+  };
+
   const handleUpload = (e) => {
     handleFileUpload(e);
 
@@ -98,10 +113,39 @@ const FileUploader = ({
           if (rowObject[header] === "") {
             errors.push(`Row ${rowIndex + 2}: Missing value for "${header}".`);
           }
+
+          if (header === "email_address" && rowObject[header]) {
+            const emailError = validateCompanyEmail(
+              rowObject[header],
+              rowIndex
+            );
+            if (emailError) {
+              errors.push(emailError);
+            }
+          }
+
+          if (header === "card_balance" && rowObject[header]) {
+            const balance = Number(rowObject[header]);
+            if (isNaN(balance)) {
+              errors.push(
+                `Row ${rowIndex + 2}: Card balance must be a number.`
+              );
+            } else if (balance < 0) {
+              errors.push(
+                `Row ${rowIndex + 2}: Card balance cannot be negative.`
+              );
+            } else if (balance > 200000) {
+              errors.push(
+                `Row ${
+                  rowIndex + 2
+                }: Card balance exceeds the limit of 2 Lac.`
+              );
+            }
+          }
         });
 
         // Sum amount
-        if (setTotalAmount) {
+        if (setTotalAmount && !isNaN(Number(rowObject["card_balance"]))) {
           sumAmount += Number(
             rowObject["card_balance"] || rowObject["amount"] || 0
           );
@@ -151,6 +195,7 @@ const FileUploader = ({
 
           processParsedData(jsonData);
         } catch (error) {
+          console.log(error);
           setFileError([
             "An error occurred while processing the Excel file. Please try again.",
           ]);

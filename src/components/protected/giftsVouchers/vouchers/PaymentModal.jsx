@@ -47,7 +47,9 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage, mode }) => {
   ];
 
   const handleBack = () => {
-    if (mode) return;
+    if (mode === "pay") {
+      return navigate(`/${user}/gifts-&-rewards/my-vouchers/voucher-draft`);
+    }
     setCurrentStage((prev) => prev - 1);
   };
 
@@ -233,7 +235,6 @@ const PaymentModal = ({ brandVoucherData, setCurrentStage, mode }) => {
             <Button
               onClick={handleBack}
               variant="outlined"
-              disabled={mode === "pay"}
               sx={{
                 borderColor: "#6311CB",
                 color: "#6311CB",

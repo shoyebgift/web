@@ -79,7 +79,7 @@ const EmployeeTransaction = () => {
           alignItems="center"
         >
           <Typography variant="h7" sx={{ fontWeight: 500, color: "#474279" }}>
-            Expense Overview
+            Employee Transaction
           </Typography>
 
           <Stack direction="row">

@@ -181,7 +181,7 @@ const Navbar = ({ showNavbar }) => {
                 pb={1}
                 sx={{
                   textDecoration: "none",
-                  maxHeight: expanded[link.label] ? "120px" : 0,
+                  maxHeight: expanded[link.label] ? "150px" : 0,
                   overflow: "hidden",
                   transition: "max-height 0.3s ease",
                 }}

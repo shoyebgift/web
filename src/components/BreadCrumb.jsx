@@ -50,7 +50,7 @@ const Breadcrumb = () => {
   }
 
   return (
-    <Box display="flex" alignItems="center" gap={1}>
+    <Box display="flex" alignItems="center" gap={0.5}>
       <Typography fontSize={"14px"} fontFamily={"Gilroy"} fontWeight={500}>
         Optifii
       </Typography>

@@ -5,7 +5,8 @@ import { Box, Typography } from "@mui/material";
 
 import lines from "../assets/svg/lines.svg";
 import ScrollToTop from "./../components/ScrollToTop";
-const UnprotectedLayout = ({ children }) => {
+import { Outlet } from "react-router-dom";
+const UnprotectedLayout = () => {
   return (
     <Box
       className="unprotected-layout"
@@ -21,7 +22,7 @@ const UnprotectedLayout = ({ children }) => {
     >
       <ScrollToTop />
       <UnprotectedHeader />
-      {children}
+      <Outlet />
 
       {/* footer */}
       <Box
