@@ -22,9 +22,9 @@ const FileUploader = ({
 
   const validateCompanyEmail = (email, rowIndex) => {
     const lowerEmail = email.toLowerCase();
-    if (commonEmailDomains.test(lowerEmail)) {
-      return `Row ${rowIndex + 2}: Please enter a company email address.`;
-    }
+    // if (commonEmailDomains.test(lowerEmail)) {
+    //   return `Row ${rowIndex + 2}: Please enter a company email address.`;
+    // }
     if (!companyEmailPattern.test(lowerEmail)) {
       return `Row ${rowIndex + 2}: Please enter a valid email address.`;
     }
@@ -134,11 +134,13 @@ const FileUploader = ({
               errors.push(
                 `Row ${rowIndex + 2}: Card balance cannot be negative.`
               );
+            } else if (balance < 100) {
+              errors.push(
+                `Row ${rowIndex + 2}: Card balance must be greater than 100.`
+              );
             } else if (balance > 200000) {
               errors.push(
-                `Row ${
-                  rowIndex + 2
-                }: Card balance exceeds the limit of 2 Lac.`
+                `Row ${rowIndex + 2}: Card balance exceeds the limit of 2 Lac.`
               );
             }
           }
